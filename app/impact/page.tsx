@@ -128,7 +128,7 @@ export default function ImpactPage() {
       <section className="bg-slate-50 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-14">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               By the Numbers
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mb-4">
@@ -160,7 +160,7 @@ export default function ImpactPage() {
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="mb-14">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               Community Reach
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
@@ -178,8 +178,8 @@ export default function ImpactPage() {
                 transition={{ duration: 0.5, delay: i * 0.15 }}
                 className="border border-slate-200 rounded-2xl p-8 hover:shadow-lg transition-shadow"
               >
-                <div className="bg-amber-50 rounded-xl p-3 inline-flex mb-5">
-                  <item.icon className="text-amber-500" size={24} />
+                <div className="bg-brand-50 rounded-xl p-3 inline-flex mb-5">
+                  <item.icon className="text-brand-500" size={24} />
                 </div>
                 <h3 className="text-slate-900 font-black text-2xl mb-3">{item.title}</h3>
                 <p className="text-slate-600 text-sm leading-relaxed">{item.description}</p>
@@ -193,7 +193,7 @@ export default function ImpactPage() {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
               <div>
-                <p className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-3">
+                <p className="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
                   The Scale of Our Work
                 </p>
                 <h3 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-5">
@@ -217,7 +217,7 @@ export default function ImpactPage() {
                     key={region.label}
                     className="bg-slate-800 border border-slate-700 rounded-xl p-4"
                   >
-                    <p className="text-amber-400 font-bold text-sm mb-1">{region.label}</p>
+                    <p className="text-brand-400 font-bold text-sm mb-1">{region.label}</p>
                     <p className="text-slate-400 text-xs leading-relaxed">{region.cities}</p>
                   </div>
                 ))}
@@ -228,7 +228,7 @@ export default function ImpactPage() {
       </section>
 
       {/* Civic Participation */}
-      <section className="bg-amber-500 py-24">
+      <section className="bg-brand-500 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <div>
@@ -263,7 +263,7 @@ export default function ImpactPage() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="bg-slate-900 rounded-2xl p-6 flex items-center gap-6"
                 >
-                  <p className="text-4xl font-black text-amber-500 flex-shrink-0">
+                  <p className="text-4xl font-black text-brand-500 flex-shrink-0">
                     {stat.value}
                   </p>
                   <p className="text-white font-bold text-lg">{stat.label}</p>
@@ -288,7 +288,7 @@ export default function ImpactPage() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="bg-slate-800 border border-slate-700 rounded-2xl p-6 flex items-center gap-6"
                 >
-                  <p className="text-4xl font-black text-amber-500 flex-shrink-0">
+                  <p className="text-4xl font-black text-brand-500 flex-shrink-0">
                     {stat.value}
                   </p>
                   <p className="text-white font-bold text-lg">{stat.label}</p>
@@ -298,8 +298,8 @@ export default function ImpactPage() {
 
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <Utensils className="text-amber-400" size={24} />
-                <p className="text-amber-400 text-xs font-black uppercase tracking-widest">
+                <Utensils className="text-brand-400" size={24} />
+                <p className="text-brand-400 text-xs font-black uppercase tracking-widest">
                   Relief Efforts
                 </p>
               </div>
@@ -326,7 +326,7 @@ export default function ImpactPage() {
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="mb-12">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               Notable Partnerships
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
@@ -346,7 +346,7 @@ export default function ImpactPage() {
               >
                 <div className="flex items-start justify-between mb-4">
                   <h3 className="text-slate-900 font-black text-xl">{partner.name}</h3>
-                  <span className="bg-amber-50 text-amber-700 text-xs font-semibold px-3 py-1 rounded-full flex-shrink-0 ml-3">
+                  <span className="bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full flex-shrink-0 ml-3">
                     {partner.area}
                   </span>
                 </div>
@@ -355,7 +355,7 @@ export default function ImpactPage() {
                 </p>
                 <Link
                   href="/partners"
-                  className="flex items-center gap-2 text-amber-600 font-bold text-sm hover:text-amber-500 transition-colors group"
+                  className="flex items-center gap-2 text-brand-600 font-bold text-sm hover:text-brand-500 transition-colors group"
                 >
                   Learn About Partnerships{" "}
                   <ArrowRight
@@ -373,8 +373,8 @@ export default function ImpactPage() {
           >
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
               <div className="flex items-center gap-4">
-                <div className="bg-amber-50 rounded-xl p-3">
-                  <Heart className="text-amber-500" size={24} />
+                <div className="bg-brand-50 rounded-xl p-3">
+                  <Heart className="text-brand-500" size={24} />
                 </div>
                 <div>
                   <h4 className="text-slate-900 font-bold text-lg">
@@ -387,7 +387,7 @@ export default function ImpactPage() {
               </div>
               <Link
                 href="/contact"
-                className="flex-shrink-0 bg-amber-500 text-slate-900 font-bold px-6 py-3 rounded-lg hover:bg-amber-400 transition-colors"
+                className="flex-shrink-0 bg-brand-500 text-slate-900 font-bold px-6 py-3 rounded-lg hover:bg-brand-400 transition-colors"
               >
                 Start a Partnership
               </Link>

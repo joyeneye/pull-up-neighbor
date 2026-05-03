@@ -131,12 +131,12 @@ export default function VisionPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div {...fadeInUp}>
-              <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">
+              <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-4">
                 The Big Picture
               </p>
               <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-6">
                 Not Just a Nonprofit. A{" "}
-                <span className="text-amber-500">Systems Change Engine.</span>
+                <span className="text-brand-500">Systems Change Engine.</span>
               </h2>
               <div className="space-y-5 text-slate-600 leading-relaxed">
                 <p>
@@ -166,7 +166,7 @@ export default function VisionPage() {
               transition={{ duration: 0.6 }}
               className="bg-slate-900 rounded-3xl p-10"
             >
-              <p className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-6">
+              <p className="text-brand-400 text-xs font-bold uppercase tracking-widest mb-6">
                 Our Vision
               </p>
               <blockquote className="text-white text-2xl font-black leading-tight mb-8">
@@ -189,7 +189,7 @@ export default function VisionPage() {
       <section className="bg-slate-50 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-14">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               Strategic Pillars
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mb-4">
@@ -214,8 +214,8 @@ export default function VisionPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                   <div className="lg:col-span-2">
                     <div className="flex items-center gap-4 mb-5">
-                      <div className="bg-amber-50 rounded-xl p-3">
-                        <pillar.icon className="text-amber-500" size={24} />
+                      <div className="bg-brand-50 rounded-xl p-3">
+                        <pillar.icon className="text-brand-500" size={24} />
                       </div>
                       <h3 className="text-slate-900 font-black text-2xl">{pillar.title}</h3>
                     </div>
@@ -223,14 +223,14 @@ export default function VisionPage() {
                   </div>
 
                   <div className="bg-slate-50 rounded-xl p-6">
-                    <p className="text-xs font-bold uppercase tracking-wider text-amber-500 mb-3">
+                    <p className="text-xs font-bold uppercase tracking-wider text-brand-500 mb-3">
                       2030 Goals
                     </p>
                     <ul className="space-y-3">
                       {pillar.goals.map((goal) => (
                         <li key={goal} className="flex items-start gap-2.5">
                           <ArrowRight
-                            className="text-amber-500 flex-shrink-0 mt-0.5"
+                            className="text-brand-500 flex-shrink-0 mt-0.5"
                             size={16}
                           />
                           <span className="text-slate-700 text-sm leading-relaxed">{goal}</span>
@@ -249,7 +249,7 @@ export default function VisionPage() {
       <section className="bg-slate-900 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-14">
-            <p className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
               The Journey
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight mb-4">
@@ -280,7 +280,7 @@ export default function VisionPage() {
                       milestone.status === "Active"
                         ? "bg-green-500/20 text-green-400"
                         : milestone.status === "In Progress"
-                        ? "bg-amber-500/20 text-amber-400"
+                        ? "bg-brand-500/20 text-brand-400"
                         : "bg-slate-700 text-slate-400"
                     }`}
                   >
@@ -299,7 +299,7 @@ export default function VisionPage() {
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="mb-14">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               Looking Ahead
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
@@ -315,10 +315,10 @@ export default function VisionPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-slate-50 border border-slate-200 rounded-2xl p-7 hover:shadow-md hover:border-amber-200 transition-all"
+                className="bg-slate-50 border border-slate-200 rounded-2xl p-7 hover:shadow-md hover:border-brand-200 transition-all"
               >
-                <div className="bg-amber-50 rounded-xl p-3 inline-flex mb-4">
-                  <goal.icon className="text-amber-500" size={22} />
+                <div className="bg-brand-50 rounded-xl p-3 inline-flex mb-4">
+                  <goal.icon className="text-brand-500" size={22} />
                 </div>
                 <h3 className="text-slate-900 font-black text-xl mb-2">{goal.title}</h3>
                 <p className="text-slate-600 text-sm leading-relaxed">{goal.description}</p>
@@ -329,7 +329,7 @@ export default function VisionPage() {
       </section>
 
       {/* Capital CTA */}
-      <section className="bg-amber-500 py-24">
+      <section className="bg-brand-500 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeInUp}>

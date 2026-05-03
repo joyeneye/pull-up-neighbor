@@ -24,7 +24,7 @@ export default function CTASection({
   if (dark) {
     // Amber background version
     return (
-      <section className="bg-amber-500">
+      <section className="bg-brand-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           {eyebrow && (
             <p className="text-slate-900/70 text-xs font-bold uppercase tracking-widest mb-4">
@@ -63,7 +63,7 @@ export default function CTASection({
     <section className="bg-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
         {eyebrow && (
-          <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">
+          <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-4">
             {eyebrow}
           </p>
         )}
@@ -76,7 +76,7 @@ export default function CTASection({
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href={ctaHref}
-            className="inline-block bg-amber-500 text-slate-900 font-bold px-8 py-4 rounded-lg hover:bg-amber-400 transition-colors duration-200"
+            className="inline-block bg-brand-500 text-slate-900 font-bold px-8 py-4 rounded-lg hover:bg-brand-400 transition-colors duration-200"
           >
             {ctaText}
           </Link>

@@ -24,7 +24,7 @@ export default function HeroSection({
   badge,
   accentWords = [],
 }: HeroSectionProps) {
-  // Highlight specific words in the title with amber color
+  // Highlight specific words in the title with brand color
   const renderTitle = () => {
     if (accentWords.length === 0) return title;
 
@@ -47,7 +47,7 @@ export default function HeroSection({
 
     return parts.map((part, i) =>
       part.accent ? (
-        <span key={i} className="text-amber-500">
+        <span key={i} className="text-brand-500">
           {part.text}
         </span>
       ) : (
@@ -72,7 +72,7 @@ export default function HeroSection({
               transition={{ duration: 0.5, delay: 0.1 }}
               className="inline-block mb-6"
             >
-              <span className="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full">
+              <span className="bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full">
                 {badge}
               </span>
             </motion.div>
@@ -104,7 +104,7 @@ export default function HeroSection({
           >
             <Link
               href={ctaHref}
-              className="inline-block bg-amber-500 text-slate-900 font-bold px-8 py-4 rounded-lg hover:bg-amber-400 transition-colors duration-200 text-center text-base"
+              className="inline-block bg-brand-500 text-slate-900 font-bold px-8 py-4 rounded-lg hover:bg-brand-400 transition-colors duration-200 text-center text-base"
             >
               {ctaText}
             </Link>

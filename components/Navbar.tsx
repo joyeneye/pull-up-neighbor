@@ -35,7 +35,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <span className="text-amber-500 font-black text-2xl tracking-tight">
+            <span className="text-brand-500 font-black text-2xl tracking-tight">
               PUN
             </span>
             <span className="hidden sm:block text-white font-semibold text-sm tracking-wide">
@@ -60,7 +60,7 @@ export default function Navbar() {
           <div className="hidden lg:block">
             <Link
               href="/contact"
-              className="bg-amber-500 text-slate-900 font-bold text-sm px-5 py-2.5 rounded-lg hover:bg-amber-400 transition-colors duration-200"
+              className="bg-brand-500 text-slate-900 font-bold text-sm px-5 py-2.5 rounded-lg hover:bg-brand-400 transition-colors duration-200"
             >
               Partner With Us
             </Link>
@@ -95,7 +95,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="block w-full text-center bg-amber-500 text-slate-900 font-bold text-sm px-5 py-3 rounded-lg hover:bg-amber-400 transition-colors"
+                className="block w-full text-center bg-brand-500 text-slate-900 font-bold text-sm px-5 py-3 rounded-lg hover:bg-brand-400 transition-colors"
               >
                 Partner With Us
               </Link>

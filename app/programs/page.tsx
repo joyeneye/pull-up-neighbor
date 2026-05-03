@@ -28,7 +28,7 @@ const programs = [
     name: "VoteHub",
     tagline: "Civic technology for voter access",
     color: "bg-slate-900",
-    textColor: "text-amber-400",
+    textColor: "text-brand-400",
     description:
       "VoteHub is PUN's civic technology platform designed to eliminate structural barriers to voter participation for underserved communities. From registration to election day, VoteHub provides the tools, information, and support that ensure every eligible voter can exercise their right.",
     mission:
@@ -43,7 +43,7 @@ const programs = [
     icon: DollarSign,
     name: "Next Gen Money",
     tagline: "Financial literacy for the next generation",
-    color: "bg-amber-500",
+    color: "bg-brand-500",
     textColor: "text-slate-900",
     description:
       "Next Gen Money is a financial literacy program built specifically for high school and college-aged youth — designed to be culturally relevant, practical, and immediately actionable. Students learn credit, saving, investing, and entrepreneurship through the lens of their own communities and aspirations.",
@@ -60,7 +60,7 @@ const programs = [
     name: "The Wealth Playbook",
     tagline: "Economic mobility for families and communities",
     color: "bg-slate-800",
-    textColor: "text-amber-400",
+    textColor: "text-brand-400",
     description:
       "The Wealth Playbook is PUN's adult financial empowerment curriculum — a comprehensive program that moves families from financial survival to financial strategy. Delivered in community centers, churches, and workplaces, it covers credit building, homeownership, business formation, and investment fundamentals.",
     mission:
@@ -76,7 +76,7 @@ const programs = [
     name: "Affordable Housing Initiative",
     tagline: "Housing access as a community right",
     color: "bg-slate-900",
-    textColor: "text-amber-400",
+    textColor: "text-brand-400",
     description:
       "The Affordable Housing Initiative is PUN's comprehensive approach to expanding access to stable, dignified housing for underserved communities. We operate across the entire housing spectrum — from tenant advocacy and navigation services to co-development of affordable units and land acquisition partnerships.",
     mission:
@@ -92,7 +92,7 @@ const programs = [
     name: "Disaster Response & Recovery Initiative",
     tagline: "Rapid relief. Long-term rebuilding.",
     color: "bg-slate-700",
-    textColor: "text-amber-400",
+    textColor: "text-brand-400",
     description:
       "The Disaster Response & Recovery Initiative is PUN's standing operational capacity for community-level disaster relief. We maintain the infrastructure, relationships, and logistics to deploy rapidly when communities are in crisis — with meals, supply kits, wellness services, and long-term rebuilding support that doesn't stop when the headlines do.",
     mission:
@@ -126,7 +126,7 @@ export default function ProgramsPage() {
               <a
                 key={p.id}
                 href={`#${p.id}`}
-                className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-amber-600 border border-slate-200 hover:border-amber-300 hover:bg-amber-50 px-5 py-2.5 rounded-full transition-all"
+                className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-brand-600 border border-slate-200 hover:border-brand-300 hover:bg-brand-50 px-5 py-2.5 rounded-full transition-all"
               >
                 <p.icon size={15} />
                 {p.name}
@@ -156,7 +156,7 @@ export default function ProgramsPage() {
                   </span>
                 </div>
 
-                <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+                <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
                   {program.tagline}
                 </p>
                 <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-5">
@@ -166,8 +166,8 @@ export default function ProgramsPage() {
                   {program.description}
                 </p>
 
-                <div className="bg-amber-50 border-l-4 border-amber-500 rounded-r-xl pl-5 pr-4 py-4 mb-8">
-                  <p className="text-xs font-bold uppercase tracking-wider text-amber-600 mb-1">
+                <div className="bg-brand-50 border-l-4 border-brand-500 rounded-r-xl pl-5 pr-4 py-4 mb-8">
+                  <p className="text-xs font-bold uppercase tracking-wider text-brand-600 mb-1">
                     Our Mission
                   </p>
                   <p className="text-slate-700 text-sm leading-relaxed">
@@ -201,14 +201,14 @@ export default function ProgramsPage() {
                 className="lg:col-span-2 space-y-5"
               >
                 <div className="bg-slate-900 rounded-2xl p-7">
-                  <p className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-4">
+                  <p className="text-brand-400 text-xs font-bold uppercase tracking-widest mb-4">
                     Impact
                   </p>
                   <ul className="space-y-3">
                     {program.impact.map((item) => (
                       <li key={item} className="flex items-start gap-2.5">
                         <CheckCircle2
-                          className="text-amber-500 flex-shrink-0 mt-0.5"
+                          className="text-brand-500 flex-shrink-0 mt-0.5"
                           size={16}
                         />
                         <span className="text-slate-300 text-sm">{item}</span>
@@ -218,7 +218,7 @@ export default function ProgramsPage() {
                 </div>
 
                 <div className="bg-white border border-slate-200 rounded-2xl p-7">
-                  <p className="text-amber-600 text-xs font-bold uppercase tracking-widest mb-3">
+                  <p className="text-brand-600 text-xs font-bold uppercase tracking-widest mb-3">
                     Partner Opportunity
                   </p>
                   <p className="text-slate-600 text-sm leading-relaxed mb-5">
@@ -226,7 +226,7 @@ export default function ProgramsPage() {
                   </p>
                   <Link
                     href="/contact"
-                    className="flex items-center gap-2 text-sm font-bold text-amber-600 hover:text-amber-500 transition-colors group"
+                    className="flex items-center gap-2 text-sm font-bold text-brand-600 hover:text-brand-500 transition-colors group"
                   >
                     Partner on {program.name}{" "}
                     <ArrowRight

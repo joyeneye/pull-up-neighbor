@@ -24,8 +24,8 @@ export default function ServiceCard({
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
       <div className="flex items-start gap-4 mb-4">
-        <div className="bg-amber-50 rounded-xl p-3 flex-shrink-0">
-          <Icon className="text-amber-500" size={24} />
+        <div className="bg-brand-50 rounded-xl p-3 flex-shrink-0">
+          <Icon className="text-brand-500" size={24} />
         </div>
         <div>
           <h3 className="text-slate-900 font-bold text-lg leading-snug">{title}</h3>
@@ -40,7 +40,7 @@ export default function ServiceCard({
             <div className="border-t border-slate-100 pt-4 mt-2 space-y-4">
               {why && (
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-amber-500 mb-1">
+                  <p className="text-xs font-bold uppercase tracking-wider text-brand-500 mb-1">
                     Why It Matters
                   </p>
                   <p className="text-slate-600 text-sm leading-relaxed">{why}</p>
@@ -48,7 +48,7 @@ export default function ServiceCard({
               )}
               {howToPartner && (
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-amber-500 mb-1">
+                  <p className="text-xs font-bold uppercase tracking-wider text-brand-500 mb-1">
                     How to Partner
                   </p>
                   <p className="text-slate-600 text-sm leading-relaxed">{howToPartner}</p>
@@ -59,7 +59,7 @@ export default function ServiceCard({
 
           <button
             onClick={() => setExpanded(!expanded)}
-            className="mt-auto pt-4 flex items-center gap-1 text-sm font-semibold text-amber-600 hover:text-amber-500 transition-colors"
+            className="mt-auto pt-4 flex items-center gap-1 text-sm font-semibold text-brand-600 hover:text-brand-500 transition-colors"
           >
             {expanded ? (
               <>

@@ -40,7 +40,7 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <span className="text-amber-500 font-black text-2xl tracking-tight">
+              <span className="text-brand-500 font-black text-2xl tracking-tight">
                 PUN
               </span>
               <span className="text-white font-semibold text-sm tracking-wide">
@@ -66,7 +66,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-slate-400 text-sm hover:text-amber-400 transition-colors"
+                    className="text-slate-400 text-sm hover:text-brand-400 transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -85,7 +85,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-slate-400 text-sm hover:text-amber-400 transition-colors"
+                    className="text-slate-400 text-sm hover:text-brand-400 transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -104,7 +104,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-slate-400 text-sm hover:text-amber-400 transition-colors"
+                    className="text-slate-400 text-sm hover:text-brand-400 transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -123,7 +123,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-slate-400 text-sm hover:text-amber-400 transition-colors"
+                    className="text-slate-400 text-sm hover:text-brand-400 transition-colors"
                   >
                     {link.label}
                   </Link>

@@ -110,7 +110,7 @@ const programs = [
     description:
       "A curriculum designed for high school and college-aged youth that makes wealth-building real, practical, and culturally resonant.",
     pillars: ["Youth", "Finance", "Empowerment"],
-    color: "from-amber-800 to-slate-900",
+    color: "from-brand-800 to-slate-900",
     href: "/programs#nextgenmoney",
   },
   {
@@ -128,7 +128,7 @@ const programs = [
     description:
       "Pipeline development, tenant advocacy, and affordable unit access programs connecting families to stable housing faster.",
     pillars: ["Housing", "Advocacy", "Development"],
-    color: "from-slate-800 to-amber-900",
+    color: "from-slate-800 to-brand-900",
     href: "/programs#housing",
   },
   {
@@ -210,7 +210,7 @@ export default function HomePage() {
       <section className="bg-slate-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="mb-12">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               What We Do
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
@@ -226,10 +226,10 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-md hover:border-amber-200 transition-all duration-300"
+                className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-md hover:border-brand-200 transition-all duration-300"
               >
-                <div className="bg-amber-50 rounded-xl p-3 inline-flex mb-4">
-                  <area.icon className="text-amber-500" size={22} />
+                <div className="bg-brand-50 rounded-xl p-3 inline-flex mb-4">
+                  <area.icon className="text-brand-500" size={22} />
                 </div>
                 <h3 className="text-slate-900 font-bold text-base mb-2">
                   {area.title}
@@ -248,12 +248,12 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div {...fadeInUp}>
-              <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">
+              <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-4">
                 Who We Are
               </p>
               <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-6">
                 More Than a Nonprofit.{" "}
-                <span className="text-amber-500">A Platform for Change.</span>
+                <span className="text-brand-500">A Platform for Change.</span>
               </h2>
               <p className="text-slate-600 text-lg leading-relaxed mb-5">
                 Pull Up Neighbor isn&apos;t a charity with a single program. We are a
@@ -268,7 +268,7 @@ export default function HomePage() {
               </p>
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 text-amber-600 font-bold hover:text-amber-500 transition-colors group"
+                className="inline-flex items-center gap-2 text-brand-600 font-bold hover:text-brand-500 transition-colors group"
               >
                 Learn About PUN{" "}
                 <ArrowRight
@@ -301,7 +301,7 @@ export default function HomePage() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="border-l-4 border-amber-500 pl-6 py-2"
+                  className="border-l-4 border-brand-500 pl-6 py-2"
                 >
                   <h4 className="text-slate-900 font-bold text-base mb-1">
                     {item.title}
@@ -321,7 +321,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="mb-12 flex items-end justify-between flex-wrap gap-4">
             <div>
-              <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+              <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
                 What We Offer
               </p>
               <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
@@ -330,7 +330,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/services"
-              className="flex items-center gap-2 text-amber-600 font-bold hover:text-amber-500 transition-colors group"
+              className="flex items-center gap-2 text-brand-600 font-bold hover:text-brand-500 transition-colors group"
             >
               View All Services{" "}
               <ArrowRight
@@ -361,7 +361,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="mb-12 flex items-end justify-between flex-wrap gap-4">
             <div>
-              <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+              <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
                 Our Programs
               </p>
               <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
@@ -370,7 +370,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/programs"
-              className="flex items-center gap-2 text-amber-600 font-bold hover:text-amber-500 transition-colors group"
+              className="flex items-center gap-2 text-brand-600 font-bold hover:text-brand-500 transition-colors group"
             >
               All Programs{" "}
               <ArrowRight
@@ -401,7 +401,7 @@ export default function HomePage() {
       <section className="bg-slate-900 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="mb-12 text-center">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               Our Impact
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight">
@@ -433,7 +433,7 @@ export default function HomePage() {
           >
             <Link
               href="/impact"
-              className="inline-flex items-center gap-2 text-amber-400 font-bold hover:text-amber-300 transition-colors group"
+              className="inline-flex items-center gap-2 text-brand-400 font-bold hover:text-brand-300 transition-colors group"
             >
               View Full Impact Report{" "}
               <ArrowRight
@@ -449,7 +449,7 @@ export default function HomePage() {
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="mb-12 text-center max-w-3xl mx-auto">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               Partnerships
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mb-5">
@@ -479,7 +479,7 @@ export default function HomePage() {
           <motion.div {...fadeInUp} className="mt-10 text-center">
             <Link
               href="/partners"
-              className="inline-block bg-amber-500 text-slate-900 font-bold px-8 py-4 rounded-lg hover:bg-amber-400 transition-colors"
+              className="inline-block bg-brand-500 text-slate-900 font-bold px-8 py-4 rounded-lg hover:bg-brand-400 transition-colors"
             >
               Explore Partnership Models
             </Link>

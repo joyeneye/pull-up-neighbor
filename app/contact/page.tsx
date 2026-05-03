@@ -51,12 +51,12 @@ export default function ContactPage() {
             transition={{ duration: 0.7 }}
             className="max-w-2xl"
           >
-            <span className="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full inline-block mb-6">
+            <span className="bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full inline-block mb-6">
               Partner With PUN
             </span>
             <h1 className="text-5xl sm:text-6xl font-black text-white tracking-tight leading-tight mb-5">
               Let&apos;s Build{" "}
-              <span className="text-amber-500">Something Real</span>
+              <span className="text-brand-500">Something Real</span>
             </h1>
             <p className="text-slate-300 text-lg leading-relaxed">
               Whether you represent a brand, a foundation, a city, or an investment
@@ -75,7 +75,7 @@ export default function ContactPage() {
             <motion.div {...fadeInUp} className="lg:col-span-2 space-y-8">
               {/* Why reach out */}
               <div>
-                <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">
+                <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-4">
                   Is This For You?
                 </p>
                 <h2 className="text-2xl font-black text-slate-900 tracking-tight mb-5">
@@ -85,7 +85,7 @@ export default function ContactPage() {
                   {reasons.map((reason) => (
                     <li key={reason} className="flex items-start gap-3">
                       <ArrowRight
-                        className="text-amber-500 flex-shrink-0 mt-0.5"
+                        className="text-brand-500 flex-shrink-0 mt-0.5"
                         size={16}
                       />
                       <span className="text-slate-600 text-sm leading-relaxed">
@@ -98,7 +98,7 @@ export default function ContactPage() {
 
               {/* Partner Types */}
               <div>
-                <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">
+                <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-4">
                   We Work With
                 </p>
                 <div className="grid grid-cols-2 gap-3">
@@ -107,7 +107,7 @@ export default function ContactPage() {
                       key={pt.label}
                       className="flex items-center gap-2.5 bg-white border border-slate-200 rounded-xl px-4 py-3"
                     >
-                      <pt.icon className="text-amber-500 flex-shrink-0" size={16} />
+                      <pt.icon className="text-brand-500 flex-shrink-0" size={16} />
                       <span className="text-slate-700 text-xs font-semibold">
                         {pt.label}
                       </span>
@@ -118,14 +118,14 @@ export default function ContactPage() {
 
               {/* Contact Info */}
               <div className="bg-slate-900 rounded-2xl p-7">
-                <p className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-4">
+                <p className="text-brand-400 text-xs font-bold uppercase tracking-widest mb-4">
                   Direct Contact
                 </p>
                 <div className="flex items-center gap-3 mb-3">
-                  <Mail className="text-amber-500 flex-shrink-0" size={18} />
+                  <Mail className="text-brand-500 flex-shrink-0" size={18} />
                   <a
                     href="mailto:hello@pullupneighbor.org"
-                    className="text-white text-sm hover:text-amber-400 transition-colors font-medium"
+                    className="text-white text-sm hover:text-brand-400 transition-colors font-medium"
                   >
                     hello@pullupneighbor.org
                   </a>
@@ -137,11 +137,11 @@ export default function ContactPage() {
               </div>
 
               {/* Response Time */}
-              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
-                <p className="text-amber-700 font-bold text-sm mb-2">
+              <div className="bg-brand-50 border border-brand-200 rounded-2xl p-6">
+                <p className="text-brand-700 font-bold text-sm mb-2">
                   Response Time
                 </p>
-                <p className="text-amber-800 text-sm leading-relaxed">
+                <p className="text-brand-800 text-sm leading-relaxed">
                   Our team responds to all partnership inquiries within{" "}
                   <strong>2 business days</strong>. For urgent matters, indicate
                   the time sensitivity in your message.
@@ -175,7 +175,7 @@ export default function ContactPage() {
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center max-w-2xl mx-auto mb-12">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               What to Expect
             </p>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
@@ -212,7 +212,7 @@ export default function ContactPage() {
                 transition={{ duration: 0.5, delay: i * 0.15 }}
                 className="text-center"
               >
-                <div className="bg-amber-500 text-slate-900 font-black text-xl w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-5">
+                <div className="bg-brand-500 text-slate-900 font-black text-xl w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-5">
                   {item.step}
                 </div>
                 <h3 className="text-slate-900 font-bold text-lg mb-3">{item.title}</h3>

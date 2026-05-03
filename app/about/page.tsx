@@ -58,7 +58,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <motion.div {...fadeInUp}>
-              <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">
+              <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-4">
                 Our Mission
               </p>
               <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-6">
@@ -94,7 +94,7 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               className="space-y-5"
             >
-              <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">
+              <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-4">
                 The PUN Difference
               </p>
               <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-6">
@@ -127,7 +127,7 @@ export default function AboutPage() {
       <section id="why" className="bg-slate-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-14">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               Why PUN Is Different
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mb-4">
@@ -168,8 +168,8 @@ export default function AboutPage() {
                 transition={{ duration: 0.5, delay: i * 0.15 }}
                 className="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-lg transition-shadow"
               >
-                <div className="bg-amber-50 rounded-xl p-3 inline-flex mb-5">
-                  <item.icon className="text-amber-500" size={24} />
+                <div className="bg-brand-50 rounded-xl p-3 inline-flex mb-5">
+                  <item.icon className="text-brand-500" size={24} />
                 </div>
                 <h3 className="text-slate-900 font-black text-xl mb-3">{item.title}</h3>
                 <p className="text-slate-600 text-sm leading-relaxed">{item.description}</p>
@@ -183,7 +183,7 @@ export default function AboutPage() {
       <section id="values" className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="mb-14">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               Our Values
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
@@ -201,8 +201,8 @@ export default function AboutPage() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="flex gap-5 p-6 border border-slate-200 rounded-2xl hover:shadow-md transition-shadow"
               >
-                <div className="bg-amber-50 rounded-xl p-3 h-fit flex-shrink-0">
-                  <value.icon className="text-amber-500" size={22} />
+                <div className="bg-brand-50 rounded-xl p-3 h-fit flex-shrink-0">
+                  <value.icon className="text-brand-500" size={22} />
                 </div>
                 <div>
                   <h3 className="text-slate-900 font-bold text-lg mb-2">{value.title}</h3>
@@ -219,12 +219,12 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeInUp}>
-              <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">
+              <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-4">
                 Our Approach
               </p>
               <h2 className="text-4xl font-black text-white tracking-tight leading-tight mb-6">
                 We Don&apos;t Just Serve Communities.{" "}
-                <span className="text-amber-500">We Build With Them.</span>
+                <span className="text-brand-500">We Build With Them.</span>
               </h2>
               <p className="text-slate-300 leading-relaxed mb-5">
                 Every program, every partnership, every activation is designed with community
@@ -255,8 +255,8 @@ export default function AboutPage() {
                   key={item.label}
                   className="bg-slate-800 rounded-2xl p-6 text-center border border-slate-700"
                 >
-                  <item.icon className="text-amber-500 mx-auto mb-3" size={24} />
-                  <p className="text-3xl font-black text-amber-500 mb-1">{item.stat}</p>
+                  <item.icon className="text-brand-500 mx-auto mb-3" size={24} />
+                  <p className="text-3xl font-black text-brand-500 mb-1">{item.stat}</p>
                   <p className="text-slate-300 text-sm font-medium">{item.label}</p>
                 </div>
               ))}

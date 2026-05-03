@@ -24,7 +24,7 @@ export default function ProgramCard({
     >
       <div>
         <h3 className="text-2xl font-black tracking-tight mb-1">{name}</h3>
-        <p className="text-amber-400 font-semibold text-sm mb-4">{tagline}</p>
+        <p className="text-brand-400 font-semibold text-sm mb-4">{tagline}</p>
         <p className="text-slate-300 text-sm leading-relaxed mb-6">{description}</p>
 
         <div className="flex flex-wrap gap-2 mb-6">
@@ -41,7 +41,7 @@ export default function ProgramCard({
 
       <Link
         href={href}
-        className="flex items-center gap-2 text-amber-400 font-semibold text-sm hover:text-amber-300 transition-colors group"
+        className="flex items-center gap-2 text-brand-400 font-semibold text-sm hover:text-brand-300 transition-colors group"
       >
         Learn More{" "}
         <ArrowRight

@@ -37,9 +37,9 @@ export default function ContactForm() {
   if (submitted) {
     return (
       <div className="bg-white rounded-2xl shadow-xl p-10 flex flex-col items-center justify-center text-center min-h-80">
-        <div className="bg-amber-50 rounded-full p-5 mb-5">
+        <div className="bg-brand-50 rounded-full p-5 mb-5">
           <svg
-            className="w-10 h-10 text-amber-500"
+            className="w-10 h-10 text-brand-500"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -72,7 +72,7 @@ export default function ContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label className="block text-sm font-semibold text-slate-700 mb-1.5">
-            Full Name <span className="text-amber-500">*</span>
+            Full Name <span className="text-brand-500">*</span>
           </label>
           <input
             type="text"
@@ -81,7 +81,7 @@ export default function ContactForm() {
             value={form.name}
             onChange={handleChange}
             placeholder="Jane Smith"
-            className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+            className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
           />
         </div>
         <div>
@@ -94,14 +94,14 @@ export default function ContactForm() {
             value={form.organization}
             onChange={handleChange}
             placeholder="Acme Foundation"
-            className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+            className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
           />
         </div>
       </div>
 
       <div>
         <label className="block text-sm font-semibold text-slate-700 mb-1.5">
-          Email Address <span className="text-amber-500">*</span>
+          Email Address <span className="text-brand-500">*</span>
         </label>
         <input
           type="email"
@@ -110,20 +110,20 @@ export default function ContactForm() {
           value={form.email}
           onChange={handleChange}
           placeholder="jane@example.com"
-          className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+          className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
         />
       </div>
 
       <div>
         <label className="block text-sm font-semibold text-slate-700 mb-1.5">
-          Partnership Type <span className="text-amber-500">*</span>
+          Partnership Type <span className="text-brand-500">*</span>
         </label>
         <select
           name="partnershipType"
           required
           value={form.partnershipType}
           onChange={handleChange}
-          className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition bg-white"
+          className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition bg-white"
         >
           <option value="" disabled>
             Select a partnership type
@@ -138,7 +138,7 @@ export default function ContactForm() {
 
       <div>
         <label className="block text-sm font-semibold text-slate-700 mb-1.5">
-          Message <span className="text-amber-500">*</span>
+          Message <span className="text-brand-500">*</span>
         </label>
         <textarea
           name="message"
@@ -147,13 +147,13 @@ export default function ContactForm() {
           onChange={handleChange}
           rows={5}
           placeholder="Tell us about your organization and how you'd like to partner with Pull Up Neighbor..."
-          className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition resize-none"
+          className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition resize-none"
         />
       </div>
 
       <button
         type="submit"
-        className="w-full bg-amber-500 text-slate-900 font-bold py-4 rounded-lg hover:bg-amber-400 transition-colors duration-200 text-base"
+        className="w-full bg-brand-500 text-slate-900 font-bold py-4 rounded-lg hover:bg-brand-400 transition-colors duration-200 text-base"
       >
         Send Message
       </button>

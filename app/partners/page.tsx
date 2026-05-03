@@ -169,7 +169,7 @@ export default function PartnersPage() {
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-14">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               Who We Work With
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mb-4">
@@ -202,7 +202,7 @@ export default function PartnersPage() {
       <section className="bg-slate-900 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-14">
-            <p className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
               How We Work Together
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight mb-4">
@@ -227,8 +227,8 @@ export default function PartnersPage() {
                 <span className="text-slate-700 font-black text-5xl absolute top-5 right-6 leading-none">
                   {step.step}
                 </span>
-                <div className="bg-amber-500/10 rounded-xl p-3 inline-flex mb-5">
-                  <step.icon className="text-amber-500" size={22} />
+                <div className="bg-brand-500/10 rounded-xl p-3 inline-flex mb-5">
+                  <step.icon className="text-brand-500" size={22} />
                 </div>
                 <h3 className="text-white font-black text-xl mb-3">{step.title}</h3>
                 <p className="text-slate-400 text-sm leading-relaxed">{step.description}</p>
@@ -242,7 +242,7 @@ export default function PartnersPage() {
       <section className="bg-slate-50 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="mb-14">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               Partnership Structures
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
@@ -265,7 +265,7 @@ export default function PartnersPage() {
                   {model.description}
                 </p>
                 <div className="flex gap-4 flex-wrap">
-                  <span className="bg-amber-50 text-amber-700 text-xs font-bold px-3 py-1.5 rounded-full">
+                  <span className="bg-brand-50 text-brand-700 text-xs font-bold px-3 py-1.5 rounded-full">
                     Investment: {model.investment}
                   </span>
                   <span className="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-full">
@@ -282,7 +282,7 @@ export default function PartnersPage() {
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="mb-14">
-            <p className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-brand-500 text-xs font-bold uppercase tracking-widest mb-3">
               Why PUN
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
@@ -301,7 +301,7 @@ export default function PartnersPage() {
                 className="flex gap-5"
               >
                 <div className="flex-shrink-0 mt-1">
-                  <CheckCircle2 className="text-amber-500" size={22} />
+                  <CheckCircle2 className="text-brand-500" size={22} />
                 </div>
                 <div>
                   <h3 className="text-slate-900 font-bold text-lg mb-2">{reason.title}</h3>
@@ -316,7 +316,7 @@ export default function PartnersPage() {
           <motion.div {...fadeInUp} className="mt-14 text-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-amber-500 text-slate-900 font-bold px-10 py-5 rounded-xl hover:bg-amber-400 transition-colors text-lg group"
+              className="inline-flex items-center gap-2 bg-brand-500 text-slate-900 font-bold px-10 py-5 rounded-xl hover:bg-brand-400 transition-colors text-lg group"
             >
               Start a Partnership Conversation{" "}
               <ArrowRight
