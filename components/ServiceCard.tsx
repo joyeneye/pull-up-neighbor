@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { type LucideIcon, ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import Icon from "@/components/Icon";
 
 interface ServiceCardProps {
-  icon: LucideIcon;
+  icon: string;
   title: string;
   description: string;
   why?: string;
@@ -12,7 +13,7 @@ interface ServiceCardProps {
 }
 
 export default function ServiceCard({
-  icon: Icon,
+  icon,
   title,
   description,
   why,
@@ -25,7 +26,7 @@ export default function ServiceCard({
     <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
       <div className="flex items-start gap-4 mb-4">
         <div className="bg-brand-50 rounded-xl p-3 flex-shrink-0">
-          <Icon className="text-brand-500" size={24} />
+          <Icon name={icon} className="text-brand-500" size={24} />
         </div>
         <div>
           <h3 className="text-slate-900 font-bold text-lg leading-snug">{title}</h3>
