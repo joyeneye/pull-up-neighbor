@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 
 interface HeroSectionProps {
@@ -12,6 +12,9 @@ interface HeroSectionProps {
   secondaryCtaHref?: string;
   badge?: string;
   accentWords?: string[];
+  videoSrcMp4?: string;
+  videoSrcWebm?: string;
+  videoPoster?: string;
 }
 
 export default function HeroSection({
@@ -23,7 +26,13 @@ export default function HeroSection({
   secondaryCtaHref,
   badge,
   accentWords = [],
+  videoSrcMp4,
+  videoSrcWebm,
+  videoPoster,
 }: HeroSectionProps) {
+  const prefersReducedMotion = useReducedMotion();
+  const hasVideo = Boolean(videoSrcMp4 || videoSrcWebm);
+  const showVideo = hasVideo && !prefersReducedMotion;
   // Highlight specific words in the title with brand color
   const renderTitle = () => {
     if (accentWords.length === 0) return title;
@@ -57,8 +66,35 @@ export default function HeroSection({
   };
 
   return (
-    <section className="bg-slate-900 min-h-screen flex items-center pt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+    <section className="relative isolate overflow-hidden bg-slate-900 min-h-screen flex items-center pt-16">
+      {hasVideo && (
+        <div aria-hidden className="absolute inset-0 -z-10">
+          {showVideo ? (
+            <video
+              className="h-full w-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster={videoPoster}
+            >
+              {videoSrcWebm && <source src={videoSrcWebm} type="video/webm" />}
+              {videoSrcMp4 && <source src={videoSrcMp4} type="video/mp4" />}
+            </video>
+          ) : videoPoster ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={videoPoster}
+              alt=""
+              className="h-full w-full object-cover"
+            />
+          ) : null}
+          <div className="absolute inset-0 bg-slate-900/65" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-slate-900/20" />
+        </div>
+      )}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

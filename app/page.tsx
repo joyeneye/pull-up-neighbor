@@ -204,6 +204,8 @@ export default function HomePage() {
         secondaryCtaText="Partner With Us"
         secondaryCtaHref="/contact"
         accentWords={["Capital", "Culture"]}
+        videoSrcMp4="/hero/pun-hero.mp4"
+        videoPoster="/hero/pun-hero-poster.jpg"
       />
 
       {/* Focus Areas */}
