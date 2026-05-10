@@ -9,8 +9,7 @@ const HERO_FRAGMENT = `
   secondaryCta,
   "videoUrl": backgroundVideo.asset->url,
   "videoMimeType": backgroundVideo.asset->mimeType,
-  videoPoster {
-    ...,
+  "videoPoster": backgroundVideoPoster {
     asset->{ url, metadata }
   }
 `;

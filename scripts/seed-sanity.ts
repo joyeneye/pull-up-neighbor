@@ -10,6 +10,8 @@
  * createOrReplace. Existing edits in Sanity will be overwritten.
  */
 import { createClient } from "@sanity/client";
+import { readFileSync, existsSync } from "node:fs";
+import { resolve } from "node:path";
 import {
   defaultHomePage,
   defaultAboutPage,
@@ -138,8 +140,40 @@ async function main() {
     })
   );
 
-  // Helper to convert hero defaults into Sanity-shape (skip video — editor uploads in Studio)
-  const heroDoc = (h: typeof defaultHomePage.hero) => ({
+  // Upload hero video + poster as Sanity assets (once; re-uses existing if found by hash)
+  let heroVideoAssetId: string | undefined;
+  let heroPosterAssetId: string | undefined;
+
+  const heroVideoPath = resolve(process.cwd(), "public/hero/pun-hero.mp4");
+  if (existsSync(heroVideoPath)) {
+    console.log("Uploading hero video to Sanity...");
+    const uploaded = await client.assets.upload(
+      "file",
+      readFileSync(heroVideoPath),
+      { filename: "pun-hero.mp4", contentType: "video/mp4" }
+    );
+    heroVideoAssetId = uploaded._id;
+    console.log(`  → ${uploaded._id} (${(uploaded.size / 1024 / 1024).toFixed(1)} MB)`);
+  }
+
+  const heroPosterPath = resolve(process.cwd(), "public/hero/pun-hero-poster.jpg");
+  if (existsSync(heroPosterPath)) {
+    console.log("Uploading hero poster to Sanity...");
+    const uploaded = await client.assets.upload(
+      "image",
+      readFileSync(heroPosterPath),
+      { filename: "pun-hero-poster.jpg", contentType: "image/jpeg" }
+    );
+    heroPosterAssetId = uploaded._id;
+    console.log(`  → ${uploaded._id}`);
+  }
+
+  // Helper to convert hero defaults into Sanity-shape. Only the homepage hero
+  // gets the bundled video — secondary pages stay video-less by default.
+  const heroDoc = (
+    h: typeof defaultHomePage.hero,
+    opts: { withVideo?: boolean } = {}
+  ) => ({
     badge: h.badge,
     title: h.title,
     accentWords: h.accentWords,
@@ -148,6 +182,22 @@ async function main() {
     secondaryCta: h.secondaryCta
       ? { label: h.secondaryCta.label, href: h.secondaryCta.href }
       : undefined,
+    ...(opts.withVideo && heroVideoAssetId
+      ? {
+          backgroundVideo: {
+            _type: "file",
+            asset: { _type: "reference", _ref: heroVideoAssetId },
+          },
+        }
+      : {}),
+    ...(opts.withVideo && heroPosterAssetId
+      ? {
+          backgroundVideoPoster: {
+            _type: "image",
+            asset: { _type: "reference", _ref: heroPosterAssetId },
+          },
+        }
+      : {}),
   });
 
   const finalCtaDoc = (c?: typeof defaultHomePage.finalCta) =>
@@ -168,7 +218,7 @@ async function main() {
   await client.createOrReplace({
     _id: "homePage",
     _type: "homePage",
-    hero: heroDoc(defaultHomePage.hero),
+    hero: heroDoc(defaultHomePage.hero, { withVideo: true }),
     focusAreasEyebrow: defaultHomePage.focusAreasEyebrow,
     focusAreasTitle: defaultHomePage.focusAreasTitle,
     focusAreas: focusAreaIds.map((id) => ({ _type: "reference", _ref: id, _key: id })),
