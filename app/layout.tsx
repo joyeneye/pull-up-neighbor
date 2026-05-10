@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import DisableDraftButton from "@/components/DisableDraftButton";
+import { SanityLive } from "@/sanity/lib/fetch";
 
 export const metadata: Metadata = {
   title: "Pull Up Neighbor | Community. Capital. Culture.",
@@ -24,6 +25,7 @@ export default async function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <SanityLive />
         {isDraft && (
           <>
             <VisualEditing />
