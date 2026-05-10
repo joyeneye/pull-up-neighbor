@@ -13,7 +13,8 @@ export const hero = defineType({
     defineField({
       name: "title",
       title: "Headline",
-      type: "string",
+      type: "text",
+      rows: 2,
       validation: (Rule) => Rule.required(),
     }),
     defineField({
