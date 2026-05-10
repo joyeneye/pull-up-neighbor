@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import DisableDraftButton from "@/components/DisableDraftButton";
 import DraftMotionConfig from "@/components/DraftMotionConfig";
-import { SanityLive } from "@/sanity/lib/fetch";
+import DebouncedSanityLive from "@/components/DebouncedSanityLive";
 
 export const metadata: Metadata = {
   title: "Pull Up Neighbor | Community. Capital. Culture.",
@@ -31,7 +31,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {isDraft ? <DraftMotionConfig>{body}</DraftMotionConfig> : body}
-        <SanityLive />
+        <DebouncedSanityLive />
         {isDraft && (
           <>
             <VisualEditing />
