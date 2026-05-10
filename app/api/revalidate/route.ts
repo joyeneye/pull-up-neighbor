@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
 
   const tags = TYPE_TO_TAGS[type] ?? [];
   for (const tag of tags) {
-    revalidateTag(tag, "max");
+    revalidateTag(tag, { expire: 0 });
   }
 
   return NextResponse.json({ ok: true, revalidated: tags });
