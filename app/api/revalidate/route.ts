@@ -1,8 +1,20 @@
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 
 const SECRET = process.env.SANITY_REVALIDATE_SECRET;
+
+const TAG_TO_PATHS: Record<string, string[]> = {
+  homePage: ["/"],
+  aboutPage: ["/about"],
+  visionPage: ["/vision"],
+  programsPage: ["/programs"],
+  impactPage: ["/impact"],
+  servicesPage: ["/services"],
+  partnersPage: ["/partners"],
+  contactPage: ["/contact"],
+  siteSettings: ["/", "/about", "/vision", "/programs", "/impact", "/services", "/partners", "/contact"],
+};
 
 const TYPE_TO_TAGS: Record<string, string[]> = {
   homePage: ["homePage"],
@@ -50,9 +62,14 @@ export async function POST(req: NextRequest) {
   }
 
   const tags = TYPE_TO_TAGS[type] ?? [];
+  const paths = new Set<string>();
   for (const tag of tags) {
     revalidateTag(tag, { expire: 0 });
+    for (const p of TAG_TO_PATHS[tag] ?? []) paths.add(p);
+  }
+  for (const p of paths) {
+    revalidatePath(p);
   }
 
-  return NextResponse.json({ ok: true, revalidated: tags });
+  return NextResponse.json({ ok: true, revalidated: { tags, paths: Array.from(paths) } });
 }
