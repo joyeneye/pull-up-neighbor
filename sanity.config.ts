@@ -5,6 +5,8 @@ import { visionTool } from "@sanity/vision";
 import { schemaTypes, SINGLETON_TYPES } from "./sanity/schemas";
 import { structure } from "./sanity/structure";
 import { apiVersion, dataset, projectId } from "./sanity/env";
+import { punTheme } from "./sanity/theme";
+import { StudioLogo } from "./sanity/StudioLogo";
 
 const SINGLETON_TO_PATH: Record<string, string> = {
   homePage: "/",
@@ -22,6 +24,12 @@ export default defineConfig({
   projectId,
   dataset,
   title: "Pull Up Neighbor",
+  theme: punTheme,
+  studio: {
+    components: {
+      logo: StudioLogo,
+    },
+  },
   schema: {
     types: schemaTypes,
     templates: (templates) =>
@@ -47,6 +55,8 @@ export default defineConfig({
         },
       },
       resolve: {
+        // Where each document lives on the public site (used by the
+        // "Open preview" button on each document)
         locations: Object.fromEntries(
           Object.entries(SINGLETON_TO_PATH).map(([type, path]) => [
             type,
@@ -59,6 +69,11 @@ export default defineConfig({
               }),
             },
           ])
+        ),
+        // When the editor navigates inside the iframe, jump the document
+        // panel to the singleton that owns that route.
+        mainDocuments: Object.entries(SINGLETON_TO_PATH).map(
+          ([type, route]) => ({ route, type })
         ),
       },
     }),
