@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import DisableDraftButton from "@/components/DisableDraftButton";
+import DraftMotionConfig from "@/components/DraftMotionConfig";
 import { SanityLive } from "@/sanity/lib/fetch";
 
 export const metadata: Metadata = {
@@ -19,12 +20,17 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const isDraft = (await draftMode()).isEnabled;
+  const body = (
+    <>
+      <Navbar />
+      <main>{children}</main>
+      <Footer />
+    </>
+  );
   return (
     <html lang="en">
       <body className="antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        {isDraft ? <DraftMotionConfig>{body}</DraftMotionConfig> : body}
         <SanityLive />
         {isDraft && (
           <>
