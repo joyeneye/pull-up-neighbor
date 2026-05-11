@@ -99,7 +99,10 @@ export type HomePageData = {
   finalCta?: FinalCtaContent | null;
 };
 
+import type { Section } from "./section-types";
+
 export type SimplePageData = {
   hero: HeroContent;
+  sections?: Section[] | null;
   finalCta?: FinalCtaContent | null;
 };

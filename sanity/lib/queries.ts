@@ -23,6 +23,8 @@ const FINAL_CTA_FIELDS = `
   dark
 `;
 
+const BODY_SECTIONS = `sections[]`;
+
 export const homePageQuery = defineQuery(`{
   "hero": *[_id == "homeHero"][0] { ${HERO_FIELDS} },
   "focusAreas": *[_id == "homeFocusAreas"][0] {
@@ -67,20 +69,25 @@ export const homePageQuery = defineQuery(`{
   "finalCta": *[_id == "homeFinalCta"][0] { ${FINAL_CTA_FIELDS} }
 }`);
 
-function buildSimplePageQuery(heroId: string, finalCtaId: string) {
+function buildPageWithBodyQuery(
+  heroId: string,
+  bodyId: string,
+  finalCtaId: string
+) {
   return defineQuery(`{
     "hero": *[_id == "${heroId}"][0] { ${HERO_FIELDS} },
+    "sections": *[_id == "${bodyId}"][0].${BODY_SECTIONS},
     "finalCta": *[_id == "${finalCtaId}"][0] { ${FINAL_CTA_FIELDS} }
   }`);
 }
 
-export const aboutPageQuery = buildSimplePageQuery("aboutHero", "aboutFinalCta");
-export const visionPageQuery = buildSimplePageQuery("visionHero", "visionFinalCta");
-export const programsPageQuery = buildSimplePageQuery("programsHero", "programsFinalCta");
-export const impactPageQuery = buildSimplePageQuery("impactHero", "impactFinalCta");
-export const servicesPageQuery = buildSimplePageQuery("servicesHero", "servicesFinalCta");
-export const partnersPageQuery = buildSimplePageQuery("partnersHero", "partnersFinalCta");
-export const contactPageQuery = buildSimplePageQuery("contactHero", "contactFinalCta");
+export const aboutPageQuery = buildPageWithBodyQuery("aboutHero", "aboutBody", "aboutFinalCta");
+export const visionPageQuery = buildPageWithBodyQuery("visionHero", "visionBody", "visionFinalCta");
+export const programsPageQuery = buildPageWithBodyQuery("programsHero", "programsBody", "programsFinalCta");
+export const impactPageQuery = buildPageWithBodyQuery("impactHero", "impactBody", "impactFinalCta");
+export const servicesPageQuery = buildPageWithBodyQuery("servicesHero", "servicesBody", "servicesFinalCta");
+export const partnersPageQuery = buildPageWithBodyQuery("partnersHero", "partnersBody", "partnersFinalCta");
+export const contactPageQuery = buildPageWithBodyQuery("contactHero", "contactBody", "contactFinalCta");
 
 export const siteSettingsQuery = defineQuery(`
   *[_type == "siteSettings" && _id == "siteSettings"][0] {

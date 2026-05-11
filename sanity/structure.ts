@@ -14,6 +14,7 @@ import {
   TargetIcon,
   ChartUpwardIcon,
   DocumentsIcon,
+  ThListIcon,
   type IconComponent,
 } from "@sanity/icons";
 
@@ -53,6 +54,7 @@ const PAGES: PageEntry[] = [
     icon: InfoOutlineIcon,
     sections: [
       { id: "aboutHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "aboutBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
       { id: "aboutFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
     ],
   },
@@ -62,6 +64,7 @@ const PAGES: PageEntry[] = [
     icon: RocketIcon,
     sections: [
       { id: "visionHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "visionBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
       { id: "visionFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
     ],
   },
@@ -71,6 +74,7 @@ const PAGES: PageEntry[] = [
     icon: StackIcon,
     sections: [
       { id: "programsHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "programsBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
       { id: "programsFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
     ],
   },
@@ -80,6 +84,7 @@ const PAGES: PageEntry[] = [
     icon: BarChartIcon,
     sections: [
       { id: "impactHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "impactBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
       { id: "impactFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
     ],
   },
@@ -89,6 +94,7 @@ const PAGES: PageEntry[] = [
     icon: ControlsIcon,
     sections: [
       { id: "servicesHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "servicesBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
       { id: "servicesFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
     ],
   },
@@ -98,6 +104,7 @@ const PAGES: PageEntry[] = [
     icon: HeartIcon,
     sections: [
       { id: "partnersHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "partnersBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
       { id: "partnersFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
     ],
   },
@@ -107,6 +114,7 @@ const PAGES: PageEntry[] = [
     icon: EnvelopeIcon,
     sections: [
       { id: "contactHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "contactBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
       { id: "contactFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
     ],
   },

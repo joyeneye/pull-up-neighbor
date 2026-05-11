@@ -280,7 +280,7 @@ async function main() {
     );
   }
 
-  // --- Secondary pages (hero + finalCta only) ---
+  // --- Secondary pages (hero + finalCta + page-builder body) ---
   const secondaryPages = [
     ["about", defaultAboutPage],
     ["vision", defaultVisionPage],
@@ -298,7 +298,138 @@ async function main() {
         finalCtaDoc(`${pageId}FinalCta`, page.finalCta)
       );
     }
+    // Seed an empty pageBody so the document exists when the editor
+    // opens "Body Sections" in Studio. Migration of bespoke content
+    // into builder sections is done in seedAboutBody/etc. below.
+    const existing = await client.getDocument(`${pageId}Body`).catch(() => null);
+    if (!existing) {
+      await client.createOrReplace({
+        _id: `${pageId}Body`,
+        _type: "pageBody",
+        sections: [],
+      });
+    }
   }
+
+  // --- Seed About's bespoke sections into the page builder ---
+  await client.createOrReplace({
+    _id: "aboutBody",
+    _type: "pageBody",
+    sections: [
+      {
+        _key: "about-mission",
+        _type: "twoColumnTextBlock",
+        leftEyebrow: "Our Mission",
+        leftTitle: "A Platform, Not a Program",
+        leftBody: [
+          "Pull Up Neighbor was founded on a simple but radical premise: the communities that need the most resources are the ones most often excluded from the rooms where decisions are made. We exist to close that gap — not with handouts, but with infrastructure.",
+          "We operate across five interconnected pillars — housing, disaster recovery, civic engagement, youth empowerment, and strategic partnerships — because no single issue exists in isolation. A family without stable housing can't vote reliably. A young person without financial literacy can't build generational wealth. A community without civic participation can't advocate for the resources it needs.",
+          "PUN connects those dots. We are the bridge between the community and the capital it deserves — and the platform through which brands, foundations, cities, and institutions can show up in ways that actually matter.",
+        ],
+        rightEyebrow: "The PUN Difference",
+        rightTitle: "We're an Ecosystem Builder",
+        rightBody: [
+          "Most nonprofits are built around a single program. PUN is built around a community — and an ecosystem of programs, partnerships, and relationships that reinforce each other.",
+          "When we run a disaster response operation, we're also registering voters, distributing financial literacy materials, and connecting families to housing resources. That integration is intentional. It's how we produce outcomes instead of activities.",
+          "Our partners don't just write checks — they co-create. They gain community credibility, program access, and impact data in exchange for capital that goes directly into operations proven to work.",
+        ],
+        background: "white",
+      },
+      {
+        _key: "about-why-different",
+        _type: "iconCardGridBlock",
+        eyebrow: "Why PUN Is Different",
+        title: "Three Things That Set Us Apart",
+        subtitle:
+          "Thousands of organizations work in underserved communities. Very few operate at the intersection of all three pillars that drive lasting change.",
+        alignment: "center",
+        columns: 3,
+        cardLayout: "icon-top",
+        background: "slate-50",
+        cards: [
+          {
+            _key: "platform-thinking",
+            icon: "Lightbulb",
+            title: "Platform Thinking",
+            description:
+              "We don't run isolated programs — we build systems. Each initiative connects to the others, creating compounding impact that a single-service model can never achieve. Our infrastructure is designed to scale alongside our partners.",
+          },
+          {
+            _key: "community-trust",
+            icon: "Users",
+            title: "Community Trust",
+            description:
+              "Trust is the most scarce resource in community work. We've built it over years of consistent presence, cultural fluency, and keeping our promises. That trust is what makes our programs effective — and what our partners are accessing when they work with us.",
+          },
+          {
+            _key: "measurable-impact",
+            icon: "BarChart3",
+            title: "Measurable Impact",
+            description:
+              "We track everything. Meals distributed. Voters registered. Families housed. Vaccines administered. Our partners know exactly what their investment produced — because accountability isn't optional in our model, it's built in.",
+          },
+        ],
+      },
+      {
+        _key: "about-values",
+        _type: "iconCardGridBlock",
+        eyebrow: "Our Values",
+        title: "What We Stand On",
+        alignment: "left",
+        columns: 2,
+        cardLayout: "icon-left",
+        background: "white",
+        cards: [
+          {
+            _key: "radical-presence",
+            icon: "Heart",
+            title: "Radical Presence",
+            description:
+              "We show up before the crisis, during it, and long after the cameras leave. Presence is the foundation of trust.",
+          },
+          {
+            _key: "outcomes-over-optics",
+            icon: "Target",
+            title: "Outcomes Over Optics",
+            description:
+              "We measure success in families housed, voters registered, and meals delivered — not press releases or photo opportunities.",
+          },
+          {
+            _key: "systems-thinking",
+            icon: "Lightbulb",
+            title: "Systems Thinking",
+            description:
+              "We build programs and partnerships designed to outlast us — because sustainable change requires infrastructure, not charity.",
+          },
+          {
+            _key: "cultural-integrity",
+            icon: "Star",
+            title: "Cultural Integrity",
+            description:
+              "Community trust is earned through cultural fluency, not marketing. We speak the language of the neighborhoods we serve.",
+          },
+        ],
+      },
+      {
+        _key: "about-approach",
+        _type: "textWithStatsBlock",
+        eyebrow: "Our Approach",
+        title: "We Don't Just Serve Communities.",
+        accentTail: "We Build With Them.",
+        body: [
+          "Every program, every partnership, every activation is designed with community input — not just for community consumption. The people we serve are our collaborators, not our beneficiaries.",
+          "This approach takes longer. It requires deeper relationships and higher standards of accountability. But it produces outcomes that last — because the community is invested in them, not just receiving them.",
+        ],
+        stats: [
+          { _key: "s-1", icon: "Shield", value: "100+", label: "Cities Reached" },
+          { _key: "s-2", icon: "Users", value: "1M+", label: "Lives Impacted" },
+          { _key: "s-3", icon: "Heart", value: "10M+", label: "Meals Distributed" },
+          { _key: "s-4", icon: "Target", value: "100K+", label: "Voters Registered" },
+        ],
+        background: "slate-900",
+      },
+    ],
+  });
 
   // Site settings
   await client.createOrReplace({
