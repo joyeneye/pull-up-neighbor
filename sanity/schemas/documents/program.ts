@@ -67,6 +67,14 @@ export const program = defineType({
       rows: 3,
     }),
     defineField({
+      name: "backgroundImage",
+      title: "Background Image (optional)",
+      description:
+        "Photo rendered faded behind this program's detail section on the Programs page (e.g. classroom photo behind Wealth Playbook).",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({
       name: "color",
       title: "Card Gradient (Tailwind classes)",
       description: "e.g. 'from-slate-800 to-slate-900' — pick from existing site palette.",

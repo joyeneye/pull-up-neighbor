@@ -64,9 +64,28 @@ export default function ProgramsPage({
         <section
           key={program._id ?? program.slug ?? program.name}
           id={program.slug ?? undefined}
-          className={`py-24 ${i % 2 === 0 ? "bg-white" : "bg-slate-50"}`}
+          className={`relative isolate overflow-hidden py-24 ${
+            i % 2 === 0 ? "bg-white" : "bg-slate-50"
+          }`}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {program.backgroundImageUrl && (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={program.backgroundImageUrl}
+                alt=""
+                aria-hidden
+                className="absolute inset-0 -z-10 h-full w-full object-cover opacity-15"
+              />
+              <div
+                aria-hidden
+                className={`absolute inset-0 -z-10 ${
+                  i % 2 === 0 ? "bg-white/70" : "bg-slate-50/70"
+                }`}
+              />
+            </>
+          )}
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
               <motion.div {...fadeInUp} className="lg:col-span-3">
                 <div className="bg-slate-900 rounded-2xl p-6 inline-flex items-center gap-3 mb-6">

@@ -102,14 +102,16 @@ export const contactPageQuery = buildPageWithBodyQuery("contactHero", "contactBo
 export const programsLibraryQuery = defineQuery(`
   *[_type == "program"] | order(displayOrder asc) {
     _id, name, "slug": slug.current, tagline, icon, description,
-    mission, pillars, impact, partnerOpportunity, color
+    mission, pillars, impact, partnerOpportunity, color,
+    "backgroundImageUrl": backgroundImage.asset->url
   }
 `);
 
 export const servicesLibraryQuery = defineQuery(`
   *[_type == "service"] | order(displayOrder asc) {
     _id, title, "slug": slug.current, icon, description,
-    why, howToPartner, bullets
+    why, howToPartner, bullets,
+    "backgroundImageUrl": backgroundImage.asset->url
   }
 `);
 

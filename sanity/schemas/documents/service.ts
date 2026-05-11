@@ -51,6 +51,14 @@ export const service = defineType({
       of: [{ type: "string" }],
     }),
     defineField({
+      name: "backgroundImage",
+      title: "Background Image (optional)",
+      description:
+        "Photo rendered faded behind this service's detail section on the Services page.",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({
       name: "displayOrder",
       title: "Display Order",
       type: "number",

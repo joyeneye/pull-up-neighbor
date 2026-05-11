@@ -42,6 +42,7 @@ export type ServiceItem = {
   why?: string | null;
   howToPartner?: string | null;
   bullets?: string[] | null;
+  backgroundImageUrl?: string | null;
 };
 
 export type ProgramItem = {
@@ -56,6 +57,7 @@ export type ProgramItem = {
   impact?: string[] | null;
   partnerOpportunity?: string | null;
   color?: string | null;
+  backgroundImageUrl?: string | null;
 };
 
 export type StatItem = {
