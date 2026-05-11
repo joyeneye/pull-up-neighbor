@@ -12,6 +12,7 @@ const navLinks = [
   { label: "Impact", href: "/impact" },
   { label: "Partners", href: "/partners" },
   { label: "Vision", href: "/vision" },
+  { label: "In Action", href: "/in-action" },
   { label: "Contact", href: "/contact" },
 ];
 

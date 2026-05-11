@@ -98,6 +98,23 @@ export const impactPageQuery = buildPageWithBodyQuery("impactHero", "impactBody"
 export const servicesPageQuery = buildPageWithBodyQuery("servicesHero", "servicesBody", "servicesFinalCta");
 export const partnersPageQuery = buildPageWithBodyQuery("partnersHero", "partnersBody", "partnersFinalCta");
 export const contactPageQuery = buildPageWithBodyQuery("contactHero", "contactBody", "contactFinalCta");
+export const inActionPageQuery = buildPageWithBodyQuery("inActionHero", "inActionBody", "inActionFinalCta");
+
+export const inActionItemsQuery = defineQuery(`
+  *[_type == "inActionItem"] | order(featured desc, date desc, displayOrder asc) {
+    _id,
+    title,
+    description,
+    category,
+    date,
+    mediaType,
+    youtubeUrl,
+    "videoUrl": video.asset->url,
+    "imageUrl": image.asset->url,
+    "thumbnailUrl": thumbnail.asset->url,
+    featured
+  }
+`);
 
 export const programsLibraryQuery = defineQuery(`
   *[_type == "program"] | order(displayOrder asc) {

@@ -13,7 +13,8 @@ const TAG_TO_PATHS: Record<string, string[]> = {
   servicesPage: ["/services"],
   partnersPage: ["/partners"],
   contactPage: ["/contact"],
-  siteSettings: ["/", "/about", "/vision", "/programs", "/impact", "/services", "/partners", "/contact"],
+  inActionPage: ["/in-action"],
+  siteSettings: ["/", "/about", "/vision", "/programs", "/impact", "/services", "/partners", "/contact", "/in-action"],
 };
 
 const TYPE_TO_TAGS: Record<string, string[]> = {
@@ -25,6 +26,8 @@ const TYPE_TO_TAGS: Record<string, string[]> = {
   servicesPage: ["servicesPage"],
   partnersPage: ["partnersPage"],
   contactPage: ["contactPage"],
+  inActionPage: ["inActionPage"],
+  inActionItem: ["inActionPage"],
   siteSettings: ["siteSettings"],
   // Reusable docs touch every page that references them — be aggressive
   program: ["homePage", "programsPage"],

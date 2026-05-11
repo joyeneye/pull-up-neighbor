@@ -15,6 +15,7 @@ import {
   ChartUpwardIcon,
   DocumentsIcon,
   ThListIcon,
+  PlayIcon,
   type IconComponent,
 } from "@sanity/icons";
 
@@ -119,6 +120,16 @@ const PAGES: PageEntry[] = [
       { id: "contactFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
     ],
   },
+  {
+    id: "inAction",
+    title: "In Action",
+    icon: PlayIcon,
+    sections: [
+      { id: "inActionHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "inActionBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
+      { id: "inActionFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
+    ],
+  },
 ];
 
 export { PAGES };
@@ -191,6 +202,18 @@ export const structure: StructureResolver = (S) =>
         .icon(ChartUpwardIcon)
         .schemaType("stat")
         .child(S.documentTypeList("stat").title("Stats")),
+      S.listItem()
+        .title("In Action Items")
+        .icon(PlayIcon)
+        .schemaType("inActionItem")
+        .child(
+          S.documentTypeList("inActionItem")
+            .title("In Action Items")
+            .defaultOrdering([
+              { field: "featured", direction: "desc" },
+              { field: "date", direction: "desc" },
+            ])
+        ),
       S.divider(),
       S.listItem()
         .title("Site Settings")

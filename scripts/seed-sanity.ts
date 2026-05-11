@@ -19,6 +19,7 @@ import {
   defaultServicesPage,
   defaultPartnersPage,
   defaultContactPage,
+  defaultInActionPage,
   defaultPrograms,
   defaultServices,
   defaultPartnerTypes,
@@ -298,6 +299,7 @@ async function main() {
     ["services", defaultServicesPage],
     ["partners", defaultPartnersPage],
     ["contact", defaultContactPage],
+    ["inAction", defaultInActionPage],
   ] as const;
 
   for (const [pageId, page] of secondaryPages) {

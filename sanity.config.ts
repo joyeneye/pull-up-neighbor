@@ -19,6 +19,7 @@ const ROUTE_TO_HERO: Record<string, { id: string; type: string }> = {
   "/services": { id: "servicesHero", type: "pageHero" },
   "/partners": { id: "partnersHero", type: "pageHero" },
   "/contact": { id: "contactHero", type: "pageHero" },
+  "/in-action": { id: "inActionHero", type: "pageHero" },
 };
 
 export default defineConfig({

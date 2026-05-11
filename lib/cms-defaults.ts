@@ -379,6 +379,27 @@ export const defaultPartnersPage: SimplePageData = {
   },
 };
 
+export const defaultInActionPage: SimplePageData = {
+  hero: {
+    badge: "PUN In Action",
+    title: "See the Work, Not Just the Words.",
+    accentWords: ["the Work"],
+    subtitle:
+      "Photos, films, and shorts from the ground — community events, voter drives, disaster relief, financial literacy classes, and the partnerships that power them.",
+    primaryCta: { label: "Partner With Us", href: "/contact" },
+    secondaryCta: { label: "View Our Impact", href: "/impact" },
+  },
+  finalCta: {
+    eyebrow: "See Something You'd Sponsor?",
+    title: "Let's Build the Next One Together.",
+    description:
+      "These activations happen because partners step up. Tell us what you want to see more of, and we'll build it.",
+    primaryCta: { label: "Start the Conversation", href: "/contact" },
+    secondaryCta: { label: "View Programs", href: "/programs" },
+    dark: false,
+  },
+};
+
 export const defaultContactPage: SimplePageData = {
   hero: {
     badge: "Partner With PUN",

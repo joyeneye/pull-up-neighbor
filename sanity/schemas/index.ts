@@ -22,6 +22,7 @@ import { partnerType } from "./documents/partnerType";
 import { partnershipModel } from "./documents/partnershipModel";
 import { focusArea } from "./documents/focusArea";
 import { stat } from "./documents/stat";
+import { inActionItem } from "./documents/inActionItem";
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // Reusable inline objects
@@ -50,6 +51,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   partnershipModel,
   focusArea,
   stat,
+  inActionItem,
 ];
 
 export const SINGLETON_IDS = [
@@ -92,6 +94,10 @@ export const SINGLETON_IDS = [
   "contactBody",
   "contactFormSection",
   "contactFinalCta",
+  // In Action page sections
+  "inActionHero",
+  "inActionBody",
+  "inActionFinalCta",
 ] as const;
 
 export const SINGLETON_ID_SET = new Set<string>(SINGLETON_IDS);
