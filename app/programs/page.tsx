@@ -5,9 +5,7 @@ import type { SimplePageData } from "@/lib/cms-types";
 import View from "./view";
 
 export default async function ProgramsPage() {
-  const data = await sanityFetch<SimplePageData>({
-    query: programsPageQuery,
-    tags: ["programsPage"],
-  });
-  return <View data={data ?? defaultProgramsPage} />;
+  const result = await sanityFetch<SimplePageData>({ query: programsPageQuery });
+  const data = result?.hero ? result : defaultProgramsPage;
+  return <View data={data} />;
 }

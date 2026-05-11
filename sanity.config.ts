@@ -2,21 +2,23 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { presentationTool } from "sanity/presentation";
 import { visionTool } from "@sanity/vision";
-import { schemaTypes, SINGLETON_TYPES } from "./sanity/schemas";
+import { schemaTypes, SINGLETON_ID_SET, SINGLETON_ONLY_TYPES } from "./sanity/schemas";
 import { structure } from "./sanity/structure";
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import { punTheme } from "./sanity/theme";
 import { StudioLogo } from "./sanity/StudioLogo";
 
-const SINGLETON_TO_PATH: Record<string, string> = {
-  homePage: "/",
-  aboutPage: "/about",
-  visionPage: "/vision",
-  programsPage: "/programs",
-  impactPage: "/impact",
-  servicesPage: "/services",
-  partnersPage: "/partners",
-  contactPage: "/contact",
+// When the iframe navigates to a path, jump the document panel to that
+// page's hero section (the primary editable section for that route).
+const ROUTE_TO_HERO: Record<string, { id: string; type: string }> = {
+  "/": { id: "homeHero", type: "pageHero" },
+  "/about": { id: "aboutHero", type: "pageHero" },
+  "/vision": { id: "visionHero", type: "pageHero" },
+  "/programs": { id: "programsHero", type: "pageHero" },
+  "/impact": { id: "impactHero", type: "pageHero" },
+  "/services": { id: "servicesHero", type: "pageHero" },
+  "/partners": { id: "partnersHero", type: "pageHero" },
+  "/contact": { id: "contactHero", type: "pageHero" },
 };
 
 export default defineConfig({
@@ -33,11 +35,11 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
     templates: (templates) =>
-      templates.filter(({ schemaType }) => !SINGLETON_TYPES.has(schemaType)),
+      templates.filter(({ schemaType }) => !SINGLETON_ONLY_TYPES.has(schemaType)),
   },
   document: {
     actions: (input, context) =>
-      SINGLETON_TYPES.has(context.schemaType)
+      SINGLETON_ID_SET.has(context.documentId ?? "")
         ? input.filter(
             ({ action }) =>
               action !== "duplicate" &&
@@ -55,25 +57,12 @@ export default defineConfig({
         },
       },
       resolve: {
-        // Where each document lives on the public site (used by the
-        // "Open preview" button on each document)
-        locations: Object.fromEntries(
-          Object.entries(SINGLETON_TO_PATH).map(([type, path]) => [
-            type,
-            {
-              select: { title: "hero.title" },
-              resolve: (value) => ({
-                locations: [
-                  { title: (value?.title as string) || type, href: path },
-                ],
-              }),
-            },
-          ])
-        ),
-        // When the editor navigates inside the iframe, jump the document
-        // panel to the singleton that owns that route.
-        mainDocuments: Object.entries(SINGLETON_TO_PATH).map(
-          ([type, route]) => ({ route, type })
+        // When iframe is at /about, open aboutHero in the document panel.
+        mainDocuments: Object.entries(ROUTE_TO_HERO).map(
+          ([route, { id, type }]) => ({
+            route,
+            filter: `_type == "${type}" && _id == "${id}"`,
+          })
         ),
       },
     }),

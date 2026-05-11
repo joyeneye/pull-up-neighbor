@@ -14,18 +14,105 @@ import {
   TargetIcon,
   ChartUpwardIcon,
   DocumentsIcon,
+  type IconComponent,
 } from "@sanity/icons";
 
-const SINGLETON_PAGES = [
-  { id: "homePage", title: "Home", icon: HomeIcon },
-  { id: "aboutPage", title: "About", icon: InfoOutlineIcon },
-  { id: "visionPage", title: "Vision", icon: RocketIcon },
-  { id: "programsPage", title: "Programs", icon: StackIcon },
-  { id: "impactPage", title: "Impact", icon: BarChartIcon },
-  { id: "servicesPage", title: "Services", icon: ControlsIcon },
-  { id: "partnersPage", title: "Partners", icon: HeartIcon },
-  { id: "contactPage", title: "Contact", icon: EnvelopeIcon },
+type SectionItem = {
+  id: string;
+  schemaType: string;
+  title: string;
+  icon?: IconComponent;
+};
+
+type PageEntry = {
+  id: string;
+  title: string;
+  icon: IconComponent;
+  sections: SectionItem[];
+};
+
+const PAGES: PageEntry[] = [
+  {
+    id: "home",
+    title: "Home",
+    icon: HomeIcon,
+    sections: [
+      { id: "homeHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "homeFocusAreas", schemaType: "homeFocusAreas", title: "Focus Areas", icon: TargetIcon },
+      { id: "homeAbout", schemaType: "homeAbout", title: "About Snapshot", icon: InfoOutlineIcon },
+      { id: "homeServices", schemaType: "homeServices", title: "Services Preview", icon: PackageIcon },
+      { id: "homePrograms", schemaType: "homePrograms", title: "Programs Preview", icon: StackIcon },
+      { id: "homeStats", schemaType: "homeStats", title: "Impact Stats", icon: ChartUpwardIcon },
+      { id: "homePartners", schemaType: "homePartners", title: "Partners", icon: HeartIcon },
+      { id: "homeFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
+    ],
+  },
+  {
+    id: "about",
+    title: "About",
+    icon: InfoOutlineIcon,
+    sections: [
+      { id: "aboutHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "aboutFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
+    ],
+  },
+  {
+    id: "vision",
+    title: "Vision",
+    icon: RocketIcon,
+    sections: [
+      { id: "visionHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "visionFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
+    ],
+  },
+  {
+    id: "programs",
+    title: "Programs",
+    icon: StackIcon,
+    sections: [
+      { id: "programsHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "programsFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
+    ],
+  },
+  {
+    id: "impact",
+    title: "Impact",
+    icon: BarChartIcon,
+    sections: [
+      { id: "impactHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "impactFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
+    ],
+  },
+  {
+    id: "services",
+    title: "Services",
+    icon: ControlsIcon,
+    sections: [
+      { id: "servicesHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "servicesFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
+    ],
+  },
+  {
+    id: "partners",
+    title: "Partners",
+    icon: HeartIcon,
+    sections: [
+      { id: "partnersHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "partnersFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
+    ],
+  },
+  {
+    id: "contact",
+    title: "Contact",
+    icon: EnvelopeIcon,
+    sections: [
+      { id: "contactHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "contactFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
+    ],
+  },
 ];
+
+export { PAGES };
 
 export const structure: StructureResolver = (S) =>
   S.list()
@@ -38,17 +125,28 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title("Pages")
             .items(
-              SINGLETON_PAGES.map(({ id, title, icon }) =>
+              PAGES.map((page) =>
                 S.listItem()
-                  .title(title)
-                  .icon(icon)
-                  .id(id)
+                  .title(page.title)
+                  .icon(page.icon)
                   .child(
-                    S.editor()
-                      .id(id)
-                      .schemaType(id)
-                      .documentId(id)
-                      .title(title)
+                    S.list()
+                      .title(page.title)
+                      .items(
+                        page.sections.map((section) =>
+                          S.listItem()
+                            .title(section.title)
+                            .icon(section.icon)
+                            .id(section.id)
+                            .child(
+                              S.editor()
+                                .id(section.id)
+                                .schemaType(section.schemaType)
+                                .documentId(section.id)
+                                .title(`${page.title} — ${section.title}`)
+                            )
+                        )
+                      )
                   )
               )
             )

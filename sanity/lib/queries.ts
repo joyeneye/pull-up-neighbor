@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity";
 
-const HERO_FRAGMENT = `
+const HERO_FIELDS = `
   badge,
   title,
   accentWords,
@@ -14,7 +14,7 @@ const HERO_FRAGMENT = `
   }
 `;
 
-const FINAL_CTA_FRAGMENT = `
+const FINAL_CTA_FIELDS = `
   eyebrow,
   title,
   description,
@@ -23,56 +23,64 @@ const FINAL_CTA_FRAGMENT = `
   dark
 `;
 
-export const homePageQuery = defineQuery(`
-  *[_type == "homePage" && _id == "homePage"][0] {
-    hero { ${HERO_FRAGMENT} },
-    focusAreasEyebrow,
-    focusAreasTitle,
-    focusAreas[]->{ _id, title, description, icon, displayOrder } | order(displayOrder asc),
-    aboutEyebrow,
-    aboutTitle,
-    aboutBody,
-    aboutLinkLabel,
-    aboutLinkHref,
-    aboutSidePanels,
-    servicesEyebrow,
-    servicesTitle,
-    servicesLinkLabel,
-    services[]->{ _id, title, description, icon, why, howToPartner, displayOrder } | order(displayOrder asc),
-    programsEyebrow,
-    programsTitle,
-    programsLinkLabel,
-    programs[]->{ _id, name, "slug": slug.current, tagline, description, pillars, color, displayOrder } | order(displayOrder asc),
-    statsEyebrow,
-    statsTitle,
-    statsSubtitle,
-    stats[]->{ _id, value, label, description, displayOrder } | order(displayOrder asc),
-    statsLinkLabel,
-    partnersEyebrow,
-    partnersTitle,
-    partnersSubtitle,
-    partnerTypes[]->{ _id, type, description, icon, displayOrder } | order(displayOrder asc),
-    partnersCtaLabel,
-    finalCta { ${FINAL_CTA_FRAGMENT} }
-  }
-`);
+export const homePageQuery = defineQuery(`{
+  "hero": *[_id == "homeHero"][0] { ${HERO_FIELDS} },
+  "focusAreas": *[_id == "homeFocusAreas"][0] {
+    "eyebrow": eyebrow,
+    "title": title,
+    "items": items[]->{ _id, title, description, icon, displayOrder } | order(displayOrder asc)
+  },
+  "about": *[_id == "homeAbout"][0] {
+    "eyebrow": eyebrow,
+    "title": title,
+    "body": body,
+    "linkLabel": linkLabel,
+    "linkHref": linkHref,
+    "sidePanels": sidePanels
+  },
+  "services": *[_id == "homeServices"][0] {
+    "eyebrow": eyebrow,
+    "title": title,
+    "linkLabel": linkLabel,
+    "items": items[]->{ _id, title, description, icon, why, howToPartner, displayOrder } | order(displayOrder asc)
+  },
+  "programs": *[_id == "homePrograms"][0] {
+    "eyebrow": eyebrow,
+    "title": title,
+    "linkLabel": linkLabel,
+    "items": items[]->{ _id, name, "slug": slug.current, tagline, description, pillars, color, displayOrder } | order(displayOrder asc)
+  },
+  "stats": *[_id == "homeStats"][0] {
+    "eyebrow": eyebrow,
+    "title": title,
+    "subtitle": subtitle,
+    "items": items[]->{ _id, value, label, description, displayOrder } | order(displayOrder asc),
+    "linkLabel": linkLabel
+  },
+  "partners": *[_id == "homePartners"][0] {
+    "eyebrow": eyebrow,
+    "title": title,
+    "subtitle": subtitle,
+    "items": items[]->{ _id, type, description, icon, displayOrder } | order(displayOrder asc),
+    "ctaLabel": ctaLabel
+  },
+  "finalCta": *[_id == "homeFinalCta"][0] { ${FINAL_CTA_FIELDS} }
+}`);
 
-function buildSimplePageQuery(type: string) {
-  return defineQuery(`
-    *[_type == "${type}" && _id == "${type}"][0] {
-      hero { ${HERO_FRAGMENT} },
-      finalCta { ${FINAL_CTA_FRAGMENT} }
-    }
-  `);
+function buildSimplePageQuery(heroId: string, finalCtaId: string) {
+  return defineQuery(`{
+    "hero": *[_id == "${heroId}"][0] { ${HERO_FIELDS} },
+    "finalCta": *[_id == "${finalCtaId}"][0] { ${FINAL_CTA_FIELDS} }
+  }`);
 }
 
-export const aboutPageQuery = buildSimplePageQuery("aboutPage");
-export const visionPageQuery = buildSimplePageQuery("visionPage");
-export const programsPageQuery = buildSimplePageQuery("programsPage");
-export const impactPageQuery = buildSimplePageQuery("impactPage");
-export const servicesPageQuery = buildSimplePageQuery("servicesPage");
-export const partnersPageQuery = buildSimplePageQuery("partnersPage");
-export const contactPageQuery = buildSimplePageQuery("contactPage");
+export const aboutPageQuery = buildSimplePageQuery("aboutHero", "aboutFinalCta");
+export const visionPageQuery = buildSimplePageQuery("visionHero", "visionFinalCta");
+export const programsPageQuery = buildSimplePageQuery("programsHero", "programsFinalCta");
+export const impactPageQuery = buildSimplePageQuery("impactHero", "impactFinalCta");
+export const servicesPageQuery = buildSimplePageQuery("servicesHero", "servicesFinalCta");
+export const partnersPageQuery = buildSimplePageQuery("partnersHero", "partnersFinalCta");
+export const contactPageQuery = buildSimplePageQuery("contactHero", "contactFinalCta");
 
 export const siteSettingsQuery = defineQuery(`
   *[_type == "siteSettings" && _id == "siteSettings"][0] {

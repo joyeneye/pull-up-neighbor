@@ -2,12 +2,10 @@
  * Seeds the Sanity dataset with the current site content.
  *
  * Usage:
- *   1. Ensure NEXT_PUBLIC_SANITY_PROJECT_ID, NEXT_PUBLIC_SANITY_DATASET, and
- *      SANITY_API_WRITE_TOKEN are set in your environment (e.g. .env.local).
- *   2. npx tsx scripts/seed-sanity.ts
+ *   1. Set NEXT_PUBLIC_SANITY_PROJECT_ID + SANITY_API_WRITE_TOKEN in .env.local
+ *   2. npm run seed
  *
- * Re-running is idempotent — documents use stable IDs and are upserted via
- * createOrReplace. Existing edits in Sanity will be overwritten.
+ * Re-runnable. Docs use stable IDs and are upserted via createOrReplace.
  */
 import { createClient } from "@sanity/client";
 import { readFileSync, existsSync } from "node:fs";
@@ -27,6 +25,7 @@ import {
   defaultFocusAreas,
   defaultStats,
 } from "../lib/cms-defaults";
+import type { HeroContent, FinalCtaContent } from "../lib/cms-types";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
@@ -37,7 +36,7 @@ if (!projectId) {
   process.exit(1);
 }
 if (!token) {
-  console.error("Missing SANITY_API_WRITE_TOKEN env var (create one with editor permissions in sanity.io/manage)");
+  console.error("Missing SANITY_API_WRITE_TOKEN env var");
   process.exit(1);
 }
 
@@ -59,7 +58,7 @@ function slugify(s: string) {
 async function main() {
   console.log(`Seeding project=${projectId} dataset=${dataset}`);
 
-  // Reusable docs
+  // Reusable card-level docs
   const focusAreaIds = await Promise.all(
     defaultFocusAreas.map(async (item, i) => {
       const _id = `focusArea-${slugify(item.title)}`;
@@ -140,25 +139,23 @@ async function main() {
     })
   );
 
-  // Upload hero video + poster as Sanity assets (once; re-uses existing if found by hash)
+  // Upload hero video + poster
   let heroVideoAssetId: string | undefined;
   let heroPosterAssetId: string | undefined;
-
   const heroVideoPath = resolve(process.cwd(), "public/hero/pun-hero.mp4");
   if (existsSync(heroVideoPath)) {
-    console.log("Uploading hero video to Sanity...");
+    console.log("Uploading hero video...");
     const uploaded = await client.assets.upload(
       "file",
       readFileSync(heroVideoPath),
       { filename: "pun-hero.mp4", contentType: "video/mp4" }
     );
     heroVideoAssetId = uploaded._id;
-    console.log(`  → ${uploaded._id} (${(uploaded.size / 1024 / 1024).toFixed(1)} MB)`);
+    console.log(`  → ${uploaded._id}`);
   }
-
   const heroPosterPath = resolve(process.cwd(), "public/hero/pun-hero-poster.jpg");
   if (existsSync(heroPosterPath)) {
-    console.log("Uploading hero poster to Sanity...");
+    console.log("Uploading hero poster...");
     const uploaded = await client.assets.upload(
       "image",
       readFileSync(heroPosterPath),
@@ -168,15 +165,17 @@ async function main() {
     console.log(`  → ${uploaded._id}`);
   }
 
-  // Helper to convert hero defaults into Sanity-shape. Only the homepage hero
-  // gets the bundled video — secondary pages stay video-less by default.
+  // Build a pageHero document
   const heroDoc = (
-    h: typeof defaultHomePage.hero,
+    _id: string,
+    h: HeroContent,
     opts: { withVideo?: boolean } = {}
   ) => ({
-    badge: h.badge,
+    _id,
+    _type: "pageHero",
+    badge: h.badge ?? undefined,
     title: h.title,
-    accentWords: h.accentWords,
+    accentWords: h.accentWords ?? undefined,
     subtitle: h.subtitle,
     primaryCta: { label: h.primaryCta.label, href: h.primaryCta.href },
     secondaryCta: h.secondaryCta
@@ -200,77 +199,105 @@ async function main() {
       : {}),
   });
 
-  const finalCtaDoc = (c?: typeof defaultHomePage.finalCta) =>
-    c
-      ? {
-          eyebrow: c.eyebrow,
-          title: c.title,
-          description: c.description,
-          primaryCta: { label: c.primaryCta.label, href: c.primaryCta.href },
-          secondaryCta: c.secondaryCta
-            ? { label: c.secondaryCta.label, href: c.secondaryCta.href }
-            : undefined,
-          dark: c.dark,
-        }
-      : undefined;
+  const finalCtaDoc = (_id: string, c: FinalCtaContent) => ({
+    _id,
+    _type: "pageFinalCta",
+    eyebrow: c.eyebrow ?? undefined,
+    title: c.title,
+    description: c.description ?? undefined,
+    primaryCta: { label: c.primaryCta.label, href: c.primaryCta.href },
+    secondaryCta: c.secondaryCta
+      ? { label: c.secondaryCta.label, href: c.secondaryCta.href }
+      : undefined,
+    dark: c.dark ?? false,
+  });
 
-  // Home page
+  const refsFor = (ids: string[]) =>
+    ids.map((id) => ({ _type: "reference", _ref: id, _key: id }));
+
+  // --- Home page sections ---
+  await client.createOrReplace(
+    heroDoc("homeHero", defaultHomePage.hero, { withVideo: true })
+  );
   await client.createOrReplace({
-    _id: "homePage",
-    _type: "homePage",
-    hero: heroDoc(defaultHomePage.hero, { withVideo: true }),
-    focusAreasEyebrow: defaultHomePage.focusAreasEyebrow,
-    focusAreasTitle: defaultHomePage.focusAreasTitle,
-    focusAreas: focusAreaIds.map((id) => ({ _type: "reference", _ref: id, _key: id })),
-    aboutEyebrow: defaultHomePage.aboutEyebrow,
-    aboutTitle: defaultHomePage.aboutTitle,
-    aboutBody: defaultHomePage.aboutBody,
-    aboutLinkLabel: defaultHomePage.aboutLinkLabel,
-    aboutLinkHref: defaultHomePage.aboutLinkHref,
-    aboutSidePanels: defaultHomePage.aboutSidePanels?.map((p, i) => ({
+    _id: "homeFocusAreas",
+    _type: "homeFocusAreas",
+    eyebrow: defaultHomePage.focusAreasEyebrow,
+    title: defaultHomePage.focusAreasTitle,
+    items: refsFor(focusAreaIds),
+  });
+  await client.createOrReplace({
+    _id: "homeAbout",
+    _type: "homeAbout",
+    eyebrow: defaultHomePage.aboutEyebrow,
+    title: defaultHomePage.aboutTitle,
+    body: defaultHomePage.aboutBody,
+    linkLabel: defaultHomePage.aboutLinkLabel,
+    linkHref: defaultHomePage.aboutLinkHref,
+    sidePanels: defaultHomePage.aboutSidePanels?.map((p, i) => ({
       _key: `panel-${i}`,
       title: p.title,
       body: p.body,
     })),
-    servicesEyebrow: defaultHomePage.servicesEyebrow,
-    servicesTitle: defaultHomePage.servicesTitle,
-    servicesLinkLabel: defaultHomePage.servicesLinkLabel,
-    services: serviceIds.map((id) => ({ _type: "reference", _ref: id, _key: id })),
-    programsEyebrow: defaultHomePage.programsEyebrow,
-    programsTitle: defaultHomePage.programsTitle,
-    programsLinkLabel: defaultHomePage.programsLinkLabel,
-    programs: programIds.map((id) => ({ _type: "reference", _ref: id, _key: id })),
-    statsEyebrow: defaultHomePage.statsEyebrow,
-    statsTitle: defaultHomePage.statsTitle,
-    statsSubtitle: defaultHomePage.statsSubtitle,
-    stats: statIds.map((id) => ({ _type: "reference", _ref: id, _key: id })),
-    statsLinkLabel: defaultHomePage.statsLinkLabel,
-    partnersEyebrow: defaultHomePage.partnersEyebrow,
-    partnersTitle: defaultHomePage.partnersTitle,
-    partnersSubtitle: defaultHomePage.partnersSubtitle,
-    partnerTypes: partnerTypeIds.map((id) => ({ _type: "reference", _ref: id, _key: id })),
-    partnersCtaLabel: defaultHomePage.partnersCtaLabel,
-    finalCta: finalCtaDoc(defaultHomePage.finalCta ?? undefined),
   });
+  await client.createOrReplace({
+    _id: "homeServices",
+    _type: "homeServices",
+    eyebrow: defaultHomePage.servicesEyebrow,
+    title: defaultHomePage.servicesTitle,
+    linkLabel: defaultHomePage.servicesLinkLabel,
+    items: refsFor(serviceIds),
+  });
+  await client.createOrReplace({
+    _id: "homePrograms",
+    _type: "homePrograms",
+    eyebrow: defaultHomePage.programsEyebrow,
+    title: defaultHomePage.programsTitle,
+    linkLabel: defaultHomePage.programsLinkLabel,
+    items: refsFor(programIds),
+  });
+  await client.createOrReplace({
+    _id: "homeStats",
+    _type: "homeStats",
+    eyebrow: defaultHomePage.statsEyebrow,
+    title: defaultHomePage.statsTitle,
+    subtitle: defaultHomePage.statsSubtitle,
+    items: refsFor(statIds),
+    linkLabel: defaultHomePage.statsLinkLabel,
+  });
+  await client.createOrReplace({
+    _id: "homePartners",
+    _type: "homePartners",
+    eyebrow: defaultHomePage.partnersEyebrow,
+    title: defaultHomePage.partnersTitle,
+    subtitle: defaultHomePage.partnersSubtitle,
+    items: refsFor(partnerTypeIds),
+    ctaLabel: defaultHomePage.partnersCtaLabel,
+  });
+  if (defaultHomePage.finalCta) {
+    await client.createOrReplace(
+      finalCtaDoc("homeFinalCta", defaultHomePage.finalCta)
+    );
+  }
 
-  // Secondary pages
-  const secondary = [
-    ["aboutPage", defaultAboutPage],
-    ["visionPage", defaultVisionPage],
-    ["programsPage", defaultProgramsPage],
-    ["impactPage", defaultImpactPage],
-    ["servicesPage", defaultServicesPage],
-    ["partnersPage", defaultPartnersPage],
-    ["contactPage", defaultContactPage],
+  // --- Secondary pages (hero + finalCta only) ---
+  const secondaryPages = [
+    ["about", defaultAboutPage],
+    ["vision", defaultVisionPage],
+    ["programs", defaultProgramsPage],
+    ["impact", defaultImpactPage],
+    ["services", defaultServicesPage],
+    ["partners", defaultPartnersPage],
+    ["contact", defaultContactPage],
   ] as const;
 
-  for (const [type, page] of secondary) {
-    await client.createOrReplace({
-      _id: type,
-      _type: type,
-      hero: heroDoc(page.hero),
-      finalCta: finalCtaDoc(page.finalCta ?? undefined),
-    });
+  for (const [pageId, page] of secondaryPages) {
+    await client.createOrReplace(heroDoc(`${pageId}Hero`, page.hero));
+    if (page.finalCta) {
+      await client.createOrReplace(
+        finalCtaDoc(`${pageId}FinalCta`, page.finalCta)
+      );
+    }
   }
 
   // Site settings

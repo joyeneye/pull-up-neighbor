@@ -5,9 +5,7 @@ import type { SimplePageData } from "@/lib/cms-types";
 import View from "./view";
 
 export default async function PartnersPage() {
-  const data = await sanityFetch<SimplePageData>({
-    query: partnersPageQuery,
-    tags: ["partnersPage"],
-  });
-  return <View data={data ?? defaultPartnersPage} />;
+  const result = await sanityFetch<SimplePageData>({ query: partnersPageQuery });
+  const data = result?.hero ? result : defaultPartnersPage;
+  return <View data={data} />;
 }

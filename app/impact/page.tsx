@@ -5,9 +5,7 @@ import type { SimplePageData } from "@/lib/cms-types";
 import View from "./view";
 
 export default async function ImpactPage() {
-  const data = await sanityFetch<SimplePageData>({
-    query: impactPageQuery,
-    tags: ["impactPage"],
-  });
-  return <View data={data ?? defaultImpactPage} />;
+  const result = await sanityFetch<SimplePageData>({ query: impactPageQuery });
+  const data = result?.hero ? result : defaultImpactPage;
+  return <View data={data} />;
 }
