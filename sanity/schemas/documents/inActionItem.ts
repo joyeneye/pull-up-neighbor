@@ -49,30 +49,32 @@ export const inActionItem = defineType({
       group: "media",
       options: {
         list: [
-          { title: "YouTube Video (paste URL)", value: "youtube" },
+          { title: "Video Link (YouTube or Vimeo)", value: "embed" },
           { title: "Uploaded Video (MP4)", value: "upload" },
           { title: "Photo", value: "image" },
         ],
         layout: "radio",
       },
-      initialValue: "youtube",
+      initialValue: "embed",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "youtubeUrl",
-      title: "YouTube URL",
+      name: "embedUrl",
+      title: "Video URL",
       description:
-        "Paste any YouTube URL: youtube.com/watch?v=…, youtu.be/…, or a Shorts URL.",
+        "Paste a YouTube or Vimeo URL. Supported: youtube.com/watch?v=…, youtu.be/…, YouTube Shorts, vimeo.com/123456789, player.vimeo.com/video/123456789.",
       type: "url",
       group: "media",
-      hidden: ({ parent }) => parent?.mediaType !== "youtube",
+      hidden: ({ parent }) =>
+        parent?.mediaType !== "embed" && parent?.mediaType !== "youtube",
       validation: (Rule) =>
         Rule.custom((url, ctx) => {
           const parent = ctx.parent as { mediaType?: string } | undefined;
-          if (parent?.mediaType !== "youtube") return true;
-          if (!url) return "A YouTube URL is required.";
+          if (parent?.mediaType !== "embed" && parent?.mediaType !== "youtube") return true;
+          if (!url) return "A video URL is required.";
           if (typeof url !== "string") return "Must be a URL.";
-          if (!/youtu\.?be/.test(url)) return "Must be a YouTube link.";
+          if (!/youtu\.?be|vimeo\.com/.test(url))
+            return "Must be a YouTube or Vimeo link.";
           return true;
         }),
     }),

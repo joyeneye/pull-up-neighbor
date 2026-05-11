@@ -108,7 +108,7 @@ export const inActionItemsQuery = defineQuery(`
     category,
     date,
     mediaType,
-    youtubeUrl,
+    "embedUrl": coalesce(embedUrl, youtubeUrl),
     "videoUrl": video.asset->url,
     "imageUrl": image.asset->url,
     "thumbnailUrl": thumbnail.asset->url,

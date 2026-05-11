@@ -5,11 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Play, Image as ImageIcon, X, Calendar, Tag } from "lucide-react";
 import {
   cardThumbnail,
-  youtubeEmbedSrc,
+  embedSrc,
+  isEmbedMediaType,
   type InActionItem,
 } from "@/lib/in-action-types";
 
-type Filter = "all" | "youtube" | "upload" | "image";
+type Filter = "all" | "video" | "image";
 
 function formatDate(d?: string | null) {
   if (!d) return null;
@@ -31,13 +32,8 @@ export default function InActionGallery({ items }: { items: InActionItem[] }) {
   const filtered = useMemo(() => {
     if (filter === "all") return items;
     if (filter === "image") return items.filter((i) => i.mediaType === "image");
-    return items.filter(
-      (i) => i.mediaType === "youtube" || i.mediaType === "upload"
-        ? filter === "youtube"
-          ? i.mediaType === "youtube"
-          : i.mediaType === "upload"
-        : false
-    );
+    // "video" = either an embedded link (YouTube/Vimeo) or an uploaded MP4
+    return items.filter((i) => isEmbedMediaType(i.mediaType) || i.mediaType === "upload");
   }, [items, filter]);
 
   // Close lightbox on Escape
@@ -56,8 +52,7 @@ export default function InActionGallery({ items }: { items: InActionItem[] }) {
 
   const counts = useMemo(() => ({
     all: items.length,
-    youtube: items.filter((i) => i.mediaType === "youtube").length,
-    upload: items.filter((i) => i.mediaType === "upload").length,
+    video: items.filter((i) => isEmbedMediaType(i.mediaType) || i.mediaType === "upload").length,
     image: items.filter((i) => i.mediaType === "image").length,
   }), [items]);
 
@@ -79,7 +74,7 @@ export default function InActionGallery({ items }: { items: InActionItem[] }) {
         {/* Filter chips */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
           <FilterChip label="All" count={counts.all} active={filter === "all"} onClick={() => setFilter("all")} />
-          <FilterChip label="Videos" count={counts.youtube + counts.upload} active={filter === "youtube" || filter === "upload"} onClick={() => setFilter("youtube")} />
+          <FilterChip label="Videos" count={counts.video} active={filter === "video"} onClick={() => setFilter("video")} />
           <FilterChip label="Photos" count={counts.image} active={filter === "image"} onClick={() => setFilter("image")} />
         </div>
 
@@ -232,9 +227,9 @@ function Lightbox({ item, onClose }: { item: InActionItem; onClose: () => void }
         <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
           {/* Media */}
           <div className="relative bg-black aspect-video w-full">
-            {item.mediaType === "youtube" && (
+            {isEmbedMediaType(item.mediaType) && (
               <iframe
-                src={youtubeEmbedSrc(item.youtubeUrl) ?? undefined}
+                src={embedSrc(item.embedUrl) ?? undefined}
                 title={item.title}
                 className="absolute inset-0 h-full w-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
