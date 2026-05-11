@@ -61,17 +61,26 @@ export const pageHero = defineType({
       type: "cta",
     }),
     defineField({
+      name: "backgroundImage",
+      title: "Background Image (optional)",
+      description:
+        "Use this for a static photo background. If a Background Video is also uploaded, the video takes priority.",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({
       name: "backgroundVideo",
       title: "Background Video (optional)",
       description:
-        "Upload an MP4 under 50 MB. Compress at handbrake.fr if needed.",
+        "Upload an MP4 under 50 MB. Compress at handbrake.fr if needed. Takes priority over the Background Image.",
       type: "file",
       options: { accept: "video/mp4" },
     }),
     defineField({
       name: "backgroundVideoPoster",
       title: "Video Poster Image (optional)",
-      description: "Shown before the video plays and for reduced-motion users.",
+      description:
+        "Shown for ~1 second before the video plays, and for reduced-motion users instead of the video.",
       type: "image",
       options: { hotspot: true },
     }),

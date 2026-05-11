@@ -14,6 +14,7 @@ export type HeroContent = {
   videoUrl?: string | null;
   videoMimeType?: string | null;
   videoPoster?: SanityImageField;
+  backgroundImage?: SanityImageField;
 };
 
 export type FinalCtaContent = {

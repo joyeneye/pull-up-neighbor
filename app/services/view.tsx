@@ -36,6 +36,7 @@ export default function ServicesPage({
         accentWords={hero.accentWords ?? []}
         videoSrcMp4={hero.videoUrl ?? undefined}
         videoPoster={hero.videoPoster?.asset?.url ?? undefined}
+        backgroundImage={hero.backgroundImage?.asset?.url ?? undefined}
       />
 
       {/* Services anchor nav */}

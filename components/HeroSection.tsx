@@ -15,6 +15,7 @@ interface HeroSectionProps {
   videoSrcMp4?: string;
   videoSrcWebm?: string;
   videoPoster?: string;
+  backgroundImage?: string;
 }
 
 export default function HeroSection({
@@ -29,9 +30,12 @@ export default function HeroSection({
   videoSrcMp4,
   videoSrcWebm,
   videoPoster,
+  backgroundImage,
 }: HeroSectionProps) {
   const prefersReducedMotion = useReducedMotion();
   const hasVideo = Boolean(videoSrcMp4 || videoSrcWebm);
+  const hasImage = Boolean(backgroundImage) && !hasVideo;
+  const hasBackground = hasVideo || hasImage;
   const showVideo = hasVideo && !prefersReducedMotion;
   // Highlight specific words in the title with brand color
   const renderTitle = () => {
@@ -67,7 +71,7 @@ export default function HeroSection({
 
   return (
     <section className="relative isolate overflow-hidden bg-slate-900 min-h-screen flex items-center pt-16">
-      {hasVideo && (
+      {hasBackground && (
         <div aria-hidden className="absolute inset-0 -z-10">
           {showVideo ? (
             <video
@@ -82,6 +86,13 @@ export default function HeroSection({
               {videoSrcWebm && <source src={videoSrcWebm} type="video/webm" />}
               {videoSrcMp4 && <source src={videoSrcMp4} type="video/mp4" />}
             </video>
+          ) : hasImage && backgroundImage ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={backgroundImage}
+              alt=""
+              className="h-full w-full object-cover"
+            />
           ) : videoPoster ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img

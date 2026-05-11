@@ -11,6 +11,9 @@ const HERO_FIELDS = `
   "videoMimeType": backgroundVideo.asset->mimeType,
   "videoPoster": backgroundVideoPoster {
     asset->{ url, metadata }
+  },
+  "backgroundImage": backgroundImage {
+    asset->{ url, metadata }
   }
 `;
 

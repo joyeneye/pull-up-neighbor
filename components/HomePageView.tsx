@@ -52,6 +52,7 @@ export default function HomePageView({ data }: { data: HomePageData }) {
         accentWords={hero.accentWords ?? []}
         videoSrcMp4={hero.videoUrl ?? undefined}
         videoPoster={hero.videoPoster?.asset?.url ?? undefined}
+        backgroundImage={hero.backgroundImage?.asset?.url ?? undefined}
       />
 
       {/* Focus Areas */}
