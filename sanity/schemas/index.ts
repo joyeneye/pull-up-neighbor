@@ -15,6 +15,7 @@ import {
   homePartners,
 } from "./documents/sections";
 import { pageBody } from "./documents/pageBody";
+import { contactFormSection } from "./documents/contactFormSection";
 import { program } from "./documents/program";
 import { service } from "./documents/service";
 import { partnerType } from "./documents/partnerType";
@@ -33,6 +34,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   pageHero,
   pageFinalCta,
   pageBody,
+  contactFormSection,
   homeFocusAreas,
   homeAbout,
   homeServices,
@@ -88,6 +90,7 @@ export const SINGLETON_IDS = [
   // Contact page sections
   "contactHero",
   "contactBody",
+  "contactFormSection",
   "contactFinalCta",
 ] as const;
 
@@ -98,6 +101,7 @@ export const SINGLETON_ONLY_TYPES = new Set<string>([
   "pageHero",
   "pageFinalCta",
   "pageBody",
+  "contactFormSection",
   "homeFocusAreas",
   "homeAbout",
   "homeServices",

@@ -26,6 +26,7 @@ import {
   defaultStats,
 } from "../lib/cms-defaults";
 import type { HeroContent, FinalCtaContent } from "../lib/cms-types";
+import { defaultContactFormSection } from "../lib/contact-types";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
@@ -881,6 +882,66 @@ async function main() {
             title: "Foundations & Brands",
             description:
               "We work with foundations, civic-minded brands, and corporate partners committed to authentic, measurable community investment.",
+          },
+        ],
+      },
+    ],
+  });
+
+  // --- Seed Contact Form Section ---
+  await client.createOrReplace({
+    _id: "contactFormSection",
+    _type: "contactFormSection",
+    reasonsHeading: defaultContactFormSection.reasonsHeading,
+    reasonsTitle: defaultContactFormSection.reasonsTitle,
+    reasons: defaultContactFormSection.reasons,
+    partnerTypesHeading: defaultContactFormSection.partnerTypesHeading,
+    partnerTypes: defaultContactFormSection.partnerTypes?.map((pt, i) => ({
+      _key: `cpt-${i}`,
+      icon: pt.icon,
+      label: pt.label,
+    })),
+    directContactHeading: defaultContactFormSection.directContactHeading,
+    email: defaultContactFormSection.email,
+    directContactNote: defaultContactFormSection.directContactNote,
+    responseTimeHeading: defaultContactFormSection.responseTimeHeading,
+    responseTimeBody: defaultContactFormSection.responseTimeBody,
+    formIntroTitle: defaultContactFormSection.formIntroTitle,
+    formIntroSubtitle: defaultContactFormSection.formIntroSubtitle,
+  });
+
+  // --- Seed Contact Body Section (What Happens After) ---
+  await client.createOrReplace({
+    _id: "contactBody",
+    _type: "pageBody",
+    sections: [
+      {
+        _key: "contact-what-happens",
+        _type: "iconCardGridBlock",
+        eyebrow: "What to Expect",
+        title: "What Happens After You Reach Out",
+        alignment: "center",
+        columns: 3,
+        cardLayout: "icon-top",
+        background: "white",
+        cards: [
+          {
+            _key: "wh-1",
+            title: "01 — Initial Response",
+            description:
+              "A member of our partnerships team reviews your inquiry and responds within 2 business days with initial thoughts and next steps.",
+          },
+          {
+            _key: "wh-2",
+            title: "02 — Discovery Call",
+            description:
+              "We schedule a 30-minute call to understand your goals, your organization's mission, and where the alignment with PUN's work is strongest.",
+          },
+          {
+            _key: "wh-3",
+            title: "03 — Partnership Proposal",
+            description:
+              "Based on our conversation, we develop a custom partnership framework — programs, investment, structure, and expected outcomes.",
           },
         ],
       },

@@ -110,6 +110,23 @@ export const servicesLibraryQuery = defineQuery(`
   }
 `);
 
+export const contactFormSectionQuery = defineQuery(`
+  *[_id == "contactFormSection"][0] {
+    reasonsHeading,
+    reasonsTitle,
+    reasons,
+    partnerTypesHeading,
+    partnerTypes,
+    directContactHeading,
+    email,
+    directContactNote,
+    responseTimeHeading,
+    responseTimeBody,
+    formIntroTitle,
+    formIntroSubtitle
+  }
+`);
+
 export const siteSettingsQuery = defineQuery(`
   *[_type == "siteSettings" && _id == "siteSettings"][0] {
     siteTitle,

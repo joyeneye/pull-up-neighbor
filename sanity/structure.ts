@@ -114,6 +114,7 @@ const PAGES: PageEntry[] = [
     icon: EnvelopeIcon,
     sections: [
       { id: "contactHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      { id: "contactFormSection", schemaType: "contactFormSection", title: "Form Section", icon: EnvelopeIcon },
       { id: "contactBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
       { id: "contactFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
     ],
