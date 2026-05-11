@@ -76,11 +76,25 @@ function Title({
     : dark
     ? "text-white"
     : "text-slate-900";
+  // Pipe-character convention: "Plain text |brand-green text| more plain"
+  const parts = text.split("|");
+  const content =
+    parts.length > 1
+      ? parts.map((p, i) =>
+          i % 2 === 1 ? (
+            <span key={i} className="text-brand-500">
+              {p}
+            </span>
+          ) : (
+            <span key={i}>{p}</span>
+          )
+        )
+      : text;
   return (
     <h2
       className={`text-4xl sm:text-5xl font-black ${color} tracking-tight leading-tight ${className}`}
     >
-      {text}
+      {content}
     </h2>
   );
 }

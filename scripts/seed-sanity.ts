@@ -311,6 +311,202 @@ async function main() {
     }
   }
 
+  // --- Seed Vision's bespoke sections ---
+  await client.createOrReplace({
+    _id: "visionBody",
+    _type: "pageBody",
+    sections: [
+      {
+        _key: "vision-statement",
+        _type: "quoteSplitBlock",
+        leftEyebrow: "The Big Picture",
+        leftTitle: "Not Just a Nonprofit. |A Systems Change Engine.|",
+        leftBody: [
+          "The problems PUN addresses — housing insecurity, financial exclusion, civic disenfranchisement — are not accidents. They are the predictable outcomes of systems designed without underserved communities in mind.",
+          "Direct service is essential. We'll never stop distributing meals, registering voters, or placing families in housing. But we refuse to accept that these problems are permanent. Our vision is a future where the systems themselves work differently — where housing is accessible, financial mobility is real, and civic participation is universal.",
+          "That's why everything PUN builds — every program, every partnership, every data point — is designed to contribute to systems change, not just symptom relief.",
+        ],
+        rightEyebrow: "Our Vision",
+        quote:
+          "A world where the communities that have been most excluded from opportunity are the ones leading the way forward.",
+        quoteFooter:
+          "This is not a tagline. It is a commitment that shapes every decision PUN makes — who we partner with, how we measure impact, and what we build next.",
+        background: "white",
+      },
+      {
+        _key: "vision-pillars",
+        _type: "pillarCardsBlock",
+        eyebrow: "Strategic Pillars",
+        title: "Three Pillars. One Vision.",
+        subtitle:
+          "PUN's long-term vision is organized around three interconnected pillars — each essential, each reinforcing the others.",
+        alignment: "center",
+        bulletLabel: "2030 Goals",
+        background: "slate-50",
+        pillars: [
+          {
+            _key: "pillar-housing",
+            icon: "Home",
+            title: "Housing as Infrastructure",
+            description:
+              "Stable housing is the foundation of everything else — education, employment, civic participation, health. PUN's vision is a future where every family has access to dignified, affordable housing — not as a product of the market, but as a right supported by real infrastructure.",
+            bullets: [
+              "10,000 affordable units in the pipeline by 2030",
+              "Community land trust partnerships in 10 major cities",
+              "First-time homeownership pathways for 50,000 families",
+            ],
+          },
+          {
+            _key: "pillar-econ",
+            icon: "TrendingUp",
+            title: "Economic Empowerment at Scale",
+            description:
+              "Financial literacy is the foundation of generational wealth. PUN's vision is a world where every young person in an underserved community enters adulthood equipped with the financial knowledge to build a life — not just survive one.",
+            bullets: [
+              "Next Gen Money in 500 schools by 2028",
+              "The Wealth Playbook in 200 cities",
+              "10,000 new community-based businesses launched through our programs",
+            ],
+          },
+          {
+            _key: "pillar-civic",
+            icon: "Vote",
+            title: "Civic Power for Underserved Communities",
+            description:
+              "Democracy only works when everyone participates. PUN's vision is a future where no community is systematically excluded from the political process — where voter access, civic education, and community mobilization have permanently shifted the power dynamic.",
+            bullets: [
+              "VoteHub deployed in all 50 states",
+              "500,000 voters registered through our programs",
+              "Civic education reaching 1M+ community members annually",
+            ],
+          },
+        ],
+      },
+      {
+        _key: "vision-phases",
+        _type: "phaseCardsBlock",
+        eyebrow: "The Journey",
+        title: "From Direct Service to Systems Change",
+        subtitle:
+          "PUN operates across multiple phases simultaneously — delivering direct service today while building the infrastructure for systems change tomorrow.",
+        background: "slate-900",
+        phases: [
+          {
+            _key: "ph-1",
+            phase: "Phase 1",
+            title: "Direct Service",
+            status: "Active",
+            description:
+              "Building community trust through consistent, high-quality direct service — meals, housing navigation, voter registration, financial education. This is our foundation and will never stop.",
+          },
+          {
+            _key: "ph-2",
+            phase: "Phase 2",
+            title: "Infrastructure Building",
+            status: "Active",
+            description:
+              "Developing the programs, systems, and partnerships that scale our impact beyond direct service — VoteHub, The Wealth Playbook, affordable housing pipelines, and disaster response capacity.",
+          },
+          {
+            _key: "ph-3",
+            phase: "Phase 3",
+            title: "Policy Influence",
+            status: "In Progress",
+            description:
+              "Using our data, our track record, and our community relationships to influence the policy decisions that shape community outcomes — housing policy, civic access, financial regulation.",
+          },
+          {
+            _key: "ph-4",
+            phase: "Phase 4",
+            title: "Systems Change",
+            status: "Horizon",
+            description:
+              "A future where the systems PUN has been filling the gaps of — housing, finance, civic participation — are restructured to serve everyone. That's the horizon we're building toward.",
+          },
+        ],
+      },
+      {
+        _key: "vision-future-goals",
+        _type: "iconCardGridBlock",
+        eyebrow: "Looking Ahead",
+        title: "Where We're Going by 2030",
+        alignment: "left",
+        columns: 4,
+        cardLayout: "icon-top",
+        background: "white",
+        cards: [
+          {
+            _key: "fg-cities",
+            icon: "Globe",
+            title: "500+ Cities",
+            description:
+              "Expanding our program footprint to 500+ cities within the next five years.",
+          },
+          {
+            _key: "fg-housing",
+            icon: "Home",
+            title: "10,000 Housing Units",
+            description:
+              "10,000 affordable units in active development pipelines by 2030.",
+          },
+          {
+            _key: "fg-civic",
+            icon: "Layers",
+            title: "National Civic Tech Platform",
+            description:
+              "VoteHub deployed in all 50 states as a permanent civic infrastructure.",
+          },
+          {
+            _key: "fg-capital",
+            icon: "Target",
+            title: "$100M in Community Capital",
+            description:
+              "Mobilizing $100M in impact capital for community infrastructure by 2030.",
+          },
+        ],
+      },
+      {
+        _key: "vision-capital",
+        _type: "brandedCalloutBlock",
+        eyebrow: "For Capital & Investment Partners",
+        title:
+          "The Vision Requires Capital Partners Who Think Long-Term",
+        body: [
+          "Systems change doesn't happen on grant cycles. PUN is actively seeking capital and investment partners willing to make multi-year commitments to community infrastructure — and who understand that patient capital produces the highest social returns.",
+          "We are building housing pipelines, civic technology, and economic empowerment programs designed to generate both social impact and long-term financial viability. If you manage impact capital, we should talk.",
+        ],
+        items: [
+          {
+            _key: "ci-housing",
+            title: "Affordable Housing Investment",
+            description:
+              "Co-invest in affordable housing development with community ownership built in.",
+          },
+          {
+            _key: "ci-tech",
+            title: "Civic Technology Expansion",
+            description:
+              "Fund VoteHub's expansion to new states and communities as a permanent civic infrastructure.",
+          },
+          {
+            _key: "ci-econ",
+            title: "Economic Mobility Programs",
+            description:
+              "Capitalize Next Gen Money and The Wealth Playbook for national scale.",
+          },
+          {
+            _key: "ci-ops",
+            title: "Operational Infrastructure",
+            description:
+              "Build PUN's capacity to deploy faster, in more cities, with greater impact.",
+          },
+        ],
+        ctaLabel: "Connect With Our Team",
+        ctaHref: "/contact",
+      },
+    ],
+  });
+
   // --- Seed About's bespoke sections into the page builder ---
   await client.createOrReplace({
     _id: "aboutBody",
