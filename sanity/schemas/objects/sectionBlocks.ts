@@ -8,6 +8,7 @@ import {
   ChartUpwardIcon,
   StarIcon,
   RocketIcon,
+  ProjectsIcon as ProjectsIconAlias,
 } from "@sanity/icons";
 import { ICON_OPTIONS } from "./iconList";
 
@@ -540,6 +541,39 @@ export const brandedCalloutBlock = defineType({
   },
 });
 
+export const partnershipModelGridBlock = defineType({
+  name: "partnershipModelGridBlock",
+  title: "Partnership Models Grid",
+  type: "object",
+  icon: ProjectsIconAlias,
+  description:
+    "Two-column grid of partnership models pulled from the Partnership Models library.",
+  fields: [
+    defineField({ name: "eyebrow", title: "Eyebrow", type: "string" }),
+    defineField({ name: "title", title: "Section Title", type: "text", rows: 2 }),
+    defineField({
+      name: "models",
+      title: "Models",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "partnershipModel" }] }],
+    }),
+    defineField({
+      name: "background",
+      title: "Background",
+      type: "string",
+      options: { list: BG_OPTIONS },
+      initialValue: "slate-50",
+    }),
+  ],
+  preview: {
+    select: { title: "title", count: "models.length" },
+    prepare: ({ title, count }) => ({
+      title: title || "Partnership Models Grid",
+      subtitle: `${count ?? 0} model${count === 1 ? "" : "s"}`,
+    }),
+  },
+});
+
 /** The full list of block types editors can add to a page body. */
 export const PAGE_BUILDER_BLOCKS = [
   { type: "richTextBlock" },
@@ -550,6 +584,7 @@ export const PAGE_BUILDER_BLOCKS = [
   { type: "textWithStatsBlock" },
   { type: "quoteSplitBlock" },
   { type: "brandedCalloutBlock" },
+  { type: "partnershipModelGridBlock" },
 ];
 
 export const pageBuilderTypes = [
@@ -561,4 +596,5 @@ export const pageBuilderTypes = [
   textWithStatsBlock,
   quoteSplitBlock,
   brandedCalloutBlock,
+  partnershipModelGridBlock,
 ];

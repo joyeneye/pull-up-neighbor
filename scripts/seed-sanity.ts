@@ -81,10 +81,14 @@ async function main() {
         _id,
         _type: "service",
         title: item.title,
+        slug: item.slug
+          ? { _type: "slug", current: item.slug }
+          : { _type: "slug", current: slugify(item.title) },
         icon: item.icon,
         description: item.description,
         why: item.why,
         howToPartner: item.howToPartner,
+        bullets: item.bullets,
         displayOrder: i,
       });
       return _id;
@@ -100,8 +104,12 @@ async function main() {
         name: item.name,
         slug: { _type: "slug", current: item.slug ?? slugify(item.name) },
         tagline: item.tagline,
+        icon: item.icon,
         description: item.description,
+        mission: item.mission,
         pillars: item.pillars,
+        impact: item.impact,
+        partnerOpportunity: item.partnerOpportunity,
         color: item.color,
         displayOrder: i,
       });
@@ -310,6 +318,53 @@ async function main() {
       });
     }
   }
+
+  // --- Partnership Models (reusable doc collection) ---
+  const partnershipModels = [
+    {
+      title: "Program Sponsor",
+      description:
+        "Fund a specific PUN program or program cohort in exchange for co-branding, impact reporting, and community access.",
+      investment: "Flexible",
+      timeframe: "6–24 months",
+    },
+    {
+      title: "Activation Partner",
+      description:
+        "Co-create and sponsor specific community events, relief operations, or civic engagement drives with PUN's operational support.",
+      investment: "Event-based",
+      timeframe: "Single or recurring",
+    },
+    {
+      title: "Strategic Community Partner",
+      description:
+        "A deeper, multi-year engagement where PUN designs and executes a custom community initiative aligned with your mission and goals.",
+      investment: "Significant",
+      timeframe: "2–5 years",
+    },
+    {
+      title: "Capital Partner",
+      description:
+        "Deploy philanthropic or impact capital into PUN's affordable housing, economic mobility, or capacity-building initiatives.",
+      investment: "Mission-aligned capital",
+      timeframe: "Multi-year",
+    },
+  ];
+  const partnershipModelIds = await Promise.all(
+    partnershipModels.map(async (item, i) => {
+      const _id = `partnershipModel-${slugify(item.title)}`;
+      await client.createOrReplace({
+        _id,
+        _type: "partnershipModel",
+        title: item.title,
+        description: item.description,
+        investment: item.investment,
+        timeframe: item.timeframe,
+        displayOrder: i,
+      });
+      return _id;
+    })
+  );
 
   // --- Seed Vision's bespoke sections ---
   await client.createOrReplace({
@@ -623,6 +678,211 @@ async function main() {
           { _key: "s-4", icon: "Target", value: "100K+", label: "Voters Registered" },
         ],
         background: "slate-900",
+      },
+    ],
+  });
+
+  // --- Seed Partners body sections ---
+  await client.createOrReplace({
+    _id: "partnersBody",
+    _type: "pageBody",
+    sections: [
+      {
+        _key: "partners-types",
+        _type: "iconCardGridBlock",
+        eyebrow: "Who We Work With",
+        title: "Six Types of Partners. One Standard.",
+        subtitle:
+          "Every PUN partner — regardless of sector or size — is held to the same standard: real community outcomes, transparent accountability, and genuine commitment to the communities we serve.",
+        alignment: "center",
+        columns: 3,
+        cardLayout: "icon-top",
+        background: "white",
+        cards: defaultPartnerTypes.map((p, i) => ({
+          _key: `pt-${i}`,
+          icon: p.icon,
+          title: p.type,
+          description: p.description,
+        })),
+      },
+      {
+        _key: "partners-steps",
+        _type: "phaseCardsBlock",
+        eyebrow: "How We Work Together",
+        title: "The PUN Partnership Model",
+        subtitle:
+          "Every partnership follows a four-stage framework designed to turn your investment into community impact — with accountability at every step.",
+        background: "slate-900",
+        phases: [
+          {
+            _key: "step-1",
+            phase: "01",
+            title: "Strategy",
+            description:
+              "We start by understanding your goals — community presence, brand equity, impact metrics, or capital deployment. Every partnership begins with a clear strategic framework.",
+          },
+          {
+            _key: "step-2",
+            phase: "02",
+            title: "Execution",
+            description:
+              "PUN brings the infrastructure, relationships, and operational capacity to move from plan to action fast. We handle logistics, community relationships, and program delivery.",
+          },
+          {
+            _key: "step-3",
+            phase: "03",
+            title: "Community Trust",
+            description:
+              "Your investment is validated by PUN's existing community credibility — earned through years of consistent presence. You don't have to build trust from scratch.",
+          },
+          {
+            _key: "step-4",
+            phase: "04",
+            title: "Impact",
+            description:
+              "We track and report on every outcome — meals distributed, voters registered, families housed, youth reached. You receive transparent data on what your investment produced.",
+          },
+        ],
+      },
+      {
+        _key: "partners-models",
+        _type: "partnershipModelGridBlock",
+        eyebrow: "Partnership Structures",
+        title: "Find the Right Fit",
+        background: "slate-50",
+        models: partnershipModelIds.map((id) => ({
+          _type: "reference",
+          _ref: id,
+          _key: id,
+        })),
+      },
+      {
+        _key: "partners-why",
+        _type: "iconCardGridBlock",
+        eyebrow: "Why Partner With PUN",
+        title: "Four Reasons That Matter",
+        alignment: "center",
+        columns: 2,
+        cardLayout: "icon-top",
+        background: "white",
+        cards: [
+          {
+            _key: "why-1",
+            title: "Credibility You Can't Buy",
+            description:
+              "PUN has earned the trust of communities that are skeptical of institutions. When you partner with us, you access that trust — something no amount of advertising spend can produce on its own.",
+          },
+          {
+            _key: "why-2",
+            title: "Operational Infrastructure",
+            description:
+              "We've already built the systems, the supply chains, the volunteer networks, and the community relationships. Your capital goes into execution — not setup costs.",
+          },
+          {
+            _key: "why-3",
+            title: "Integrated Impact",
+            description:
+              "Our programs reinforce each other, which means your investment produces compounding impact across multiple issue areas — not just the one you funded.",
+          },
+          {
+            _key: "why-4",
+            title: "Transparent Accountability",
+            description:
+              "We report on outcomes, not activities. You'll know exactly what your partnership produced — and we'll tell you if something didn't work and why.",
+          },
+        ],
+      },
+    ],
+  });
+
+  // --- Seed Impact body sections ---
+  await client.createOrReplace({
+    _id: "impactBody",
+    _type: "pageBody",
+    sections: [
+      {
+        _key: "impact-stats-grid",
+        _type: "iconCardGridBlock",
+        eyebrow: "By the Numbers",
+        title: "Real Numbers. Real Impact.",
+        subtitle:
+          "Behind every statistic is a real person — a family housed, a voter registered, a meal delivered, a young person equipped with knowledge.",
+        alignment: "center",
+        columns: 4,
+        cardLayout: "icon-top",
+        background: "slate-50",
+        cards: defaultStats.map((s, i) => ({
+          _key: `is-${i}`,
+          title: s.value,
+          description: `${s.label}${s.description ? " — " + s.description : ""}`,
+        })),
+      },
+      {
+        _key: "impact-civic",
+        _type: "textWithStatsBlock",
+        eyebrow: "Civic Engagement",
+        title: "Democracy Doesn't Happen Without Participation.",
+        body: [
+          "Through VoteHub and targeted civic engagement programs, PUN has registered over 100,000 voters and mobilized 150,000+ community members for civic action. We treat voter access and civic education as fundamental rights, not seasonal campaigns.",
+        ],
+        stats: [
+          { _key: "c-1", value: "100K+", label: "Voters Registered" },
+          { _key: "c-2", value: "150K+", label: "Members Mobilized" },
+          { _key: "c-3", value: "100+", label: "Civic Events" },
+          { _key: "c-4", value: "50", label: "States Targeted" },
+        ],
+        background: "slate-900",
+      },
+      {
+        _key: "impact-relief",
+        _type: "textWithStatsBlock",
+        eyebrow: "Disaster Relief",
+        title: "Showing Up When Communities Need It Most.",
+        body: [
+          "PUN's Disaster Response & Recovery Initiative has distributed millions of meals and supply kits, administered tens of thousands of vaccinations, and provided long-term rebuilding support in communities across the country.",
+        ],
+        stats: [
+          { _key: "r-1", value: "10M+", label: "Meals Distributed" },
+          { _key: "r-2", value: "2M+", label: "Supply Kits Deployed" },
+          { _key: "r-3", value: "15K+", label: "Vaccinations" },
+          { _key: "r-4", value: "100+", label: "Cities Reached" },
+        ],
+        background: "white",
+      },
+      {
+        _key: "impact-partners-callout",
+        _type: "iconCardGridBlock",
+        eyebrow: "Notable Partnerships",
+        title: "We've Worked With Some of the Best.",
+        subtitle:
+          "Our impact is amplified by partnerships with organizations that share our commitment to community.",
+        alignment: "left",
+        columns: 3,
+        cardLayout: "icon-top",
+        background: "slate-50",
+        cards: [
+          {
+            _key: "np-1",
+            icon: "Star",
+            title: "MLB Players Alliance",
+            description:
+              "Bringing community relief, civic engagement, and youth empowerment programs to communities across the country — leveraging the reach and credibility of professional athletes.",
+          },
+          {
+            _key: "np-2",
+            icon: "Star",
+            title: "Dodgers Foundation",
+            description:
+              "A collaboration with the Los Angeles Dodgers Foundation brought PUN's programs to communities throughout Los Angeles County.",
+          },
+          {
+            _key: "np-3",
+            icon: "Star",
+            title: "Foundations & Brands",
+            description:
+              "We work with foundations, civic-minded brands, and corporate partners committed to authentic, measurable community investment.",
+          },
+        ],
       },
     ],
   });

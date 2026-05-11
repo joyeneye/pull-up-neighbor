@@ -133,6 +133,23 @@ export type BrandedCalloutBlock = {
   ctaHref?: string | null;
 };
 
+export type PartnershipModelItem = {
+  _id?: string;
+  title: string;
+  description?: string | null;
+  investment?: string | null;
+  timeframe?: string | null;
+};
+
+export type PartnershipModelGridBlock = {
+  _type: "partnershipModelGridBlock";
+  _key?: string;
+  eyebrow?: string | null;
+  title?: string | null;
+  models?: PartnershipModelItem[] | null;
+  background?: SectionBackground | null;
+};
+
 export type Section =
   | RichTextBlock
   | TwoColumnTextBlock
@@ -141,4 +158,5 @@ export type Section =
   | PhaseCardsBlock
   | TextWithStatsBlock
   | QuoteSplitBlock
-  | BrandedCalloutBlock;
+  | BrandedCalloutBlock
+  | PartnershipModelGridBlock;

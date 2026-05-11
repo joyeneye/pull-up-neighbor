@@ -13,6 +13,12 @@ export const service = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "slug",
+      title: "Slug (used for #anchor links)",
+      type: "slug",
+      options: { source: "title", maxLength: 96 },
+    }),
+    defineField({
       name: "icon",
       title: "Icon",
       type: "string",
@@ -37,6 +43,12 @@ export const service = defineType({
       title: "How to Partner",
       type: "text",
       rows: 2,
+    }),
+    defineField({
+      name: "bullets",
+      title: "Service Bullets (shown on Services page detail)",
+      type: "array",
+      of: [{ type: "string" }],
     }),
     defineField({
       name: "displayOrder",

@@ -18,6 +18,7 @@ import { pageBody } from "./documents/pageBody";
 import { program } from "./documents/program";
 import { service } from "./documents/service";
 import { partnerType } from "./documents/partnerType";
+import { partnershipModel } from "./documents/partnershipModel";
 import { focusArea } from "./documents/focusArea";
 import { stat } from "./documents/stat";
 
@@ -44,6 +45,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   program,
   service,
   partnerType,
+  partnershipModel,
   focusArea,
   stat,
 ];

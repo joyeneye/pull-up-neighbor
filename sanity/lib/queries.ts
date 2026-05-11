@@ -23,7 +23,14 @@ const FINAL_CTA_FIELDS = `
   dark
 `;
 
-const BODY_SECTIONS = `sections[]`;
+// For body sections that reference partnershipModel docs, dereference them.
+const BODY_SECTIONS = `sections[]{
+  ...,
+  _type == "partnershipModelGridBlock" => {
+    ...,
+    "models": models[]->{ _id, title, description, investment, timeframe, displayOrder } | order(displayOrder asc)
+  }
+}`;
 
 export const homePageQuery = defineQuery(`{
   "hero": *[_id == "homeHero"][0] { ${HERO_FIELDS} },
@@ -88,6 +95,20 @@ export const impactPageQuery = buildPageWithBodyQuery("impactHero", "impactBody"
 export const servicesPageQuery = buildPageWithBodyQuery("servicesHero", "servicesBody", "servicesFinalCta");
 export const partnersPageQuery = buildPageWithBodyQuery("partnersHero", "partnersBody", "partnersFinalCta");
 export const contactPageQuery = buildPageWithBodyQuery("contactHero", "contactBody", "contactFinalCta");
+
+export const programsLibraryQuery = defineQuery(`
+  *[_type == "program"] | order(displayOrder asc) {
+    _id, name, "slug": slug.current, tagline, icon, description,
+    mission, pillars, impact, partnerOpportunity, color
+  }
+`);
+
+export const servicesLibraryQuery = defineQuery(`
+  *[_type == "service"] | order(displayOrder asc) {
+    _id, title, "slug": slug.current, icon, description,
+    why, howToPartner, bullets
+  }
+`);
 
 export const siteSettingsQuery = defineQuery(`
   *[_type == "siteSettings" && _id == "siteSettings"][0] {

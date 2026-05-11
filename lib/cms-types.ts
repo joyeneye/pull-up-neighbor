@@ -35,10 +35,12 @@ export type FocusAreaItem = {
 export type ServiceItem = {
   _id?: string;
   title: string;
+  slug?: string | null;
   icon: string;
   description: string;
   why?: string | null;
   howToPartner?: string | null;
+  bullets?: string[] | null;
 };
 
 export type ProgramItem = {
@@ -46,8 +48,12 @@ export type ProgramItem = {
   name: string;
   slug?: string | null;
   tagline: string;
+  icon?: string | null;
   description: string;
+  mission?: string | null;
   pillars?: string[] | null;
+  impact?: string[] | null;
+  partnerOpportunity?: string | null;
   color?: string | null;
 };
 

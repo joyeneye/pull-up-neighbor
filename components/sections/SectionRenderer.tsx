@@ -7,6 +7,7 @@ import Icon from "@/components/Icon";
 import type {
   BrandedCalloutBlock,
   IconCardGridBlock,
+  PartnershipModelGridBlock,
   PhaseCardsBlock,
   PillarCardsBlock,
   QuoteSplitBlock,
@@ -537,6 +538,63 @@ function BrandedCallout({ section }: { section: BrandedCalloutBlock }) {
   );
 }
 
+function PartnershipModelGrid({ section }: { section: PartnershipModelGridBlock }) {
+  const dark = isDarkBg(section.background);
+  return (
+    <section className={`${bgClass(section.background)} py-24`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div {...fadeInUp} className="mb-14">
+          <Eyebrow text={section.eyebrow} dark={dark} />
+          <Title text={section.title} dark={dark} />
+        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {(section.models ?? []).map((m, i) => (
+            <motion.div
+              key={m._id ?? m.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className={`${
+                dark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"
+              } border rounded-2xl p-7`}
+            >
+              <h3 className={`${dark ? "text-white" : "text-slate-900"} font-black text-xl mb-3`}>
+                {m.title}
+              </h3>
+              {m.description && (
+                <p className={`${dark ? "text-slate-400" : "text-slate-600"} text-sm leading-relaxed mb-5`}>
+                  {m.description}
+                </p>
+              )}
+              <div className="flex flex-wrap gap-3 text-xs">
+                {m.investment && (
+                  <span
+                    className={`${
+                      dark ? "bg-brand-500/10 text-brand-400" : "bg-brand-50 text-brand-700"
+                    } font-bold px-3 py-1.5 rounded-full`}
+                  >
+                    {m.investment}
+                  </span>
+                )}
+                {m.timeframe && (
+                  <span
+                    className={`${
+                      dark ? "bg-slate-900/50 text-slate-300" : "bg-slate-100 text-slate-700"
+                    } font-bold px-3 py-1.5 rounded-full`}
+                  >
+                    {m.timeframe}
+                  </span>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function SectionRenderer({ sections }: { sections: Section[] | null | undefined }) {
   if (!sections || sections.length === 0) return null;
   return (
@@ -560,6 +618,8 @@ export default function SectionRenderer({ sections }: { sections: Section[] | nu
             return <QuoteSplit key={key} section={section} />;
           case "brandedCalloutBlock":
             return <BrandedCallout key={key} section={section} />;
+          case "partnershipModelGridBlock":
+            return <PartnershipModelGrid key={key} section={section} />;
           default:
             return null;
         }

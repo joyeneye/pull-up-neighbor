@@ -176,6 +176,11 @@ export const structure: StructureResolver = (S) =>
         .schemaType("partnerType")
         .child(S.documentTypeList("partnerType").title("Partner Types")),
       S.listItem()
+        .title("Partnership Models")
+        .icon(ProjectsIcon)
+        .schemaType("partnershipModel")
+        .child(S.documentTypeList("partnershipModel").title("Partnership Models")),
+      S.listItem()
         .title("Focus Areas")
         .icon(TargetIcon)
         .schemaType("focusArea")

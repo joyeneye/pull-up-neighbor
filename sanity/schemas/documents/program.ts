@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { ICON_OPTIONS } from "../objects/iconList";
 
 export const program = defineType({
   name: "program",
@@ -25,6 +26,12 @@ export const program = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "icon",
+      title: "Icon",
+      type: "string",
+      options: { list: [...ICON_OPTIONS] },
+    }),
+    defineField({
       name: "description",
       title: "Description",
       type: "text",
@@ -32,11 +39,32 @@ export const program = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "mission",
+      title: "Mission Statement (long)",
+      description: "Shown on the Programs page detail. Optional.",
+      type: "text",
+      rows: 4,
+    }),
+    defineField({
       name: "pillars",
       title: "Pillars (tags)",
       type: "array",
       of: [{ type: "string" }],
       options: { layout: "tags" },
+    }),
+    defineField({
+      name: "impact",
+      title: "Impact Bullets",
+      description: "Short bullets describing concrete outcomes.",
+      type: "array",
+      of: [{ type: "string" }],
+    }),
+    defineField({
+      name: "partnerOpportunity",
+      title: "Partner Opportunity (text)",
+      description: "How organizations can partner on this program.",
+      type: "text",
+      rows: 3,
     }),
     defineField({
       name: "color",
