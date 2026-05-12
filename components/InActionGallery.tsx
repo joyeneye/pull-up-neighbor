@@ -45,10 +45,23 @@ export default function InActionGallery({
     image: items.filter((i) => i.mediaType === "image").length,
   }), [items]);
 
-  if (items.length === 0) return null;
+  if (items.length === 0) {
+    return (
+      <section className="bg-slate-50 pt-32 pb-24 min-h-[60vh] flex items-center justify-center">
+        <div className="text-center max-w-md mx-auto px-4">
+          <div className="mx-auto mb-5 inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-white border border-slate-200">
+            <Play className="text-brand-500" size={22} fill="currentColor" />
+          </div>
+          <p className="text-slate-600 text-sm leading-relaxed">
+            Photos and videos coming soon. Add items in Studio &rarr; In Action Items.
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <section className="bg-slate-50 py-20">
+    <section className="bg-slate-50 pt-28 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
           <FilterChip label="All" count={counts.all} active={filter === "all"} onClick={() => setFilter("all")} />

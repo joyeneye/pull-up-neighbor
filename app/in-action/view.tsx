@@ -4,7 +4,6 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import CTASection from "@/components/CTASection";
 import SectionRenderer from "@/components/sections/SectionRenderer";
-import InActionCarousel from "@/components/InActionCarousel";
 import InActionGallery from "@/components/InActionGallery";
 import InActionLightbox from "@/components/InActionLightbox";
 import type { SimplePageData } from "@/lib/cms-types";
@@ -22,8 +21,6 @@ export default function InActionPage({
 
   return (
     <>
-      <InActionCarousel items={items} onItemClick={setActive} />
-
       <InActionGallery items={items} onItemClick={setActive} />
 
       <SectionRenderer sections={sections} />
