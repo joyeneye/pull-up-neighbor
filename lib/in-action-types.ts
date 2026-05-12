@@ -8,11 +8,17 @@ export type InActionItem = {
   date?: string | null;
   mediaType: InActionMediaType;
   embedUrl?: string | null;
+  muxPlaybackId?: string | null;
   videoUrl?: string | null;
   imageUrl?: string | null;
   thumbnailUrl?: string | null;
   featured?: boolean | null;
 };
+
+export function muxThumbnail(playbackId: string | null | undefined): string | null {
+  if (!playbackId) return null;
+  return `https://image.mux.com/${playbackId}/thumbnail.jpg?width=1200&height=675&fit_mode=smartcrop`;
+}
 
 export function isEmbedMediaType(t: InActionMediaType | undefined | null): boolean {
   return t === "embed" || t === "youtube";
@@ -92,6 +98,7 @@ export function embedThumbnail(url: string | null | undefined): string | null {
 export function cardThumbnail(item: InActionItem): string | null {
   if (item.thumbnailUrl) return item.thumbnailUrl;
   if (item.mediaType === "image" && item.imageUrl) return item.imageUrl;
+  if (item.muxPlaybackId) return muxThumbnail(item.muxPlaybackId);
   if (isEmbedMediaType(item.mediaType)) return embedThumbnail(item.embedUrl);
   return null;
 }

@@ -13,6 +13,8 @@ export type HeroContent = {
   secondaryCta?: Cta | null;
   videoUrl?: string | null;
   videoMimeType?: string | null;
+  muxPlaybackId?: string | null;
+  backgroundEmbedUrl?: string | null;
   videoPoster?: SanityImageField;
   backgroundImage?: SanityImageField;
 };

@@ -2,6 +2,7 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { presentationTool } from "sanity/presentation";
 import { visionTool } from "@sanity/vision";
+import { muxInput } from "sanity-plugin-mux-input";
 import { schemaTypes, SINGLETON_ID_SET, SINGLETON_ONLY_TYPES } from "./sanity/schemas";
 import { structure } from "./sanity/structure";
 import { apiVersion, dataset, projectId } from "./sanity/env";
@@ -69,5 +70,6 @@ export default defineConfig({
     }),
     structureTool({ structure }),
     visionTool({ defaultApiVersion: apiVersion }),
+    muxInput(),
   ],
 });

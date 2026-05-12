@@ -9,6 +9,8 @@ const HERO_FIELDS = `
   secondaryCta,
   "videoUrl": backgroundVideo.asset->url,
   "videoMimeType": backgroundVideo.asset->mimeType,
+  "muxPlaybackId": backgroundMuxVideo.asset->playbackId,
+  backgroundEmbedUrl,
   "videoPoster": backgroundVideoPoster {
     asset->{ url, metadata }
   },
@@ -109,6 +111,7 @@ export const inActionItemsQuery = defineQuery(`
     date,
     mediaType,
     "embedUrl": coalesce(embedUrl, youtubeUrl),
+    "muxPlaybackId": muxVideo.asset->playbackId,
     "videoUrl": video.asset->url,
     "imageUrl": image.asset->url,
     "thumbnailUrl": thumbnail.asset->url,

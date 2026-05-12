@@ -64,15 +64,37 @@ export const pageHero = defineType({
       name: "backgroundImage",
       title: "Background Image (optional)",
       description:
-        "Use this for a static photo background. If a Background Video is also uploaded, the video takes priority.",
+        "Static photo background. Lowest priority — used only if no video is set.",
       type: "image",
       options: { hotspot: true },
     }),
     defineField({
-      name: "backgroundVideo",
-      title: "Background Video (optional)",
+      name: "backgroundMuxVideo",
+      title: "Background Video — Mux (recommended)",
       description:
-        "Upload an MP4 under 50 MB. Compress at handbrake.fr if needed. Takes priority over the Background Image.",
+        "Drop in a video of any size. Mux handles upload, transcoding, and streaming. Best for files over 30 MB. Highest priority.",
+      type: "mux.video",
+    }),
+    defineField({
+      name: "backgroundEmbedUrl",
+      title: "Background Video — YouTube or Vimeo Link",
+      description:
+        "Paste a YouTube or Vimeo URL to use as the background. Plays muted and looped. Falls back to image if no Mux video is set.",
+      type: "url",
+      validation: (Rule) =>
+        Rule.custom((url) => {
+          if (!url) return true;
+          if (typeof url !== "string") return "Must be a URL.";
+          if (!/youtu\.?be|vimeo\.com/.test(url))
+            return "Must be a YouTube or Vimeo link.";
+          return true;
+        }),
+    }),
+    defineField({
+      name: "backgroundVideo",
+      title: "Background Video — Direct MP4 (legacy, small files only)",
+      description:
+        "Only use this for tiny clips under 30 MB. Larger files will freeze the browser. Prefer the Mux field above.",
       type: "file",
       options: { accept: "video/mp4" },
     }),

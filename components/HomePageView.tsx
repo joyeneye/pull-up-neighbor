@@ -53,6 +53,8 @@ export default function HomePageView({ data }: { data: HomePageData }) {
         videoSrcMp4={hero.videoUrl ?? undefined}
         videoPoster={hero.videoPoster?.asset?.url ?? undefined}
         backgroundImage={hero.backgroundImage?.asset?.url ?? undefined}
+        muxPlaybackId={hero.muxPlaybackId ?? undefined}
+        embedUrl={hero.backgroundEmbedUrl ?? undefined}
       />
 
       {/* Focus Areas */}

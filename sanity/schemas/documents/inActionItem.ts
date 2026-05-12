@@ -79,21 +79,31 @@ export const inActionItem = defineType({
         }),
     }),
     defineField({
-      name: "video",
-      title: "Video File (MP4)",
+      name: "muxVideo",
+      title: "Video Upload (Mux — recommended)",
       description:
-        "Upload an MP4 under 100 MB. Compress at handbrake.fr if needed.",
-      type: "file",
-      options: { accept: "video/mp4" },
+        "Drop in a video of any size. Mux handles the upload + streaming so the browser never freezes.",
+      type: "mux.video",
       group: "media",
       hidden: ({ parent }) => parent?.mediaType !== "upload",
       validation: (Rule) =>
-        Rule.custom((file, ctx) => {
-          const parent = ctx.parent as { mediaType?: string } | undefined;
+        Rule.custom((value, ctx) => {
+          const parent = ctx.parent as { mediaType?: string; video?: unknown } | undefined;
           if (parent?.mediaType !== "upload") return true;
-          if (!file) return "An uploaded video file is required.";
+          if (!value && !parent?.video) return "Upload a video.";
           return true;
         }),
+    }),
+    defineField({
+      name: "video",
+      title: "Legacy MP4 Upload (small files only)",
+      description:
+        "Only use for tiny clips under 30 MB. Prefer the Mux field above.",
+      type: "file",
+      options: { accept: "video/mp4" },
+      group: "media",
+      hidden: ({ parent }) =>
+        parent?.mediaType !== "upload" || Boolean(parent?.muxVideo),
     }),
     defineField({
       name: "image",

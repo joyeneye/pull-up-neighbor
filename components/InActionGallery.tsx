@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Image as ImageIcon, X, Calendar, Tag } from "lucide-react";
+import MuxPlayer from "@mux/mux-player-react/lazy";
 import {
   cardThumbnail,
   embedSrc,
@@ -236,7 +237,15 @@ function Lightbox({ item, onClose }: { item: InActionItem; onClose: () => void }
                 allowFullScreen
               />
             )}
-            {item.mediaType === "upload" && item.videoUrl && (
+            {item.mediaType === "upload" && item.muxPlaybackId && (
+              <MuxPlayer
+                playbackId={item.muxPlaybackId}
+                metadata={{ video_title: item.title }}
+                autoPlay
+                style={{ position: "absolute", inset: 0, height: "100%", width: "100%" }}
+              />
+            )}
+            {item.mediaType === "upload" && !item.muxPlaybackId && item.videoUrl && (
               <video
                 src={item.videoUrl}
                 controls

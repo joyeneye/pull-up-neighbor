@@ -37,6 +37,8 @@ export default function ProgramsPage({
         videoSrcMp4={hero.videoUrl ?? undefined}
         videoPoster={hero.videoPoster?.asset?.url ?? undefined}
         backgroundImage={hero.backgroundImage?.asset?.url ?? undefined}
+        muxPlaybackId={hero.muxPlaybackId ?? undefined}
+        embedUrl={hero.backgroundEmbedUrl ?? undefined}
       />
 
       {/* Programs anchor nav */}
