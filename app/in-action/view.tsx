@@ -1,9 +1,12 @@
 "use client";
 
-import HeroSection from "@/components/HeroSection";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import CTASection from "@/components/CTASection";
 import SectionRenderer from "@/components/sections/SectionRenderer";
+import InActionCarousel from "@/components/InActionCarousel";
 import InActionGallery from "@/components/InActionGallery";
+import InActionLightbox from "@/components/InActionLightbox";
 import type { SimplePageData } from "@/lib/cms-types";
 import type { InActionItem } from "@/lib/in-action-types";
 
@@ -14,26 +17,14 @@ export default function InActionPage({
   data: SimplePageData;
   items: InActionItem[];
 }) {
-  const { hero, sections, finalCta } = data;
+  const { sections, finalCta } = data;
+  const [active, setActive] = useState<InActionItem | null>(null);
+
   return (
     <>
-      <HeroSection
-        badge={hero.badge ?? undefined}
-        title={hero.title}
-        subtitle={hero.subtitle}
-        ctaText={hero.primaryCta.label}
-        ctaHref={hero.primaryCta.href}
-        secondaryCtaText={hero.secondaryCta?.label}
-        secondaryCtaHref={hero.secondaryCta?.href}
-        accentWords={hero.accentWords ?? []}
-        videoSrcMp4={hero.videoUrl ?? undefined}
-        videoPoster={hero.videoPoster?.asset?.url ?? undefined}
-        backgroundImage={hero.backgroundImage?.asset?.url ?? undefined}
-        muxPlaybackId={hero.muxPlaybackId ?? undefined}
-        embedUrl={hero.backgroundEmbedUrl ?? undefined}
-      />
+      <InActionCarousel items={items} onItemClick={setActive} />
 
-      <InActionGallery items={items} />
+      <InActionGallery items={items} onItemClick={setActive} />
 
       <SectionRenderer sections={sections} />
 
@@ -49,6 +40,10 @@ export default function InActionPage({
           dark={finalCta.dark ?? false}
         />
       )}
+
+      <AnimatePresence>
+        {active && <InActionLightbox item={active} onClose={() => setActive(null)} />}
+      </AnimatePresence>
     </>
   );
 }

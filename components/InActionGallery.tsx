@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Play, Image as ImageIcon, X, Calendar, Tag } from "lucide-react";
-import MuxPlayer from "@mux/mux-player-react/lazy";
+import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { Play, Image as ImageIcon, Calendar } from "lucide-react";
 import {
   cardThumbnail,
-  embedSrc,
   isEmbedMediaType,
   type InActionItem,
 } from "@/lib/in-action-types";
@@ -26,30 +24,20 @@ function formatDate(d?: string | null) {
   }
 }
 
-export default function InActionGallery({ items }: { items: InActionItem[] }) {
+export default function InActionGallery({
+  items,
+  onItemClick,
+}: {
+  items: InActionItem[];
+  onItemClick: (item: InActionItem) => void;
+}) {
   const [filter, setFilter] = useState<Filter>("all");
-  const [active, setActive] = useState<InActionItem | null>(null);
 
   const filtered = useMemo(() => {
     if (filter === "all") return items;
     if (filter === "image") return items.filter((i) => i.mediaType === "image");
-    // "video" = either an embedded link (YouTube/Vimeo) or an uploaded MP4
     return items.filter((i) => isEmbedMediaType(i.mediaType) || i.mediaType === "upload");
   }, [items, filter]);
-
-  // Close lightbox on Escape
-  useEffect(() => {
-    if (!active) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setActive(null);
-    };
-    window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [active]);
 
   const counts = useMemo(() => ({
     all: items.length,
@@ -57,29 +45,17 @@ export default function InActionGallery({ items }: { items: InActionItem[] }) {
     image: items.filter((i) => i.mediaType === "image").length,
   }), [items]);
 
-  if (items.length === 0) {
-    return (
-      <section className="bg-slate-50 py-24">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <p className="text-slate-600">
-            No items yet. Add the first one in Studio &rarr; In Action Items.
-          </p>
-        </div>
-      </section>
-    );
-  }
+  if (items.length === 0) return null;
 
   return (
     <section className="bg-slate-50 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Filter chips */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
           <FilterChip label="All" count={counts.all} active={filter === "all"} onClick={() => setFilter("all")} />
           <FilterChip label="Videos" count={counts.video} active={filter === "video"} onClick={() => setFilter("video")} />
           <FilterChip label="Photos" count={counts.image} active={filter === "image"} onClick={() => setFilter("image")} />
         </div>
 
-        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((item, i) => {
             const thumb = cardThumbnail(item);
@@ -88,7 +64,7 @@ export default function InActionGallery({ items }: { items: InActionItem[] }) {
             return (
               <motion.button
                 key={item._id}
-                onClick={() => setActive(item)}
+                onClick={() => onItemClick(item)}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -109,10 +85,8 @@ export default function InActionGallery({ items }: { items: InActionItem[] }) {
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
                 )}
 
-                {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/40 to-slate-900/0" />
 
-                {/* Play icon for video items */}
                 {isVideo && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="bg-brand-500/95 rounded-full p-4 group-hover:scale-110 group-hover:bg-brand-500 transition-all shadow-lg">
@@ -121,7 +95,6 @@ export default function InActionGallery({ items }: { items: InActionItem[] }) {
                   </div>
                 )}
 
-                {/* Type badge */}
                 <div className="absolute top-3 right-3">
                   <span className="bg-slate-900/70 text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full backdrop-blur flex items-center gap-1">
                     {item.mediaType === "image" ? (
@@ -136,7 +109,6 @@ export default function InActionGallery({ items }: { items: InActionItem[] }) {
                   </span>
                 </div>
 
-                {/* Bottom text */}
                 <div className="absolute inset-x-0 bottom-0 p-5">
                   {item.category && (
                     <span className="inline-block text-brand-400 text-[10px] font-bold uppercase tracking-widest mb-2">
@@ -157,11 +129,6 @@ export default function InActionGallery({ items }: { items: InActionItem[] }) {
           })}
         </div>
       </div>
-
-      {/* Lightbox */}
-      <AnimatePresence>
-        {active && <Lightbox item={active} onClose={() => setActive(null)} />}
-      </AnimatePresence>
     </section>
   );
 }
@@ -187,106 +154,9 @@ function FilterChip({
       }`}
     >
       {label}
-      <span
-        className={`ml-2 text-xs ${
-          active ? "text-brand-400" : "text-slate-400"
-        }`}
-      >
+      <span className={`ml-2 text-xs ${active ? "text-brand-400" : "text-slate-400"}`}>
         {count}
       </span>
     </button>
-  );
-}
-
-function Lightbox({ item, onClose }: { item: InActionItem; onClose: () => void }) {
-  const date = formatDate(item.date);
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-      onClick={onClose}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/90 backdrop-blur p-4 sm:p-8"
-    >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.96 }}
-        transition={{ duration: 0.25 }}
-        onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-5xl"
-      >
-        <button
-          onClick={onClose}
-          aria-label="Close"
-          className="absolute -top-12 right-0 sm:-right-2 text-white/80 hover:text-white transition-colors flex items-center gap-2 text-sm font-semibold"
-        >
-          Close <X size={18} />
-        </button>
-
-        <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
-          {/* Media */}
-          <div className="relative bg-black aspect-video w-full">
-            {isEmbedMediaType(item.mediaType) && (
-              <iframe
-                src={embedSrc(item.embedUrl) ?? undefined}
-                title={item.title}
-                className="absolute inset-0 h-full w-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            )}
-            {item.mediaType === "upload" && item.muxPlaybackId && (
-              <MuxPlayer
-                playbackId={item.muxPlaybackId}
-                metadata={{ video_title: item.title }}
-                autoPlay
-                style={{ position: "absolute", inset: 0, height: "100%", width: "100%" }}
-              />
-            )}
-            {item.mediaType === "upload" && !item.muxPlaybackId && item.videoUrl && (
-              <video
-                src={item.videoUrl}
-                controls
-                autoPlay
-                playsInline
-                className="absolute inset-0 h-full w-full"
-              />
-            )}
-            {item.mediaType === "image" && item.imageUrl && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={item.imageUrl}
-                alt={item.title}
-                className="absolute inset-0 h-full w-full object-contain"
-              />
-            )}
-          </div>
-
-          {/* Meta */}
-          <div className="p-6 sm:p-8">
-            <div className="flex flex-wrap items-center gap-3 mb-3 text-xs">
-              {item.category && (
-                <span className="inline-flex items-center gap-1 text-brand-400 font-bold uppercase tracking-widest">
-                  <Tag size={11} /> {item.category}
-                </span>
-              )}
-              {date && (
-                <span className="inline-flex items-center gap-1 text-slate-400">
-                  <Calendar size={11} /> {date}
-                </span>
-              )}
-            </div>
-            <h3 className="text-white font-black text-2xl sm:text-3xl tracking-tight leading-tight mb-3">
-              {item.title}
-            </h3>
-            {item.description && (
-              <p className="text-slate-300 leading-relaxed">{item.description}</p>
-            )}
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
   );
 }
