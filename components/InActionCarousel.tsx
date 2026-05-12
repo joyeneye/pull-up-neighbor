@@ -51,22 +51,12 @@ export default function InActionCarousel({
   }, [next, prev]);
 
   if (total === 0) {
+    // Empty carousel placeholder — no title, no copy. The page is pure media.
     return (
-      <section className="relative bg-slate-900 pt-28 pb-24 min-h-[60vh] flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <span className="bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full inline-block mb-6">
-              PUN In Action
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-5">
-              See the work, not just the words.
-            </h1>
-            <p className="text-slate-300 text-lg leading-relaxed">
-              This page comes alive the moment you add the first In Action Item in
-              Studio. Drop in a YouTube link, a Vimeo link, or upload a video or
-              photo — the carousel and gallery populate automatically.
-            </p>
-          </div>
+      <section className="relative bg-slate-900 pt-16 h-[70vh] min-h-[520px] max-h-[820px]">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900" />
+        <div className="absolute inset-x-0 bottom-5 flex items-center justify-center px-4 text-slate-500 text-xs">
+          Add the first item in Studio → In Action Items
         </div>
       </section>
     );
