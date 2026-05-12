@@ -83,7 +83,12 @@ export default function InActionLightbox({
             {item.mediaType === "upload" && item.muxPlaybackId && (
               <MuxPlayer
                 playbackId={item.muxPlaybackId}
-                metadata={{ video_title: item.title }}
+                envKey={process.env.NEXT_PUBLIC_MUX_ENV_KEY}
+                metadata={{
+                  video_title: item.title,
+                  video_id: item._id,
+                  player_name: "PUN In Action",
+                }}
                 autoPlay
                 style={{ position: "absolute", inset: 0, height: "100%", width: "100%" }}
               />
