@@ -24,6 +24,7 @@ type SectionItem = {
   schemaType: string;
   title: string;
   icon?: IconComponent;
+  kind?: "singleton" | "list";
 };
 
 type PageEntry = {
@@ -126,6 +127,13 @@ const PAGES: PageEntry[] = [
     icon: PlayIcon,
     sections: [
       { id: "inActionHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
+      {
+        id: "inActionGallery",
+        schemaType: "inActionItem",
+        title: "Gallery Items (Videos & Photos)",
+        icon: PlayIcon,
+        kind: "list",
+      },
       { id: "inActionBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
       { id: "inActionFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
     ],
@@ -153,8 +161,23 @@ export const structure: StructureResolver = (S) =>
                     S.list()
                       .title(page.title)
                       .items(
-                        page.sections.map((section) =>
-                          S.listItem()
+                        page.sections.map((section) => {
+                          if (section.kind === "list") {
+                            return S.listItem()
+                              .title(section.title)
+                              .icon(section.icon)
+                              .id(section.id)
+                              .child(
+                                S.documentTypeList(section.schemaType)
+                                  .title(`${page.title} — ${section.title}`)
+                                  .defaultOrdering([
+                                    { field: "featured", direction: "desc" },
+                                    { field: "date", direction: "desc" },
+                                    { field: "displayOrder", direction: "asc" },
+                                  ])
+                              );
+                          }
+                          return S.listItem()
                             .title(section.title)
                             .icon(section.icon)
                             .id(section.id)
@@ -164,8 +187,8 @@ export const structure: StructureResolver = (S) =>
                                 .schemaType(section.schemaType)
                                 .documentId(section.id)
                                 .title(`${page.title} — ${section.title}`)
-                            )
-                        )
+                            );
+                        })
                       )
                   )
               )
