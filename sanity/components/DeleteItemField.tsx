@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { useFormValue, useClient, type StringFieldProps } from "sanity";
-import { useRouter } from "sanity/router";
+import { usePaneRouter } from "sanity/structure";
 
 export function DeleteItemField(_props: StringFieldProps) {
   const id = useFormValue(["_id"]) as string | undefined;
   const type = useFormValue(["_type"]) as string | undefined;
   const title = useFormValue(["title"]) as string | undefined;
   const client = useClient({ apiVersion: "2024-01-01" });
-  const router = useRouter();
+  const { closeCurrent } = usePaneRouter();
   const [busy, setBusy] = useState(false);
 
   if (!id) {
@@ -39,7 +39,7 @@ export function DeleteItemField(_props: StringFieldProps) {
       const baseId = id.replace(/^drafts\./, "");
       await client.delete(baseId);
       await client.delete(`drafts.${baseId}`).catch(() => undefined);
-      router.navigateUrl({ path: "/" });
+      closeCurrent();
     } catch (err) {
       console.error("Delete failed", err);
       window.alert(
