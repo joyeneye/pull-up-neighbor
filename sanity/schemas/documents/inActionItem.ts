@@ -1,5 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { PlayIcon } from "@sanity/icons";
+import { DeleteItemField } from "../../components/DeleteItemField";
 
 /**
  * A single piece of media shown on the /in-action gallery.
@@ -16,6 +17,15 @@ export const inActionItem = defineType({
     { name: "display", title: "Display" },
   ],
   fields: [
+    defineField({
+      name: "deleteAction",
+      title: " ",
+      type: "string",
+      readOnly: true,
+      components: {
+        field: DeleteItemField,
+      },
+    }),
     defineField({
       name: "title",
       title: "Title",
