@@ -4,7 +4,7 @@ Welcome. Everything on the site is editable from one place.
 
 ## How to log in
 
-Go to **`https://pull-up-neighbor.vercel.app/studio`** (or your custom domain + `/studio`) and sign in with the email that was invited.
+Go to **`https://www.pullupneighbor.com/studio`** and sign in with the email that was invited.
 
 ## What you'll see
 

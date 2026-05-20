@@ -22,7 +22,7 @@ This site uses Mux for video uploads — the industry standard. Mux handles the 
 
 ## 3. Plug the tokens into Studio
 
-1. Open https://pull-up-neighbor.vercel.app/studio
+1. Open https://www.pullupneighbor.com/studio
 2. Go to any page that has a video field — e.g. **In Action Items → + Create new**
 3. Pick **Upload Video (Mux)** as the media type
 4. The first time you use it, Studio shows a Mux configuration prompt

@@ -9,6 +9,7 @@ import DraftMotionConfig from "@/components/DraftMotionConfig";
 import DebouncedSanityLive from "@/components/DebouncedSanityLive";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.pullupneighbor.com"),
   title: "Pull Up Neighbor | Community. Capital. Culture.",
   description:
     "Pull Up Neighbor transforms communities through housing, disaster recovery, civic engagement, youth empowerment, and strategic partnerships.",

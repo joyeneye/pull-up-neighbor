@@ -24,8 +24,9 @@ Copy both immediately — you can't see them again.
 In **API → CORS Origins**, add:
 
 - `http://localhost:3097` (allow credentials: yes)
-- Your production URL, e.g. `https://pull-up-neighbor.vercel.app` (allow credentials: yes)
-- Your custom domain when you add one
+- `https://www.pullupneighbor.com` (allow credentials: yes)
+- `https://pullupneighbor.com` (allow credentials: yes)
+- `https://pull-up-neighbor.vercel.app` (allow credentials: yes) — keep for the default Vercel domain
 
 ## 4. Local environment
 
