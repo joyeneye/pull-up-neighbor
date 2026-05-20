@@ -1,14 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { useFormValue, useClient, type StringFieldProps } from "sanity";
+import {
+  useClient,
+  useDocumentOperation,
+  useFormValue,
+  type StringFieldProps,
+} from "sanity";
 import { usePaneRouter } from "sanity/structure";
 
 export function DeleteItemField(_props: StringFieldProps) {
   const id = useFormValue(["_id"]) as string | undefined;
-  const type = useFormValue(["_type"]) as string | undefined;
+  const type = (useFormValue(["_type"]) as string | undefined) ?? "";
   const title = useFormValue(["title"]) as string | undefined;
+  const baseId = (id ?? "").replace(/^drafts\./, "");
   const client = useClient({ apiVersion: "2024-01-01" });
+  const ops = useDocumentOperation(baseId, type);
   const { closeCurrent } = usePaneRouter();
   const [busy, setBusy] = useState(false);
 
@@ -36,9 +43,13 @@ export function DeleteItemField(_props: StringFieldProps) {
     if (!ok) return;
     setBusy(true);
     try {
-      const baseId = id.replace(/^drafts\./, "");
-      await client.delete(baseId);
-      await client.delete(`drafts.${baseId}`).catch(() => undefined);
+      const deleteOp = ops.delete;
+      if (deleteOp && !("disabled" in deleteOp && deleteOp.disabled)) {
+        deleteOp.execute();
+      } else {
+        await client.delete(baseId);
+        await client.delete(`drafts.${baseId}`).catch(() => undefined);
+      }
       closeCurrent();
     } catch (err) {
       console.error("Delete failed", err);
