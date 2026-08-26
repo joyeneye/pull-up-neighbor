@@ -61,7 +61,9 @@ In the Vercel project → Settings → Environment Variables, add the same five 
 - `SANITY_API_READ_TOKEN`
 - `SANITY_REVALIDATE_SECRET`
 
-Do **not** add `SANITY_API_WRITE_TOKEN` to Vercel — only the local seed script needs it.
+- `SANITY_API_WRITE_TOKEN` — **required in production.** The contact form
+  (`/api/contact`) uses it to save inquiries into the Studio. Without it,
+  submissions are only recoverable from the Vercel logs.
 
 Redeploy. The Studio is now live at `https://your-domain/studio`.
 
@@ -76,11 +78,19 @@ This is what makes edits appear instantly on the live site.
    - **Dataset**: `production`
    - **Trigger on**: Create, Update, Delete
    - **Filter**: leave blank (fires on all documents)
-   - **Projection**: `{_type, _id}`
+   - **Projection**: `{_type, _id}` — both are required. `/api/revalidate`
+     matches on `_id` first, because eight different page heroes all share
+     `_type: "pageHero"` and the type alone cannot identify a page.
    - **HTTP method**: `POST`
    - **HTTP Headers**: leave blank (signature is sent automatically)
    - **Secret**: paste the value of `SANITY_REVALIDATE_SECRET`
 3. Save.
+
+To check it is working: publish any document, then open the webhook's
+**Attempts** log. A green 200 lists the paths that were revalidated. A **422**
+means the document is not mapped in `sanity/lib/routes.ts` — add it there.
+Anything mapped revalidates its page immediately rather than waiting for the
+60-second cache window.
 
 ## 8. Invite the editor
 

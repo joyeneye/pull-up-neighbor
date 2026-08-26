@@ -12,6 +12,10 @@ The left sidebar has three sections:
 
 - **Pages** — every page on the site (Home, About, Vision, Programs, Impact, Services, Partners, Contact). Click a page to edit its hero and call-to-action sections. The Home page also lets you edit every section in the middle.
 - **Programs / Services / Partner Types / Focus Areas / Stats** — reusable cards. Edit a Program once, and it updates on every page that shows it.
+- **Inquiries** — messages people send through the contact form. **New** shows
+  what you have not dealt with yet; **All** shows everything. Set the status to
+  Read, Replied or Archived as you work through them, and use Internal Notes for
+  anything the sender should never see.
 - **Site Settings** — site-wide info.
 
 ## How to edit text
@@ -34,9 +38,25 @@ In any **Headline**, fill in the **"Words to highlight in brand green"** field w
 
 For section titles on the Home page that have a green portion (like "More Than a Nonprofit. **A Platform for Change.**"), wrap the green part with pipe characters: `More Than a Nonprofit. |A Platform for Change.|`
 
+## Taking something off the site without deleting it
+
+Every Program, Service, Focus Area, Stat, Partner Type, Partnership Model and
+In Action item has an **Archived** toggle at the bottom of its form.
+
+Turn it on and Publish: the item disappears from every page it appeared on, but
+keeps all of its content, and shows as "Archived" in the sidebar list. Turn it
+off to bring it back.
+
+Prefer this to deleting. Deleting is permanent, and Studio blocks it whenever
+another page still points at the item.
+
 ## Publishing
 
-The orange/blue **Publish** button in the bottom-right pushes your changes to the live site. The site updates within ~5 seconds.
+The **Publish** button in the bottom-right pushes your changes to the live site.
+Give it a few seconds and reload the page to see them.
+
+If you publish and the live site does not change, that is not normal — tell your
+developer rather than republishing repeatedly.
 
 ## Mistakes happen
 
