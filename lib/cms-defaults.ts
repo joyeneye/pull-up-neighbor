@@ -10,8 +10,6 @@ import type {
 
 export const defaultFocusAreas: FocusAreaItem[] = [
   { title: "Housing", icon: "Home", description: "Creating pathways to affordable, stable, dignified housing for underserved communities." },
-  { title: "Disaster Recovery", icon: "Shield", description: "Rapid, coordinated relief operations that reach the people government systems miss." },
-  { title: "Civic Engagement", icon: "Vote", description: "Rebuilding trust between communities and institutions through voter access and civic participation." },
   { title: "Youth Empowerment", icon: "Users", description: "Equipping the next generation with financial literacy, leadership tools, and economic vision." },
   { title: "Partnerships", icon: "Handshake", description: "Connecting mission-aligned brands, foundations, and institutions with real community infrastructure." },
 ];
@@ -78,25 +76,6 @@ export const defaultServices: ServiceItem[] = [
 
 export const defaultPrograms: ProgramItem[] = [
   {
-    name: "VoteHub",
-    slug: "votehub",
-    icon: "Vote",
-    tagline: "Civic technology for voter access",
-    description:
-      "VoteHub is PUN's civic technology platform designed to eliminate structural barriers to voter participation for underserved communities. From registration to election day, VoteHub provides the tools, information, and support that ensure every eligible voter can exercise their right.",
-    mission:
-      "To make civic participation as accessible as possible for communities that have historically been disenfranchised — not just through registration, but through sustained civic education and mobilization.",
-    pillars: ["Voter Registration Technology", "Civic Education", "Poll Access", "Community Mobilization"],
-    impact: [
-      "100,000+ voters registered",
-      "150,000+ community members mobilized",
-      "Deployed in 100+ cities",
-    ],
-    partnerOpportunity:
-      "Foundations and civic-minded corporations can sponsor VoteHub deployments in specific cities or communities. We can also work with employers to run voter registration programs for their workforces.",
-    color: "from-slate-800 to-slate-900",
-  },
-  {
     name: "Next Gen Money",
     slug: "nextgenmoney",
     icon: "DollarSign",
@@ -153,26 +132,6 @@ export const defaultPrograms: ProgramItem[] = [
       "Developers can partner with us as a community co-developer or outreach partner. Cities can contract us for housing access programming. Foundations can fund tenant advocacy and housing navigation services.",
     color: "from-slate-800 to-brand-900",
   },
-  {
-    name: "Disaster Response & Recovery Initiative",
-    slug: "disaster",
-    icon: "Shield",
-    tagline: "Rapid relief. Long-term rebuilding.",
-    description:
-      "The Disaster Response & Recovery Initiative is PUN's standing operational capacity for community-level disaster relief. We maintain the infrastructure, relationships, and logistics to deploy rapidly when communities are in crisis — with meals, supply kits, wellness services, and long-term rebuilding support that doesn't stop when the headlines do.",
-    mission:
-      "To ensure that no community faces a disaster alone — and that the relief provided is fast, culturally competent, and sustained long enough to actually help families rebuild.",
-    pillars: ["Rapid Meal Distribution", "Supply Kit Deployment", "Community Health", "Long-term Rebuilding"],
-    impact: [
-      "10M+ meals distributed",
-      "2M+ supply kits deployed",
-      "15,000+ vaccinations administered",
-      "Activated in disasters across the country",
-    ],
-    partnerOpportunity:
-      "Corporate partners can sponsor relief activations or fund standing capacity. Foundations can support year-round operational readiness. City agencies can pre-position PUN as a rapid-response community contractor.",
-    color: "from-slate-900 to-slate-700",
-  },
 ];
 
 export const defaultStats: StatItem[] = [
@@ -208,12 +167,12 @@ export const defaultHomePage: HomePageData = {
     videoPoster: { asset: { url: "/hero/pun-hero-poster.jpg" } },
   },
   focusAreasEyebrow: "What We Do",
-  focusAreasTitle: "Five Focus Areas. One Mission.",
+  focusAreasTitle: "Three Focus Areas. One Mission.",
   focusAreas: defaultFocusAreas,
   aboutEyebrow: "Who We Are",
-  aboutTitle: "More Than a Nonprofit. |A Platform for Change.|",
+  aboutTitle: "More Than an Organization. |A Platform for Change.|",
   aboutBody: [
-    "Pull Up Neighbor isn't a charity with a single program. We are a community infrastructure platform — operating at the intersection of grassroots trust, strategic capital, and cultural relevance.",
+    "Pull Up Neighbor isn't an organization with a single program. We are a community infrastructure platform — operating at the intersection of grassroots trust, strategic capital, and cultural relevance.",
     "We build, we convene, we execute. Whether it's placing families in affordable housing, running disaster relief operations, or registering 100,000 voters, we show up with strategy, not just intention.",
   ],
   aboutLinkLabel: "Learn About PUN",
@@ -228,7 +187,7 @@ export const defaultHomePage: HomePageData = {
   servicesLinkLabel: "View All Services",
   services: defaultServices,
   programsEyebrow: "Our Programs",
-  programsTitle: "Five Programs. Thousands of Lives.",
+  programsTitle: "Three Programs. Thousands of Lives.",
   programsLinkLabel: "All Programs",
   programs: defaultPrograms,
   statsEyebrow: "Our Impact",
@@ -298,7 +257,7 @@ export const defaultVisionPage: SimplePageData = {
 export const defaultProgramsPage: SimplePageData = {
   hero: {
     badge: "Our Programs",
-    title: "Five Programs. One Ecosystem.",
+    title: "Three Programs. One Ecosystem.",
     accentWords: ["Ecosystem."],
     subtitle:
       "PUN's programs don't operate in silos — they reinforce each other. Housing, civic engagement, financial literacy, and disaster relief work together because the communities we serve need them to.",

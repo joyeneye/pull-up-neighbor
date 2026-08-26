@@ -8,11 +8,9 @@ const aboutLinks = [
 ];
 
 const programLinks = [
-  { label: "VoteHub", href: "/programs#votehub" },
   { label: "Next Gen Money", href: "/programs#nextgenmoney" },
   { label: "The Wealth Playbook", href: "/programs#wealthplaybook" },
   { label: "Affordable Housing Initiative", href: "/programs#housing" },
-  { label: "Disaster Response & Recovery", href: "/programs#disaster" },
 ];
 
 const serviceLinks = [
