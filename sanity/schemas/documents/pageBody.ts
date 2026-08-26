@@ -17,7 +17,7 @@ export const pageBody = defineType({
       name: "sections",
       title: "Sections",
       description:
-        "Add, remove, and reorder the body sections of this page. Click + to add a section, drag to reorder, X to remove.",
+        "Add, remove, and reorder the body sections of this page.",
       type: "array",
       of: PAGE_BUILDER_BLOCKS,
     }),

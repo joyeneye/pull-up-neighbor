@@ -1,12 +1,5 @@
 import type { Metadata } from "next";
-import { draftMode } from "next/headers";
-import { VisualEditing } from "next-sanity/visual-editing";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import DisableDraftButton from "@/components/DisableDraftButton";
-import DraftMotionConfig from "@/components/DraftMotionConfig";
-import DebouncedSanityLive from "@/components/DebouncedSanityLive";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.pullupneighbor.com"),
@@ -15,31 +8,19 @@ export const metadata: Metadata = {
     "Pull Up Neighbor transforms communities through housing, disaster recovery, civic engagement, youth empowerment, and strategic partnerships.",
 };
 
-export default async function RootLayout({
+/**
+ * Root layout is deliberately bare — just the document shell. The public site's
+ * navbar/footer live in app/(site)/layout.tsx so /admin and /studio can render
+ * without them.
+ */
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const isDraft = (await draftMode()).isEnabled;
-  const body = (
-    <>
-      <Navbar />
-      <main>{children}</main>
-      <Footer />
-    </>
-  );
   return (
     <html lang="en">
-      <body className="antialiased">
-        {isDraft ? <DraftMotionConfig>{body}</DraftMotionConfig> : body}
-        <DebouncedSanityLive />
-        {isDraft && (
-          <>
-            <VisualEditing />
-            <DisableDraftButton />
-          </>
-        )}
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

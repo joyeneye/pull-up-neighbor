@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed": "tsx --env-file=.env.local scripts/seed-sanity.ts"
+    "seed": "tsx --env-file=.env.local scripts/seed-sanity.ts",
+    "admin:schema": "tsx --tsconfig tsconfig.codegen.json scripts/generate-admin-schema.ts",
+    "admin:user": "tsx --env-file=.env.local scripts/admin-user.ts"
   },
   "dependencies": {
     "@mux/mux-player-react": "^3.13.0",

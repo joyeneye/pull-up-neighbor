@@ -61,7 +61,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               {aboutLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <Link
                     href={link.href}
                     className="text-slate-400 text-sm hover:text-brand-400 transition-colors"
@@ -80,7 +80,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               {programLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <Link
                     href={link.href}
                     className="text-slate-400 text-sm hover:text-brand-400 transition-colors"
@@ -99,7 +99,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               {serviceLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <Link
                     href={link.href}
                     className="text-slate-400 text-sm hover:text-brand-400 transition-colors"
@@ -118,7 +118,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               {contactLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <Link
                     href={link.href}
                     className="text-slate-400 text-sm hover:text-brand-400 transition-colors"

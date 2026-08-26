@@ -1,0 +1,2434 @@
+{
+  "generatedBy": "npm run admin:schema",
+  "note": "Do not edit by hand. Generated from sanity/schemas.",
+  "types": {
+    "hero": {
+      "name": "hero",
+      "title": "Hero",
+      "fields": [
+        {
+          "name": "badge",
+          "title": "Badge (small text above headline)",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Headline",
+          "type": "text",
+          "rows": 2,
+          "required": true
+        },
+        {
+          "name": "accentWords",
+          "title": "Words to highlight in brand green",
+          "type": "array",
+          "description": "Each word/phrase typed here will appear in the brand green color in the headline.",
+          "arrayOf": "string"
+        },
+        {
+          "name": "subtitle",
+          "title": "Subheadline",
+          "type": "text",
+          "rows": 3,
+          "required": true
+        },
+        {
+          "name": "primaryCta",
+          "title": "Primary Button",
+          "type": "cta",
+          "required": true,
+          "fields": [
+            {
+              "name": "label",
+              "title": "Button Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "href",
+              "title": "Link",
+              "type": "string",
+              "description": "Internal path (e.g. /contact) or external URL",
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "secondaryCta",
+          "title": "Secondary Button (optional)",
+          "type": "cta",
+          "fields": [
+            {
+              "name": "label",
+              "title": "Button Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "href",
+              "title": "Link",
+              "type": "string",
+              "description": "Internal path (e.g. /contact) or external URL",
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "backgroundVideo",
+          "title": "Background Video (optional)",
+          "type": "file",
+          "description": "Upload an MP4 under 50 MB. Compress at handbrake.fr if needed. Leave empty for a plain dark background."
+        },
+        {
+          "name": "backgroundVideoPoster",
+          "title": "Video Poster Image (optional)",
+          "type": "image",
+          "description": "Shown before the video plays and for users with reduced-motion preferences."
+        }
+      ]
+    },
+    "cta": {
+      "name": "cta",
+      "title": "Call to Action",
+      "fields": [
+        {
+          "name": "label",
+          "title": "Button Label",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "href",
+          "title": "Link",
+          "type": "string",
+          "description": "Internal path (e.g. /contact) or external URL",
+          "required": true
+        }
+      ]
+    },
+    "finalCta": {
+      "name": "finalCta",
+      "title": "Final CTA Section",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text (small label above title)",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Title",
+          "type": "text",
+          "rows": 2,
+          "required": true
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "rows": 3
+        },
+        {
+          "name": "primaryCta",
+          "title": "Primary Button",
+          "type": "cta",
+          "required": true,
+          "fields": [
+            {
+              "name": "label",
+              "title": "Button Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "href",
+              "title": "Link",
+              "type": "string",
+              "description": "Internal path (e.g. /contact) or external URL",
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "secondaryCta",
+          "title": "Secondary Button (optional)",
+          "type": "cta",
+          "fields": [
+            {
+              "name": "label",
+              "title": "Button Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "href",
+              "title": "Link",
+              "type": "string",
+              "description": "Internal path (e.g. /contact) or external URL",
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "dark",
+          "title": "Dark Background",
+          "type": "boolean"
+        }
+      ]
+    },
+    "richTextBlock": {
+      "name": "richTextBlock",
+      "title": "Rich Text",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow (small label above title)",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Section Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "alignment",
+          "title": "Alignment",
+          "type": "string",
+          "choices": [
+            {
+              "title": "Left",
+              "value": "left"
+            },
+            {
+              "title": "Center",
+              "value": "center"
+            }
+          ]
+        },
+        {
+          "name": "body",
+          "title": "Body Paragraphs",
+          "type": "array",
+          "arrayOf": "text"
+        },
+        {
+          "name": "background",
+          "title": "Background",
+          "type": "string",
+          "choices": [
+            {
+              "title": "White",
+              "value": "white"
+            },
+            {
+              "title": "Light slate",
+              "value": "slate-50"
+            },
+            {
+              "title": "Dark slate",
+              "value": "slate-900"
+            },
+            {
+              "title": "Brand green",
+              "value": "brand-500"
+            }
+          ]
+        }
+      ]
+    },
+    "twoColumnTextBlock": {
+      "name": "twoColumnTextBlock",
+      "title": "Two-Column Text",
+      "fields": [
+        {
+          "name": "leftEyebrow",
+          "title": "Left — Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "leftTitle",
+          "title": "Left — Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "leftBody",
+          "title": "Left — Body Paragraphs",
+          "type": "array",
+          "arrayOf": "text"
+        },
+        {
+          "name": "rightEyebrow",
+          "title": "Right — Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "rightTitle",
+          "title": "Right — Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "rightBody",
+          "title": "Right — Body Paragraphs",
+          "type": "array",
+          "arrayOf": "text"
+        },
+        {
+          "name": "background",
+          "title": "Background",
+          "type": "string",
+          "choices": [
+            {
+              "title": "White",
+              "value": "white"
+            },
+            {
+              "title": "Light slate",
+              "value": "slate-50"
+            },
+            {
+              "title": "Dark slate",
+              "value": "slate-900"
+            },
+            {
+              "title": "Brand green",
+              "value": "brand-500"
+            }
+          ]
+        }
+      ]
+    },
+    "iconCardGridBlock": {
+      "name": "iconCardGridBlock",
+      "title": "Icon Card Grid",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Section Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "subtitle",
+          "title": "Subtitle (optional)",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "alignment",
+          "title": "Header Alignment",
+          "type": "string",
+          "choices": [
+            {
+              "title": "Left",
+              "value": "left"
+            },
+            {
+              "title": "Center",
+              "value": "center"
+            }
+          ]
+        },
+        {
+          "name": "columns",
+          "title": "Columns",
+          "type": "number",
+          "choices": [
+            {
+              "title": "2",
+              "value": "2"
+            },
+            {
+              "title": "3",
+              "value": "3"
+            },
+            {
+              "title": "4",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "name": "cardLayout",
+          "title": "Card Layout",
+          "type": "string",
+          "choices": [
+            {
+              "title": "Icon on top, text below",
+              "value": "icon-top"
+            },
+            {
+              "title": "Icon on left, text right",
+              "value": "icon-left"
+            }
+          ]
+        },
+        {
+          "name": "cards",
+          "title": "Cards",
+          "type": "array",
+          "arrayOf": "object",
+          "fields": [
+            {
+              "name": "icon",
+              "title": "Icon",
+              "type": "string",
+              "choices": [
+                {
+                  "title": "ArrowRight",
+                  "value": "ArrowRight"
+                },
+                {
+                  "title": "BarChart3",
+                  "value": "BarChart3"
+                },
+                {
+                  "title": "BookOpen",
+                  "value": "BookOpen"
+                },
+                {
+                  "title": "Building2",
+                  "value": "Building2"
+                },
+                {
+                  "title": "DollarSign",
+                  "value": "DollarSign"
+                },
+                {
+                  "title": "Globe",
+                  "value": "Globe"
+                },
+                {
+                  "title": "Handshake",
+                  "value": "Handshake"
+                },
+                {
+                  "title": "Heart",
+                  "value": "Heart"
+                },
+                {
+                  "title": "Home",
+                  "value": "Home"
+                },
+                {
+                  "title": "Layers",
+                  "value": "Layers"
+                },
+                {
+                  "title": "Lightbulb",
+                  "value": "Lightbulb"
+                },
+                {
+                  "title": "Megaphone",
+                  "value": "Megaphone"
+                },
+                {
+                  "title": "Shield",
+                  "value": "Shield"
+                },
+                {
+                  "title": "Star",
+                  "value": "Star"
+                },
+                {
+                  "title": "Target",
+                  "value": "Target"
+                },
+                {
+                  "title": "TrendingUp",
+                  "value": "TrendingUp"
+                },
+                {
+                  "title": "Users",
+                  "value": "Users"
+                },
+                {
+                  "title": "Vote",
+                  "value": "Vote"
+                }
+              ]
+            },
+            {
+              "name": "title",
+              "title": "Title",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "description",
+              "title": "Description",
+              "type": "text",
+              "rows": 3
+            }
+          ]
+        },
+        {
+          "name": "background",
+          "title": "Background",
+          "type": "string",
+          "choices": [
+            {
+              "title": "White",
+              "value": "white"
+            },
+            {
+              "title": "Light slate",
+              "value": "slate-50"
+            },
+            {
+              "title": "Dark slate",
+              "value": "slate-900"
+            },
+            {
+              "title": "Brand green",
+              "value": "brand-500"
+            }
+          ]
+        }
+      ]
+    },
+    "pillarCardsBlock": {
+      "name": "pillarCardsBlock",
+      "title": "Pillar Cards",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Section Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "subtitle",
+          "title": "Subtitle (optional)",
+          "type": "text",
+          "rows": 3
+        },
+        {
+          "name": "alignment",
+          "title": "Header Alignment",
+          "type": "string",
+          "choices": [
+            {
+              "title": "Left",
+              "value": "left"
+            },
+            {
+              "title": "Center",
+              "value": "center"
+            }
+          ]
+        },
+        {
+          "name": "bulletLabel",
+          "title": "Bullet List Label (e.g. '2030 Goals')",
+          "type": "string"
+        },
+        {
+          "name": "pillars",
+          "title": "Pillars",
+          "type": "array",
+          "arrayOf": "object",
+          "fields": [
+            {
+              "name": "icon",
+              "title": "Icon",
+              "type": "string",
+              "choices": [
+                {
+                  "title": "ArrowRight",
+                  "value": "ArrowRight"
+                },
+                {
+                  "title": "BarChart3",
+                  "value": "BarChart3"
+                },
+                {
+                  "title": "BookOpen",
+                  "value": "BookOpen"
+                },
+                {
+                  "title": "Building2",
+                  "value": "Building2"
+                },
+                {
+                  "title": "DollarSign",
+                  "value": "DollarSign"
+                },
+                {
+                  "title": "Globe",
+                  "value": "Globe"
+                },
+                {
+                  "title": "Handshake",
+                  "value": "Handshake"
+                },
+                {
+                  "title": "Heart",
+                  "value": "Heart"
+                },
+                {
+                  "title": "Home",
+                  "value": "Home"
+                },
+                {
+                  "title": "Layers",
+                  "value": "Layers"
+                },
+                {
+                  "title": "Lightbulb",
+                  "value": "Lightbulb"
+                },
+                {
+                  "title": "Megaphone",
+                  "value": "Megaphone"
+                },
+                {
+                  "title": "Shield",
+                  "value": "Shield"
+                },
+                {
+                  "title": "Star",
+                  "value": "Star"
+                },
+                {
+                  "title": "Target",
+                  "value": "Target"
+                },
+                {
+                  "title": "TrendingUp",
+                  "value": "TrendingUp"
+                },
+                {
+                  "title": "Users",
+                  "value": "Users"
+                },
+                {
+                  "title": "Vote",
+                  "value": "Vote"
+                }
+              ]
+            },
+            {
+              "name": "title",
+              "title": "Title",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "description",
+              "title": "Description",
+              "type": "text",
+              "rows": 4
+            },
+            {
+              "name": "bullets",
+              "title": "Bullet Points",
+              "type": "array",
+              "arrayOf": "string"
+            }
+          ]
+        },
+        {
+          "name": "background",
+          "title": "Background",
+          "type": "string",
+          "choices": [
+            {
+              "title": "White",
+              "value": "white"
+            },
+            {
+              "title": "Light slate",
+              "value": "slate-50"
+            },
+            {
+              "title": "Dark slate",
+              "value": "slate-900"
+            },
+            {
+              "title": "Brand green",
+              "value": "brand-500"
+            }
+          ]
+        }
+      ]
+    },
+    "phaseCardsBlock": {
+      "name": "phaseCardsBlock",
+      "title": "Phase Cards",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Section Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "subtitle",
+          "title": "Subtitle (optional)",
+          "type": "text",
+          "rows": 3
+        },
+        {
+          "name": "phases",
+          "title": "Phases",
+          "type": "array",
+          "arrayOf": "object",
+          "fields": [
+            {
+              "name": "phase",
+              "title": "Phase Label (e.g. 'Phase 1')",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "title",
+              "title": "Title",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "status",
+              "title": "Status Badge",
+              "type": "string",
+              "choices": [
+                {
+                  "title": "Active",
+                  "value": "Active"
+                },
+                {
+                  "title": "In Progress",
+                  "value": "In Progress"
+                },
+                {
+                  "title": "Horizon",
+                  "value": "Horizon"
+                },
+                {
+                  "title": "Complete",
+                  "value": "Complete"
+                }
+              ]
+            },
+            {
+              "name": "description",
+              "title": "Description",
+              "type": "text",
+              "rows": 4
+            }
+          ]
+        },
+        {
+          "name": "background",
+          "title": "Background",
+          "type": "string",
+          "choices": [
+            {
+              "title": "White",
+              "value": "white"
+            },
+            {
+              "title": "Light slate",
+              "value": "slate-50"
+            },
+            {
+              "title": "Dark slate",
+              "value": "slate-900"
+            },
+            {
+              "title": "Brand green",
+              "value": "brand-500"
+            }
+          ]
+        }
+      ]
+    },
+    "textWithStatsBlock": {
+      "name": "textWithStatsBlock",
+      "title": "Text + Stat Cards",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "accentTail",
+          "title": "Title Accent Tail (rendered in brand green)",
+          "type": "string",
+          "description": "Optional. Appears after the title in brand green — e.g. 'We Build With Them.'"
+        },
+        {
+          "name": "body",
+          "title": "Body Paragraphs",
+          "type": "array",
+          "arrayOf": "text"
+        },
+        {
+          "name": "stats",
+          "title": "Stat Cards",
+          "type": "array",
+          "arrayOf": "object",
+          "fields": [
+            {
+              "name": "icon",
+              "title": "Icon",
+              "type": "string",
+              "choices": [
+                {
+                  "title": "ArrowRight",
+                  "value": "ArrowRight"
+                },
+                {
+                  "title": "BarChart3",
+                  "value": "BarChart3"
+                },
+                {
+                  "title": "BookOpen",
+                  "value": "BookOpen"
+                },
+                {
+                  "title": "Building2",
+                  "value": "Building2"
+                },
+                {
+                  "title": "DollarSign",
+                  "value": "DollarSign"
+                },
+                {
+                  "title": "Globe",
+                  "value": "Globe"
+                },
+                {
+                  "title": "Handshake",
+                  "value": "Handshake"
+                },
+                {
+                  "title": "Heart",
+                  "value": "Heart"
+                },
+                {
+                  "title": "Home",
+                  "value": "Home"
+                },
+                {
+                  "title": "Layers",
+                  "value": "Layers"
+                },
+                {
+                  "title": "Lightbulb",
+                  "value": "Lightbulb"
+                },
+                {
+                  "title": "Megaphone",
+                  "value": "Megaphone"
+                },
+                {
+                  "title": "Shield",
+                  "value": "Shield"
+                },
+                {
+                  "title": "Star",
+                  "value": "Star"
+                },
+                {
+                  "title": "Target",
+                  "value": "Target"
+                },
+                {
+                  "title": "TrendingUp",
+                  "value": "TrendingUp"
+                },
+                {
+                  "title": "Users",
+                  "value": "Users"
+                },
+                {
+                  "title": "Vote",
+                  "value": "Vote"
+                }
+              ]
+            },
+            {
+              "name": "value",
+              "title": "Big Number (e.g. 1M+)",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "label",
+              "title": "Label",
+              "type": "string",
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "background",
+          "title": "Background",
+          "type": "string",
+          "choices": [
+            {
+              "title": "White",
+              "value": "white"
+            },
+            {
+              "title": "Light slate",
+              "value": "slate-50"
+            },
+            {
+              "title": "Dark slate",
+              "value": "slate-900"
+            },
+            {
+              "title": "Brand green",
+              "value": "brand-500"
+            }
+          ]
+        }
+      ]
+    },
+    "quoteSplitBlock": {
+      "name": "quoteSplitBlock",
+      "title": "Text + Quote",
+      "fields": [
+        {
+          "name": "leftEyebrow",
+          "title": "Left — Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "leftTitle",
+          "title": "Left — Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "leftBody",
+          "title": "Left — Body Paragraphs",
+          "type": "array",
+          "arrayOf": "text"
+        },
+        {
+          "name": "rightEyebrow",
+          "title": "Quote Card — Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "quote",
+          "title": "Quote Text",
+          "type": "text",
+          "rows": 4,
+          "required": true
+        },
+        {
+          "name": "quoteFooter",
+          "title": "Quote Card — Footer (below divider)",
+          "type": "text",
+          "rows": 3
+        },
+        {
+          "name": "background",
+          "title": "Background",
+          "type": "string",
+          "choices": [
+            {
+              "title": "White",
+              "value": "white"
+            },
+            {
+              "title": "Light slate",
+              "value": "slate-50"
+            },
+            {
+              "title": "Dark slate",
+              "value": "slate-900"
+            },
+            {
+              "title": "Brand green",
+              "value": "brand-500"
+            }
+          ]
+        }
+      ]
+    },
+    "brandedCalloutBlock": {
+      "name": "brandedCalloutBlock",
+      "title": "Branded Callout",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "body",
+          "title": "Body Paragraphs",
+          "type": "array",
+          "arrayOf": "text"
+        },
+        {
+          "name": "items",
+          "title": "Right Column — Items",
+          "type": "array",
+          "arrayOf": "object",
+          "fields": [
+            {
+              "name": "title",
+              "title": "Title",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "description",
+              "title": "Description",
+              "type": "text",
+              "rows": 2
+            }
+          ]
+        },
+        {
+          "name": "ctaLabel",
+          "title": "Button Label",
+          "type": "string"
+        },
+        {
+          "name": "ctaHref",
+          "title": "Button Link",
+          "type": "string"
+        }
+      ]
+    },
+    "partnershipModelGridBlock": {
+      "name": "partnershipModelGridBlock",
+      "title": "Partnership Models Grid",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Section Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "models",
+          "title": "Models",
+          "type": "array",
+          "arrayOf": "reference",
+          "refTypes": [
+            "partnershipModel"
+          ]
+        },
+        {
+          "name": "background",
+          "title": "Background",
+          "type": "string",
+          "choices": [
+            {
+              "title": "White",
+              "value": "white"
+            },
+            {
+              "title": "Light slate",
+              "value": "slate-50"
+            },
+            {
+              "title": "Dark slate",
+              "value": "slate-900"
+            },
+            {
+              "title": "Brand green",
+              "value": "brand-500"
+            }
+          ]
+        }
+      ]
+    },
+    "pageHero": {
+      "name": "pageHero",
+      "title": "Hero Section",
+      "fields": [
+        {
+          "name": "badge",
+          "title": "Badge (small text above headline)",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Headline",
+          "type": "text",
+          "rows": 2,
+          "required": true
+        },
+        {
+          "name": "accentWords",
+          "title": "Words to highlight in brand green",
+          "type": "array",
+          "description": "Each word/phrase typed here appears in brand green in the headline.",
+          "arrayOf": "string"
+        },
+        {
+          "name": "subtitle",
+          "title": "Subheadline",
+          "type": "text",
+          "rows": 3,
+          "required": true
+        },
+        {
+          "name": "primaryCta",
+          "title": "Primary Button",
+          "type": "cta",
+          "required": true,
+          "fields": [
+            {
+              "name": "label",
+              "title": "Button Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "href",
+              "title": "Link",
+              "type": "string",
+              "description": "Internal path (e.g. /contact) or external URL",
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "secondaryCta",
+          "title": "Secondary Button (optional)",
+          "type": "cta",
+          "fields": [
+            {
+              "name": "label",
+              "title": "Button Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "href",
+              "title": "Link",
+              "type": "string",
+              "description": "Internal path (e.g. /contact) or external URL",
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "backgroundImage",
+          "title": "Background Image (optional)",
+          "type": "image",
+          "description": "Static photo background. Lowest priority — used only if no video is set."
+        },
+        {
+          "name": "backgroundMuxVideo",
+          "title": "Background Video — Mux (recommended)",
+          "type": "mux.video",
+          "description": "Drop in a video of any size. Mux handles upload, transcoding, and streaming. Best for files over 30 MB. Highest priority."
+        },
+        {
+          "name": "backgroundEmbedUrl",
+          "title": "Background Video — YouTube or Vimeo Link",
+          "type": "url",
+          "description": "Paste a YouTube or Vimeo URL to use as the background. Plays muted and looped. Falls back to image if no Mux video is set."
+        },
+        {
+          "name": "backgroundVideo",
+          "title": "Background Video — Direct MP4 (legacy, small files only)",
+          "type": "file",
+          "description": "Only use this for tiny clips under 30 MB. Larger files will freeze the browser. Prefer the Mux field above."
+        },
+        {
+          "name": "backgroundVideoPoster",
+          "title": "Video Poster Image (optional)",
+          "type": "image",
+          "description": "Shown for ~1 second before the video plays, and for reduced-motion users instead of the video."
+        }
+      ]
+    },
+    "pageFinalCta": {
+      "name": "pageFinalCta",
+      "title": "Final CTA Section",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text (small label above title)",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Title",
+          "type": "text",
+          "rows": 2,
+          "required": true
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "rows": 3
+        },
+        {
+          "name": "primaryCta",
+          "title": "Primary Button",
+          "type": "cta",
+          "required": true,
+          "fields": [
+            {
+              "name": "label",
+              "title": "Button Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "href",
+              "title": "Link",
+              "type": "string",
+              "description": "Internal path (e.g. /contact) or external URL",
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "secondaryCta",
+          "title": "Secondary Button (optional)",
+          "type": "cta",
+          "fields": [
+            {
+              "name": "label",
+              "title": "Button Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "href",
+              "title": "Link",
+              "type": "string",
+              "description": "Internal path (e.g. /contact) or external URL",
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "dark",
+          "title": "Dark Background",
+          "type": "boolean"
+        }
+      ]
+    },
+    "pageBody": {
+      "name": "pageBody",
+      "title": "Page Body",
+      "fields": [
+        {
+          "name": "sections",
+          "title": "Sections",
+          "type": "array",
+          "description": "Add, remove, and reorder the body sections of this page.",
+          "arrayOf": "block",
+          "blockTypes": [
+            "richTextBlock",
+            "twoColumnTextBlock",
+            "iconCardGridBlock",
+            "pillarCardsBlock",
+            "phaseCardsBlock",
+            "textWithStatsBlock",
+            "quoteSplitBlock",
+            "brandedCalloutBlock",
+            "partnershipModelGridBlock"
+          ]
+        }
+      ]
+    },
+    "contactFormSection": {
+      "name": "contactFormSection",
+      "title": "Contact Form Section",
+      "fields": [
+        {
+          "name": "reasonsHeading",
+          "title": "Reasons — Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "reasonsTitle",
+          "title": "Reasons — Title",
+          "type": "string"
+        },
+        {
+          "name": "reasons",
+          "title": "Reasons (bulleted list)",
+          "type": "array",
+          "arrayOf": "string"
+        },
+        {
+          "name": "partnerTypesHeading",
+          "title": "Partner Types — Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "partnerTypes",
+          "title": "Partner Type Tiles",
+          "type": "array",
+          "arrayOf": "object",
+          "fields": [
+            {
+              "name": "icon",
+              "title": "Icon",
+              "type": "string",
+              "choices": [
+                {
+                  "title": "Globe",
+                  "value": "Globe"
+                },
+                {
+                  "title": "BookOpen",
+                  "value": "BookOpen"
+                },
+                {
+                  "title": "Users",
+                  "value": "Users"
+                },
+                {
+                  "title": "Building2",
+                  "value": "Building2"
+                },
+                {
+                  "title": "DollarSign",
+                  "value": "DollarSign"
+                },
+                {
+                  "title": "Layers",
+                  "value": "Layers"
+                },
+                {
+                  "title": "Heart",
+                  "value": "Heart"
+                },
+                {
+                  "title": "Vote",
+                  "value": "Vote"
+                },
+                {
+                  "title": "Home",
+                  "value": "Home"
+                },
+                {
+                  "title": "Shield",
+                  "value": "Shield"
+                },
+                {
+                  "title": "Megaphone",
+                  "value": "Megaphone"
+                },
+                {
+                  "title": "Handshake",
+                  "value": "Handshake"
+                }
+              ]
+            },
+            {
+              "name": "label",
+              "title": "Label",
+              "type": "string",
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "directContactHeading",
+          "title": "Direct Contact — Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "email",
+          "title": "Email",
+          "type": "string"
+        },
+        {
+          "name": "directContactNote",
+          "title": "Direct Contact — Note",
+          "type": "text",
+          "rows": 3
+        },
+        {
+          "name": "responseTimeHeading",
+          "title": "Response Time — Heading",
+          "type": "string"
+        },
+        {
+          "name": "responseTimeBody",
+          "title": "Response Time — Body",
+          "type": "text",
+          "rows": 3
+        },
+        {
+          "name": "formIntroTitle",
+          "title": "Form — Intro Title",
+          "type": "string"
+        },
+        {
+          "name": "formIntroSubtitle",
+          "title": "Form — Intro Subtitle",
+          "type": "text",
+          "rows": 2
+        }
+      ]
+    },
+    "homeFocusAreas": {
+      "name": "homeFocusAreas",
+      "title": "Focus Areas Section",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Section Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "items",
+          "title": "Focus Area Cards",
+          "type": "array",
+          "arrayOf": "reference",
+          "refTypes": [
+            "focusArea"
+          ]
+        }
+      ]
+    },
+    "homeAbout": {
+      "name": "homeAbout",
+      "title": "About Snapshot Section",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Section Title",
+          "type": "text",
+          "description": "Wrap brand-green portion with pipes: 'Plain. |Green part.|'",
+          "rows": 2
+        },
+        {
+          "name": "body",
+          "title": "Body Paragraphs",
+          "type": "array",
+          "arrayOf": "text"
+        },
+        {
+          "name": "linkLabel",
+          "title": "Link Label",
+          "type": "string"
+        },
+        {
+          "name": "linkHref",
+          "title": "Link Target",
+          "type": "string"
+        },
+        {
+          "name": "sidePanels",
+          "title": "Side Panels (right column)",
+          "type": "array",
+          "arrayOf": "object",
+          "fields": [
+            {
+              "name": "title",
+              "title": "Title",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "body",
+              "title": "Body",
+              "type": "text",
+              "rows": 3,
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    "homeServices": {
+      "name": "homeServices",
+      "title": "Services Preview Section",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Section Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "linkLabel",
+          "title": "View-All Link Label",
+          "type": "string"
+        },
+        {
+          "name": "items",
+          "title": "Service Cards",
+          "type": "array",
+          "arrayOf": "reference",
+          "refTypes": [
+            "service"
+          ]
+        }
+      ]
+    },
+    "homePrograms": {
+      "name": "homePrograms",
+      "title": "Programs Preview Section",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Section Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "linkLabel",
+          "title": "View-All Link Label",
+          "type": "string"
+        },
+        {
+          "name": "items",
+          "title": "Program Cards",
+          "type": "array",
+          "arrayOf": "reference",
+          "refTypes": [
+            "program"
+          ]
+        }
+      ]
+    },
+    "homeStats": {
+      "name": "homeStats",
+      "title": "Impact Stats Section",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Section Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "subtitle",
+          "title": "Subtitle",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "items",
+          "title": "Stats",
+          "type": "array",
+          "arrayOf": "reference",
+          "refTypes": [
+            "stat"
+          ]
+        },
+        {
+          "name": "linkLabel",
+          "title": "Link Label",
+          "type": "string"
+        }
+      ]
+    },
+    "homePartners": {
+      "name": "homePartners",
+      "title": "Partners Section",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Section Title",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "subtitle",
+          "title": "Subtitle",
+          "type": "text",
+          "rows": 3
+        },
+        {
+          "name": "items",
+          "title": "Partner Type Cards",
+          "type": "array",
+          "arrayOf": "reference",
+          "refTypes": [
+            "partnerType"
+          ]
+        },
+        {
+          "name": "ctaLabel",
+          "title": "Button Label",
+          "type": "string"
+        }
+      ]
+    },
+    "siteSettings": {
+      "name": "siteSettings",
+      "title": "Site Settings",
+      "fields": [
+        {
+          "name": "siteTitle",
+          "title": "Site Title",
+          "type": "string"
+        },
+        {
+          "name": "tagline",
+          "title": "Tagline (used in metadata)",
+          "type": "string"
+        },
+        {
+          "name": "contactEmail",
+          "title": "Contact Email",
+          "type": "string"
+        }
+      ]
+    },
+    "program": {
+      "name": "program",
+      "title": "Program",
+      "fields": [
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "slug",
+          "title": "Slug (used for #anchor links)",
+          "type": "slug",
+          "required": true
+        },
+        {
+          "name": "tagline",
+          "title": "Tagline",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "icon",
+          "title": "Icon",
+          "type": "string",
+          "choices": [
+            {
+              "title": "ArrowRight",
+              "value": "ArrowRight"
+            },
+            {
+              "title": "BarChart3",
+              "value": "BarChart3"
+            },
+            {
+              "title": "BookOpen",
+              "value": "BookOpen"
+            },
+            {
+              "title": "Building2",
+              "value": "Building2"
+            },
+            {
+              "title": "DollarSign",
+              "value": "DollarSign"
+            },
+            {
+              "title": "Globe",
+              "value": "Globe"
+            },
+            {
+              "title": "Handshake",
+              "value": "Handshake"
+            },
+            {
+              "title": "Heart",
+              "value": "Heart"
+            },
+            {
+              "title": "Home",
+              "value": "Home"
+            },
+            {
+              "title": "Layers",
+              "value": "Layers"
+            },
+            {
+              "title": "Lightbulb",
+              "value": "Lightbulb"
+            },
+            {
+              "title": "Megaphone",
+              "value": "Megaphone"
+            },
+            {
+              "title": "Shield",
+              "value": "Shield"
+            },
+            {
+              "title": "Star",
+              "value": "Star"
+            },
+            {
+              "title": "Target",
+              "value": "Target"
+            },
+            {
+              "title": "TrendingUp",
+              "value": "TrendingUp"
+            },
+            {
+              "title": "Users",
+              "value": "Users"
+            },
+            {
+              "title": "Vote",
+              "value": "Vote"
+            }
+          ]
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "rows": 4,
+          "required": true
+        },
+        {
+          "name": "mission",
+          "title": "Mission Statement (long)",
+          "type": "text",
+          "description": "Shown on the Programs page detail. Optional.",
+          "rows": 4
+        },
+        {
+          "name": "pillars",
+          "title": "Pillars (tags)",
+          "type": "array",
+          "arrayOf": "string"
+        },
+        {
+          "name": "impact",
+          "title": "Impact Bullets",
+          "type": "array",
+          "description": "Short bullets describing concrete outcomes.",
+          "arrayOf": "string"
+        },
+        {
+          "name": "partnerOpportunity",
+          "title": "Partner Opportunity (text)",
+          "type": "text",
+          "description": "How organizations can partner on this program.",
+          "rows": 3
+        },
+        {
+          "name": "backgroundImage",
+          "title": "Background Image (optional)",
+          "type": "image",
+          "description": "Photo rendered faded behind this program's detail section on the Programs page (e.g. classroom photo behind Wealth Playbook)."
+        },
+        {
+          "name": "color",
+          "title": "Card Gradient (Tailwind classes)",
+          "type": "string",
+          "description": "e.g. 'from-slate-800 to-slate-900' — pick from existing site palette.",
+          "choices": [
+            {
+              "title": "Slate Dark",
+              "value": "from-slate-800 to-slate-900"
+            },
+            {
+              "title": "Slate Mid",
+              "value": "from-slate-700 to-slate-900"
+            },
+            {
+              "title": "Brand → Slate",
+              "value": "from-brand-800 to-slate-900"
+            },
+            {
+              "title": "Slate → Brand",
+              "value": "from-slate-800 to-brand-900"
+            },
+            {
+              "title": "Reverse Slate",
+              "value": "from-slate-900 to-slate-700"
+            }
+          ]
+        },
+        {
+          "name": "displayOrder",
+          "title": "Display Order",
+          "type": "number"
+        },
+        {
+          "name": "archived",
+          "title": "Archived",
+          "type": "boolean",
+          "description": "Hide this from the website without deleting it. Archived items disappear from every page but stay here, and can be un-archived at any time."
+        }
+      ]
+    },
+    "service": {
+      "name": "service",
+      "title": "Service",
+      "fields": [
+        {
+          "name": "title",
+          "title": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "slug",
+          "title": "Slug (used for #anchor links)",
+          "type": "slug"
+        },
+        {
+          "name": "icon",
+          "title": "Icon",
+          "type": "string",
+          "required": true,
+          "choices": [
+            {
+              "title": "ArrowRight",
+              "value": "ArrowRight"
+            },
+            {
+              "title": "BarChart3",
+              "value": "BarChart3"
+            },
+            {
+              "title": "BookOpen",
+              "value": "BookOpen"
+            },
+            {
+              "title": "Building2",
+              "value": "Building2"
+            },
+            {
+              "title": "DollarSign",
+              "value": "DollarSign"
+            },
+            {
+              "title": "Globe",
+              "value": "Globe"
+            },
+            {
+              "title": "Handshake",
+              "value": "Handshake"
+            },
+            {
+              "title": "Heart",
+              "value": "Heart"
+            },
+            {
+              "title": "Home",
+              "value": "Home"
+            },
+            {
+              "title": "Layers",
+              "value": "Layers"
+            },
+            {
+              "title": "Lightbulb",
+              "value": "Lightbulb"
+            },
+            {
+              "title": "Megaphone",
+              "value": "Megaphone"
+            },
+            {
+              "title": "Shield",
+              "value": "Shield"
+            },
+            {
+              "title": "Star",
+              "value": "Star"
+            },
+            {
+              "title": "Target",
+              "value": "Target"
+            },
+            {
+              "title": "TrendingUp",
+              "value": "TrendingUp"
+            },
+            {
+              "title": "Users",
+              "value": "Users"
+            },
+            {
+              "title": "Vote",
+              "value": "Vote"
+            }
+          ]
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "rows": 3,
+          "required": true
+        },
+        {
+          "name": "why",
+          "title": "Why It Matters",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "howToPartner",
+          "title": "How to Partner",
+          "type": "text",
+          "rows": 2
+        },
+        {
+          "name": "bullets",
+          "title": "Service Bullets (shown on Services page detail)",
+          "type": "array",
+          "arrayOf": "string"
+        },
+        {
+          "name": "backgroundImage",
+          "title": "Background Image (optional)",
+          "type": "image",
+          "description": "Photo rendered faded behind this service's detail section on the Services page."
+        },
+        {
+          "name": "displayOrder",
+          "title": "Display Order",
+          "type": "number"
+        },
+        {
+          "name": "archived",
+          "title": "Archived",
+          "type": "boolean",
+          "description": "Hide this from the website without deleting it. Archived items disappear from every page but stay here, and can be un-archived at any time."
+        }
+      ]
+    },
+    "partnerType": {
+      "name": "partnerType",
+      "title": "Partner Type",
+      "fields": [
+        {
+          "name": "type",
+          "title": "Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "icon",
+          "title": "Icon",
+          "type": "string",
+          "required": true,
+          "choices": [
+            {
+              "title": "ArrowRight",
+              "value": "ArrowRight"
+            },
+            {
+              "title": "BarChart3",
+              "value": "BarChart3"
+            },
+            {
+              "title": "BookOpen",
+              "value": "BookOpen"
+            },
+            {
+              "title": "Building2",
+              "value": "Building2"
+            },
+            {
+              "title": "DollarSign",
+              "value": "DollarSign"
+            },
+            {
+              "title": "Globe",
+              "value": "Globe"
+            },
+            {
+              "title": "Handshake",
+              "value": "Handshake"
+            },
+            {
+              "title": "Heart",
+              "value": "Heart"
+            },
+            {
+              "title": "Home",
+              "value": "Home"
+            },
+            {
+              "title": "Layers",
+              "value": "Layers"
+            },
+            {
+              "title": "Lightbulb",
+              "value": "Lightbulb"
+            },
+            {
+              "title": "Megaphone",
+              "value": "Megaphone"
+            },
+            {
+              "title": "Shield",
+              "value": "Shield"
+            },
+            {
+              "title": "Star",
+              "value": "Star"
+            },
+            {
+              "title": "Target",
+              "value": "Target"
+            },
+            {
+              "title": "TrendingUp",
+              "value": "TrendingUp"
+            },
+            {
+              "title": "Users",
+              "value": "Users"
+            },
+            {
+              "title": "Vote",
+              "value": "Vote"
+            }
+          ]
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "rows": 3,
+          "required": true
+        },
+        {
+          "name": "displayOrder",
+          "title": "Display Order",
+          "type": "number"
+        },
+        {
+          "name": "archived",
+          "title": "Archived",
+          "type": "boolean",
+          "description": "Hide this from the website without deleting it. Archived items disappear from every page but stay here, and can be un-archived at any time."
+        }
+      ]
+    },
+    "partnershipModel": {
+      "name": "partnershipModel",
+      "title": "Partnership Model",
+      "fields": [
+        {
+          "name": "title",
+          "title": "Model Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "rows": 4,
+          "required": true
+        },
+        {
+          "name": "investment",
+          "title": "Investment",
+          "type": "string",
+          "description": "e.g. 'Flexible', 'Event-based', 'Mission-aligned capital'"
+        },
+        {
+          "name": "timeframe",
+          "title": "Timeframe",
+          "type": "string",
+          "description": "e.g. '6–24 months', '2–5 years'"
+        },
+        {
+          "name": "displayOrder",
+          "title": "Display Order",
+          "type": "number"
+        },
+        {
+          "name": "archived",
+          "title": "Archived",
+          "type": "boolean",
+          "description": "Hide this from the website without deleting it. Archived items disappear from every page but stay here, and can be un-archived at any time."
+        }
+      ]
+    },
+    "focusArea": {
+      "name": "focusArea",
+      "title": "Focus Area",
+      "fields": [
+        {
+          "name": "title",
+          "title": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "icon",
+          "title": "Icon",
+          "type": "string",
+          "required": true,
+          "choices": [
+            {
+              "title": "ArrowRight",
+              "value": "ArrowRight"
+            },
+            {
+              "title": "BarChart3",
+              "value": "BarChart3"
+            },
+            {
+              "title": "BookOpen",
+              "value": "BookOpen"
+            },
+            {
+              "title": "Building2",
+              "value": "Building2"
+            },
+            {
+              "title": "DollarSign",
+              "value": "DollarSign"
+            },
+            {
+              "title": "Globe",
+              "value": "Globe"
+            },
+            {
+              "title": "Handshake",
+              "value": "Handshake"
+            },
+            {
+              "title": "Heart",
+              "value": "Heart"
+            },
+            {
+              "title": "Home",
+              "value": "Home"
+            },
+            {
+              "title": "Layers",
+              "value": "Layers"
+            },
+            {
+              "title": "Lightbulb",
+              "value": "Lightbulb"
+            },
+            {
+              "title": "Megaphone",
+              "value": "Megaphone"
+            },
+            {
+              "title": "Shield",
+              "value": "Shield"
+            },
+            {
+              "title": "Star",
+              "value": "Star"
+            },
+            {
+              "title": "Target",
+              "value": "Target"
+            },
+            {
+              "title": "TrendingUp",
+              "value": "TrendingUp"
+            },
+            {
+              "title": "Users",
+              "value": "Users"
+            },
+            {
+              "title": "Vote",
+              "value": "Vote"
+            }
+          ]
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "rows": 3,
+          "required": true
+        },
+        {
+          "name": "displayOrder",
+          "title": "Display Order",
+          "type": "number"
+        },
+        {
+          "name": "archived",
+          "title": "Archived",
+          "type": "boolean",
+          "description": "Hide this from the website without deleting it. Archived items disappear from every page but stay here, and can be un-archived at any time."
+        }
+      ]
+    },
+    "stat": {
+      "name": "stat",
+      "title": "Stat",
+      "fields": [
+        {
+          "name": "value",
+          "title": "Big Number (e.g. 1M+)",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "label",
+          "title": "Label",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "string"
+        },
+        {
+          "name": "displayOrder",
+          "title": "Display Order",
+          "type": "number"
+        },
+        {
+          "name": "archived",
+          "title": "Archived",
+          "type": "boolean",
+          "description": "Hide this from the website without deleting it. Archived items disappear from every page but stay here, and can be un-archived at any time."
+        }
+      ]
+    },
+    "inActionItem": {
+      "name": "inActionItem",
+      "title": "In Action Item",
+      "fields": [
+        {
+          "name": "title",
+          "title": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "title": "Description (shown in the lightbox)",
+          "type": "text",
+          "rows": 3
+        },
+        {
+          "name": "category",
+          "title": "Category (e.g. VoteHub, Disaster Relief)",
+          "type": "string"
+        },
+        {
+          "name": "date",
+          "title": "Date",
+          "type": "date"
+        },
+        {
+          "name": "mediaType",
+          "title": "Media Type",
+          "type": "string",
+          "required": true,
+          "choices": [
+            {
+              "title": "Video Link (YouTube or Vimeo)",
+              "value": "embed"
+            },
+            {
+              "title": "Uploaded Video (MP4)",
+              "value": "upload"
+            },
+            {
+              "title": "Photo",
+              "value": "image"
+            }
+          ]
+        },
+        {
+          "name": "embedUrl",
+          "title": "Video URL",
+          "type": "url",
+          "description": "Paste a YouTube or Vimeo URL. Supported: youtube.com/watch?v=…, youtu.be/…, YouTube Shorts, vimeo.com/123456789, player.vimeo.com/video/123456789."
+        },
+        {
+          "name": "muxVideo",
+          "title": "Video Upload (Mux — recommended)",
+          "type": "mux.video",
+          "description": "Drop in a video of any size. Mux handles the upload + streaming so the browser never freezes."
+        },
+        {
+          "name": "video",
+          "title": "Legacy MP4 Upload (small files only)",
+          "type": "file",
+          "description": "Only use for tiny clips under 30 MB. Prefer the Mux field above."
+        },
+        {
+          "name": "image",
+          "title": "Photo",
+          "type": "image"
+        },
+        {
+          "name": "thumbnail",
+          "title": "Thumbnail (optional)",
+          "type": "image",
+          "description": "Custom thumbnail shown on the gallery card. If empty: YouTube videos use the auto-thumbnail, photos use themselves, uploaded videos use the first frame."
+        },
+        {
+          "name": "featured",
+          "title": "Featured (show first in gallery)",
+          "type": "boolean"
+        },
+        {
+          "name": "displayOrder",
+          "title": "Display Order",
+          "type": "number",
+          "description": "Lower numbers appear first. Featured items always come first."
+        },
+        {
+          "name": "archived",
+          "title": "Archived",
+          "type": "boolean",
+          "description": "Hide this from the website without deleting it. Archived items disappear from every page but stay here, and can be un-archived at any time."
+        }
+      ]
+    },
+    "contactSubmission": {
+      "name": "contactSubmission",
+      "title": "Inquiry",
+      "fields": [
+        {
+          "name": "status",
+          "title": "Status",
+          "type": "string",
+          "choices": [
+            {
+              "title": "New",
+              "value": "new"
+            },
+            {
+              "title": "Read",
+              "value": "read"
+            },
+            {
+              "title": "Replied",
+              "value": "replied"
+            },
+            {
+              "title": "Archived",
+              "value": "archived"
+            }
+          ]
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string",
+          "readOnly": true
+        },
+        {
+          "name": "organization",
+          "title": "Organization",
+          "type": "string",
+          "readOnly": true
+        },
+        {
+          "name": "email",
+          "title": "Email",
+          "type": "string",
+          "readOnly": true
+        },
+        {
+          "name": "partnershipType",
+          "title": "Partnership Type",
+          "type": "string",
+          "readOnly": true
+        },
+        {
+          "name": "message",
+          "title": "Message",
+          "type": "text",
+          "rows": 8,
+          "readOnly": true
+        },
+        {
+          "name": "submittedAt",
+          "title": "Submitted",
+          "type": "datetime",
+          "readOnly": true
+        },
+        {
+          "name": "notes",
+          "title": "Internal Notes",
+          "type": "text",
+          "description": "Only visible here. The sender never sees this.",
+          "rows": 4
+        }
+      ]
+    }
+  }
+}

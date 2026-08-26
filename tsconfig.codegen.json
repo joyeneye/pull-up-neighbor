@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": ["./*"],
+      "sanity": ["./scripts/stubs/sanity.cjs"],
+      "sanity/*": ["./scripts/stubs/sanity.cjs"],
+      "@sanity/icons": ["./scripts/stubs/icons.cjs"],
+      "sanity-plugin-mux-input": ["./scripts/stubs/sanity.cjs"]
+    }
+  }
+}
