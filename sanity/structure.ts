@@ -18,127 +18,46 @@ import {
   PlayIcon,
   type IconComponent,
 } from "@sanity/icons";
+import { PAGE_ROUTES } from "./lib/routes";
 
-type SectionItem = {
-  id: string;
-  schemaType: string;
-  title: string;
-  icon?: IconComponent;
-  kind?: "singleton" | "list";
+const SECTION_ICONS: Record<string, IconComponent> = {
+  pageHero: RocketIcon,
+  pageBody: ThListIcon,
+  pageFinalCta: EnvelopeIcon,
+  homeFocusAreas: TargetIcon,
+  homeAbout: InfoOutlineIcon,
+  homeServices: PackageIcon,
+  homePrograms: StackIcon,
+  homeStats: ChartUpwardIcon,
+  homePartners: HeartIcon,
+  contactFormSection: EnvelopeIcon,
+  inActionItem: PlayIcon,
 };
 
-type PageEntry = {
-  id: string;
-  title: string;
-  icon: IconComponent;
-  sections: SectionItem[];
+const PAGE_ICONS: Record<string, IconComponent> = {
+  home: HomeIcon,
+  about: InfoOutlineIcon,
+  vision: RocketIcon,
+  programs: StackIcon,
+  impact: BarChartIcon,
+  services: ControlsIcon,
+  partners: HeartIcon,
+  contact: EnvelopeIcon,
+  inAction: PlayIcon,
 };
 
-const PAGES: PageEntry[] = [
-  {
-    id: "home",
-    title: "Home",
-    icon: HomeIcon,
-    sections: [
-      { id: "homeHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
-      { id: "homeFocusAreas", schemaType: "homeFocusAreas", title: "Focus Areas", icon: TargetIcon },
-      { id: "homeAbout", schemaType: "homeAbout", title: "About Snapshot", icon: InfoOutlineIcon },
-      { id: "homeServices", schemaType: "homeServices", title: "Services Preview", icon: PackageIcon },
-      { id: "homePrograms", schemaType: "homePrograms", title: "Programs Preview", icon: StackIcon },
-      { id: "homeStats", schemaType: "homeStats", title: "Impact Stats", icon: ChartUpwardIcon },
-      { id: "homePartners", schemaType: "homePartners", title: "Partners", icon: HeartIcon },
-      { id: "homeFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
-    ],
-  },
-  {
-    id: "about",
-    title: "About",
-    icon: InfoOutlineIcon,
-    sections: [
-      { id: "aboutHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
-      { id: "aboutBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
-      { id: "aboutFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
-    ],
-  },
-  {
-    id: "vision",
-    title: "Vision",
-    icon: RocketIcon,
-    sections: [
-      { id: "visionHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
-      { id: "visionBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
-      { id: "visionFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
-    ],
-  },
-  {
-    id: "programs",
-    title: "Programs",
-    icon: StackIcon,
-    sections: [
-      { id: "programsHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
-      { id: "programsBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
-      { id: "programsFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
-    ],
-  },
-  {
-    id: "impact",
-    title: "Impact",
-    icon: BarChartIcon,
-    sections: [
-      { id: "impactHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
-      { id: "impactBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
-      { id: "impactFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
-    ],
-  },
-  {
-    id: "services",
-    title: "Services",
-    icon: ControlsIcon,
-    sections: [
-      { id: "servicesHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
-      { id: "servicesBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
-      { id: "servicesFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
-    ],
-  },
-  {
-    id: "partners",
-    title: "Partners",
-    icon: HeartIcon,
-    sections: [
-      { id: "partnersHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
-      { id: "partnersBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
-      { id: "partnersFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
-    ],
-  },
-  {
-    id: "contact",
-    title: "Contact",
-    icon: EnvelopeIcon,
-    sections: [
-      { id: "contactHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
-      { id: "contactFormSection", schemaType: "contactFormSection", title: "Form Section", icon: EnvelopeIcon },
-      { id: "contactBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
-      { id: "contactFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
-    ],
-  },
-  {
-    id: "inAction",
-    title: "In Action",
-    icon: PlayIcon,
-    sections: [
-      { id: "inActionHero", schemaType: "pageHero", title: "Hero", icon: RocketIcon },
-      {
-        id: "inActionGallery",
-        schemaType: "inActionItem",
-        title: "Gallery Items (Videos & Photos)",
-        icon: PlayIcon,
-        kind: "list",
-      },
-      { id: "inActionBody", schemaType: "pageBody", title: "Body Sections", icon: ThListIcon },
-      { id: "inActionFinalCta", schemaType: "pageFinalCta", title: "Final CTA", icon: EnvelopeIcon },
-    ],
-  },
-];
+// The page/section table itself lives in sanity/lib/routes.ts, shared with the
+// revalidation webhook and the singleton lock. Here we only decorate it with
+// Studio icons.
+const PAGES = PAGE_ROUTES.map((page) => ({
+  id: page.key,
+  title: page.title,
+  icon: PAGE_ICONS[page.key] ?? DocumentsIcon,
+  sections: page.sections.map((section) => ({
+    ...section,
+    icon: SECTION_ICONS[section.schemaType] ?? ThListIcon,
+  })),
+}));
 
 export { PAGES };
 
@@ -235,6 +154,36 @@ export const structure: StructureResolver = (S) =>
             .defaultOrdering([
               { field: "featured", direction: "desc" },
               { field: "date", direction: "desc" },
+            ])
+        ),
+      S.divider(),
+      S.listItem()
+        .title("Inquiries")
+        .icon(EnvelopeIcon)
+        .schemaType("contactSubmission")
+        .child(
+          S.list()
+            .title("Inquiries")
+            .items([
+              S.listItem()
+                .title("New")
+                .icon(EnvelopeIcon)
+                .id("inquiriesNew")
+                .child(
+                  S.documentList()
+                    .title("New Inquiries")
+                    .filter('_type == "contactSubmission" && (status == "new" || !defined(status))')
+                    .defaultOrdering([{ field: "submittedAt", direction: "desc" }])
+                ),
+              S.listItem()
+                .title("All")
+                .icon(DocumentsIcon)
+                .id("inquiriesAll")
+                .child(
+                  S.documentTypeList("contactSubmission")
+                    .title("All Inquiries")
+                    .defaultOrdering([{ field: "submittedAt", direction: "desc" }])
+                ),
             ])
         ),
       S.divider(),

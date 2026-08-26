@@ -33,7 +33,7 @@ const BODY_SECTIONS = `sections[]{
   ...,
   _type == "partnershipModelGridBlock" => {
     ...,
-    "models": models[]->{ _id, title, description, investment, timeframe, displayOrder } | order(displayOrder asc)
+    "models": models[@->archived != true]->{ _id, title, description, investment, timeframe, displayOrder }
   }
 }`;
 
@@ -42,7 +42,7 @@ export const homePageQuery = defineQuery(`{
   "focusAreas": *[_id == "homeFocusAreas"][0] {
     "eyebrow": eyebrow,
     "title": title,
-    "items": items[]->{ _id, title, description, icon, displayOrder } | order(displayOrder asc)
+    "items": items[@->archived != true]->{ _id, title, description, icon, displayOrder }
   },
   "about": *[_id == "homeAbout"][0] {
     "eyebrow": eyebrow,
@@ -56,26 +56,26 @@ export const homePageQuery = defineQuery(`{
     "eyebrow": eyebrow,
     "title": title,
     "linkLabel": linkLabel,
-    "items": items[]->{ _id, title, description, icon, why, howToPartner, displayOrder } | order(displayOrder asc)
+    "items": items[@->archived != true]->{ _id, title, description, icon, why, howToPartner, displayOrder }
   },
   "programs": *[_id == "homePrograms"][0] {
     "eyebrow": eyebrow,
     "title": title,
     "linkLabel": linkLabel,
-    "items": items[]->{ _id, name, "slug": slug.current, tagline, description, pillars, color, displayOrder } | order(displayOrder asc)
+    "items": items[@->archived != true]->{ _id, name, "slug": slug.current, tagline, description, pillars, color, displayOrder }
   },
   "stats": *[_id == "homeStats"][0] {
     "eyebrow": eyebrow,
     "title": title,
     "subtitle": subtitle,
-    "items": items[]->{ _id, value, label, description, displayOrder } | order(displayOrder asc),
+    "items": items[@->archived != true]->{ _id, value, label, description, displayOrder },
     "linkLabel": linkLabel
   },
   "partners": *[_id == "homePartners"][0] {
     "eyebrow": eyebrow,
     "title": title,
     "subtitle": subtitle,
-    "items": items[]->{ _id, type, description, icon, displayOrder } | order(displayOrder asc),
+    "items": items[@->archived != true]->{ _id, type, description, icon, displayOrder },
     "ctaLabel": ctaLabel
   },
   "finalCta": *[_id == "homeFinalCta"][0] { ${FINAL_CTA_FIELDS} }
@@ -103,7 +103,7 @@ export const contactPageQuery = buildPageWithBodyQuery("contactHero", "contactBo
 export const inActionPageQuery = buildPageWithBodyQuery("inActionHero", "inActionBody", "inActionFinalCta");
 
 export const inActionItemsQuery = defineQuery(`
-  *[_type == "inActionItem"] | order(featured desc, date desc, displayOrder asc) {
+  *[_type == "inActionItem" && archived != true] | order(featured desc, date desc, displayOrder asc) {
     _id,
     title,
     description,
@@ -120,7 +120,7 @@ export const inActionItemsQuery = defineQuery(`
 `);
 
 export const programsLibraryQuery = defineQuery(`
-  *[_type == "program"] | order(displayOrder asc) {
+  *[_type == "program" && archived != true] | order(displayOrder asc) {
     _id, name, "slug": slug.current, tagline, icon, description,
     mission, pillars, impact, partnerOpportunity, color,
     "backgroundImageUrl": backgroundImage.asset->url
@@ -128,7 +128,7 @@ export const programsLibraryQuery = defineQuery(`
 `);
 
 export const servicesLibraryQuery = defineQuery(`
-  *[_type == "service"] | order(displayOrder asc) {
+  *[_type == "service" && archived != true] | order(displayOrder asc) {
     _id, title, "slug": slug.current, icon, description,
     why, howToPartner, bullets,
     "backgroundImageUrl": backgroundImage.asset->url

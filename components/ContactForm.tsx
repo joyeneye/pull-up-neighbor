@@ -13,12 +13,15 @@ const partnershipTypes = [
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({
     name: "",
     organization: "",
     email: "",
     partnershipType: "",
     message: "",
+    website: "",
   });
 
   const handleChange = (
@@ -29,9 +32,35 @@ export default function ContactForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (sending) return;
+
+    setSending(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = (await res.json().catch(() => null)) as
+        | { ok?: boolean; error?: string }
+        | null;
+
+      if (!res.ok || !data?.ok) {
+        // Never show the confirmation unless the inquiry was actually stored.
+        setError(data?.error ?? "We could not send that just now. Please try again.");
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError("That did not send — check your connection and try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   if (submitted) {
@@ -151,11 +180,33 @@ export default function ContactForm() {
         />
       </div>
 
+      {/* Hidden from people, catnip for bots. Never rendered to screen readers. */}
+      <div className="hidden" aria-hidden="true">
+        <label>
+          Website
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={form.website}
+            onChange={handleChange}
+          />
+        </label>
+      </div>
+
+      {error && (
+        <p role="alert" className="text-sm font-semibold text-red-600">
+          {error}
+        </p>
+      )}
+
       <button
         type="submit"
-        className="w-full bg-brand-500 text-slate-900 font-bold py-4 rounded-lg hover:bg-brand-400 transition-colors duration-200 text-base"
+        disabled={sending}
+        className="w-full bg-brand-500 text-slate-900 font-bold py-4 rounded-lg hover:bg-brand-400 transition-colors duration-200 text-base disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        Send Message
+        {sending ? "Sending..." : "Send Message"}
       </button>
     </form>
   );

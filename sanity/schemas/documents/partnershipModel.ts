@@ -1,5 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { ProjectsIcon } from "@sanity/icons";
+import { archivedField, archivedSubtitle } from "../objects/archivedField";
 
 export const partnershipModel = defineType({
   name: "partnershipModel",
@@ -38,6 +39,7 @@ export const partnershipModel = defineType({
       type: "number",
       initialValue: 0,
     }),
+    archivedField,
   ],
   orderings: [
     {
@@ -46,5 +48,11 @@ export const partnershipModel = defineType({
       by: [{ field: "displayOrder", direction: "asc" }],
     },
   ],
-  preview: { select: { title: "title", subtitle: "investment" } },
+  preview: {
+    select: { title: "title", subtitle: "investment", archived: "archived" },
+    prepare: ({ title, subtitle, archived }) => ({
+      title,
+      subtitle: archivedSubtitle(subtitle, archived),
+    }),
+  },
 });

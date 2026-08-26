@@ -1,5 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { ICON_OPTIONS } from "../objects/iconList";
+import { archivedField, archivedSubtitle } from "../objects/archivedField";
 
 export const program = defineType({
   name: "program",
@@ -95,6 +96,7 @@ export const program = defineType({
       type: "number",
       initialValue: 0,
     }),
+    archivedField,
   ],
   orderings: [
     {
@@ -104,6 +106,10 @@ export const program = defineType({
     },
   ],
   preview: {
-    select: { title: "name", subtitle: "tagline" },
+    select: { title: "name", subtitle: "tagline", archived: "archived" },
+    prepare: ({ title, subtitle, archived }) => ({
+      title,
+      subtitle: archivedSubtitle(subtitle, archived),
+    }),
   },
 });

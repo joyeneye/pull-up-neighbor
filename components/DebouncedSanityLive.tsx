@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { startTransition } from "react";
 import { createClient } from "@sanity/client";
 import { revalidateSyncTags as revalidateSyncTagsAction } from "next-sanity/live/server-actions";
+import { isCorsOriginError } from "next-sanity";
 
 const DEBOUNCE_MS = 800;
 
@@ -59,6 +60,22 @@ export default function DebouncedSanityLive() {
               console.error("[live] revalidate failed", err);
             }
           }, DEBOUNCE_MS);
+        },
+        // Without this branch the live channel fails in total silence. The
+        // most common failure is an origin that was never added to the Sanity
+        // project — the same setting that locks the Studio out — and
+        // next-sanity can name it exactly, including the URL that fixes it.
+        error: (err: unknown) => {
+          if (isCorsOriginError(err)) {
+            console.error(
+              `[live] This origin (${window.location.origin}) is not in the allowed CORS origins for Sanity project ` +
+                `${projectId}, so live updates and the Studio cannot load content. Add it here: ` +
+                `https://sanity.io/manage/project/${projectId}/api?cors=${encodeURIComponent(window.location.origin)}`,
+              err
+            );
+            return;
+          }
+          console.error("[live] connection error — live updates are not running", err);
         },
       });
     return () => subscription.unsubscribe();

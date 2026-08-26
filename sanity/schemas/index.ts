@@ -1,4 +1,5 @@
 import type { SchemaTypeDefinition } from "sanity";
+import { SECTION_SINGLETON_IDS } from "../lib/routes";
 import { hero } from "./objects/hero";
 import { cta } from "./objects/cta";
 import { finalCta } from "./objects/finalCta";
@@ -23,6 +24,7 @@ import { partnershipModel } from "./documents/partnershipModel";
 import { focusArea } from "./documents/focusArea";
 import { stat } from "./documents/stat";
 import { inActionItem } from "./documents/inActionItem";
+import { contactSubmission } from "./documents/contactSubmission";
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // Reusable inline objects
@@ -52,53 +54,12 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   focusArea,
   stat,
   inActionItem,
+  contactSubmission,
 ];
 
-export const SINGLETON_IDS = [
-  "siteSettings",
-  // Home sections
-  "homeHero",
-  "homeFocusAreas",
-  "homeAbout",
-  "homeServices",
-  "homePrograms",
-  "homeStats",
-  "homePartners",
-  "homeFinalCta",
-  // About sections
-  "aboutHero",
-  "aboutBody",
-  "aboutFinalCta",
-  // Vision sections
-  "visionHero",
-  "visionBody",
-  "visionFinalCta",
-  // Programs page sections
-  "programsHero",
-  "programsBody",
-  "programsFinalCta",
-  // Impact page sections
-  "impactHero",
-  "impactBody",
-  "impactFinalCta",
-  // Services page sections
-  "servicesHero",
-  "servicesBody",
-  "servicesFinalCta",
-  // Partners page sections
-  "partnersHero",
-  "partnersBody",
-  "partnersFinalCta",
-  // Contact page sections
-  "contactHero",
-  "contactBody",
-  "contactFormSection",
-  "contactFinalCta",
-  // In Action page sections
-  "inActionHero",
-  "inActionBody",
-  "inActionFinalCta",
-] as const;
+// Derived from the single page table in sanity/lib/routes.ts so that adding a
+// section cannot forget to protect it from deletion.
+export const SINGLETON_IDS: string[] = ["siteSettings", ...SECTION_SINGLETON_IDS];
 
 export const SINGLETON_ID_SET = new Set<string>(SINGLETON_IDS);
 

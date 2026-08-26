@@ -5,23 +5,20 @@ import { visionTool } from "@sanity/vision";
 import { muxInput } from "sanity-plugin-mux-input";
 import { schemaTypes, SINGLETON_ID_SET, SINGLETON_ONLY_TYPES } from "./sanity/schemas";
 import { structure } from "./sanity/structure";
+import { PAGE_ROUTES } from "./sanity/lib/routes";
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import { punTheme } from "./sanity/theme";
 import { StudioLogo } from "./sanity/StudioLogo";
 
 // When the iframe navigates to a path, jump the document panel to that
 // page's hero section (the primary editable section for that route).
-const ROUTE_TO_HERO: Record<string, { id: string; type: string }> = {
-  "/": { id: "homeHero", type: "pageHero" },
-  "/about": { id: "aboutHero", type: "pageHero" },
-  "/vision": { id: "visionHero", type: "pageHero" },
-  "/programs": { id: "programsHero", type: "pageHero" },
-  "/impact": { id: "impactHero", type: "pageHero" },
-  "/services": { id: "servicesHero", type: "pageHero" },
-  "/partners": { id: "partnersHero", type: "pageHero" },
-  "/contact": { id: "contactHero", type: "pageHero" },
-  "/in-action": { id: "inActionHero", type: "pageHero" },
-};
+// Derived from the shared page table so a new page cannot be forgotten here.
+const ROUTE_TO_HERO: Record<string, { id: string; type: string }> = Object.fromEntries(
+  PAGE_ROUTES.flatMap((page) => {
+    const hero = page.sections.find((s) => s.schemaType === "pageHero");
+    return hero ? [[page.route, { id: hero.id, type: hero.schemaType }]] : [];
+  })
+);
 
 export default defineConfig({
   basePath: "/studio",

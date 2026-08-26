@@ -1,6 +1,7 @@
 import { defineField, defineType } from "sanity";
 import { PlayIcon } from "@sanity/icons";
 import { DeleteItemField } from "../../components/DeleteItemField";
+import { archivedField, archivedSubtitle } from "../objects/archivedField";
 
 /**
  * A single piece of media shown on the /in-action gallery.
@@ -154,6 +155,7 @@ export const inActionItem = defineType({
       group: "display",
       initialValue: 0,
     }),
+    archivedField,
   ],
   orderings: [
     {
@@ -172,10 +174,14 @@ export const inActionItem = defineType({
       subtitle: "category",
       media: "thumbnail",
       mediaType: "mediaType",
+      archived: "archived",
     },
-    prepare: ({ title, subtitle, media, mediaType }) => ({
+    prepare: ({ title, subtitle, media, mediaType, archived }) => ({
       title,
-      subtitle: `${mediaType ?? "?"}${subtitle ? " · " + subtitle : ""}`,
+      subtitle: archivedSubtitle(
+        `${mediaType ?? "?"}${subtitle ? " · " + subtitle : ""}`,
+        archived
+      ),
       media,
     }),
   },

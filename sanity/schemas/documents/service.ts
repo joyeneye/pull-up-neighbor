@@ -1,5 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { ICON_OPTIONS } from "../objects/iconList";
+import { archivedField, archivedSubtitle } from "../objects/archivedField";
 
 export const service = defineType({
   name: "service",
@@ -64,9 +65,16 @@ export const service = defineType({
       type: "number",
       initialValue: 0,
     }),
+    archivedField,
   ],
   orderings: [
     { title: "Display Order", name: "displayOrder", by: [{ field: "displayOrder", direction: "asc" }] },
   ],
-  preview: { select: { title: "title", subtitle: "description" } },
+  preview: {
+    select: { title: "title", subtitle: "description", archived: "archived" },
+    prepare: ({ title, subtitle, archived }) => ({
+      title,
+      subtitle: archivedSubtitle(subtitle, archived),
+    }),
+  },
 });

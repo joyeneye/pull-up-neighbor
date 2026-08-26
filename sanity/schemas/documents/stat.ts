@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { archivedField, archivedSubtitle } from "../objects/archivedField";
 
 export const stat = defineType({
   name: "stat",
@@ -28,9 +29,16 @@ export const stat = defineType({
       type: "number",
       initialValue: 0,
     }),
+    archivedField,
   ],
   orderings: [
     { title: "Display Order", name: "displayOrder", by: [{ field: "displayOrder", direction: "asc" }] },
   ],
-  preview: { select: { title: "label", subtitle: "value" } },
+  preview: {
+    select: { title: "label", subtitle: "value", archived: "archived" },
+    prepare: ({ title, subtitle, archived }) => ({
+      title,
+      subtitle: archivedSubtitle(subtitle, archived),
+    }),
+  },
 });
