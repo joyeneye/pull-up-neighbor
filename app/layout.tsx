@@ -20,6 +20,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          src="https://project-hq-nine.vercel.app/rum.js"
+          data-site="pull-up-neighbor.1a06c1bfeb54"
+          defer
+        />
+      </head>
       <body className="antialiased">{children}</body>
     </html>
   );
